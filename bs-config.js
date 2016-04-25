@@ -24,7 +24,7 @@ module.exports = {
         'config.js',
         'bs-config.js',
         'index.html',
-        'app/**/*.{ts,js,html,gif,jpg,png,ttf}'
+        'app/**/*.{ts,js,css,html,gif,jpg,png,ttf}'
     ],
     "watchOptions": {},
     "server": {
