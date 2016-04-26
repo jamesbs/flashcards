@@ -1,6 +1,7 @@
 import { Injectable } from 'angular2/core';
 import { Http } from 'angular2/http';
 import { LangItem } from './lang-item';
+import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
 
@@ -12,13 +13,13 @@ export class LangItemProvider {
     constructor(private http: Http) {
     }
     
-    get(id: string) {
+    get(id: string): Observable<LangItem> {
         return this.http.get(`${baseUrl}/lang-item/${id}`)
-            .map(response => response.json());
+            .map(response => <LangItem>response.json());
     }
     
-    next() { 
+    next(): Observable<LangItem> { 
         return this.http.get(`${baseUrl}/lang-item/next`)
-            .map(response => response.json());
+            .map(response => <LangItem>response.json());
     }
 }

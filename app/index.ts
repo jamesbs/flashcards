@@ -6,5 +6,6 @@ import { App } from './app.component';
 
 bootstrap(App, [
     HTTP_PROVIDERS,
+    FORM_PROVIDERS,
     LangItemProvider
 ]);
