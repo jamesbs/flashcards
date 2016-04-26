@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from 'angular2/core';
 import { Control, ControlGroup, FormBuilder, Validators } from 'angular2/common';
-import { QuestionType, Solution } from '../solution/index';
+import { QuestionType, Solution } from '../question/index';
 
 @Component({
     selector: 'input-panel',
