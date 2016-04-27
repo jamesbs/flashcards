@@ -10,13 +10,15 @@ import { Solution, Question, QuestionType, QuestionProvider, validateSolution } 
     directives: [ Flashcard, InputPanel ],
     template: `
         <flashcard [langItem]="langItem"></flashcard>
-        <input-panel (solution)="compare($event)">
+        <input-panel 
+            [questionType]="question.type"
+            (solution)="compare($event)">
         </input-panel>
     `
 })
 export class Main implements OnInit {
     private langItem: LangItem = new LangItem();
-    private question: Question;
+    private question: Question = new Question();
     private questionObservable: Observable<Question>;
     private questionObserver: Observer<Question>;
     
