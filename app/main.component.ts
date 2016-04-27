@@ -3,7 +3,7 @@ import { Observable, Observer } from 'rxjs/Rx';
 import { Flashcard } from './flashcard/index';
 import { LangItem } from './lang-item/index';
 import { InputPanel } from './input-panel/index';
-import { Solution, Question, QuestionType, QuestionProvider } from './question/index';
+import { Solution, Question, QuestionType, QuestionProvider, validateSolution } from './question/index';
 
 @Component({
     selector: 'app-main',
@@ -45,5 +45,6 @@ export class Main implements OnInit {
     }
     
     compare(solution: Solution) {
+        const result = validateSolution(solution, this.question));
     }
 }
