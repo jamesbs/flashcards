@@ -75,6 +75,7 @@ import 'rxjs/add/operator/delay';
 })
 export class InputPanel implements OnInit {
     private form: ControlGroup;
+    
     @Input() private questionType: QuestionType;
     
     private result: Result = 'unanswered';
@@ -102,8 +103,11 @@ export class InputPanel implements OnInit {
         this.resultObservable
             .switchMap((result: Result) => Observable.merge(
                 Observable.of(result),
-                Observable.of('unanswered').delay(1000)))
+                Observable.of('unanswered').delay(2000)))
             .subscribe((result: Result) => {
+                if(result === 'correct') {
+                    (<Control>this.form.find('solution')).updateValue('');
+                }
                 this.result = result;
             })
     }
