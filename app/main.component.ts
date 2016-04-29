@@ -3,7 +3,7 @@ import { Observable, Observer } from 'rxjs/Rx';
 import { Flashcard } from './flashcard/index';
 import { LangItem } from './lang-item/index';
 import { InputPanel } from './input-panel/index';
-import { Solution, Question, QuestionType, QuestionProvider, validateSolution } from './question/index';
+import { Question, QuestionType, QuestionProvider, validateSolution, Result } from './question/index';
 
 @Component({
     selector: 'app-main',
@@ -12,8 +12,10 @@ import { Solution, Question, QuestionType, QuestionProvider, validateSolution } 
         <flashcard [langItem]="langItem"></flashcard>
         <input-panel 
             [questionType]="question.type"
+            [resultObservable]="resultObservable"
             (solution)="compare($event)">
         </input-panel>
+        <result></result>
     `
 })
 export class Main implements OnInit {
@@ -21,6 +23,8 @@ export class Main implements OnInit {
     private question: Question = new Question();
     private questionObservable: Observable<Question>;
     private questionObserver: Observer<Question>;
+    private resultObservable: Observable<Result>;
+    private resultObserver: Observer<Result>;
     
     constructor(private questionProvider: QuestionProvider) {
         
@@ -38,6 +42,11 @@ export class Main implements OnInit {
                 this.langItem = question.langItem;
             });
             
+        this.resultObservable = new Observable<Result>(
+            (observer: Observer<Result>) => {
+                this.resultObserver = observer;
+            });
+            
         this.next();
     }
     
@@ -46,7 +55,14 @@ export class Main implements OnInit {
             .subscribe((question: Question) => this.questionObserver.next(question));
     }
     
-    compare(solution: Solution) {
-        const result = validateSolution(solution, this.question);
+    compare(solution: string) {
+        const result: boolean = validateSolution(solution, this.question);
+        
+        if(result) {
+            this.resultObserver.next('correct');
+            this.next();
+        } else {
+            this.resultObserver.next('incorrect');
+        }
     }
 }
