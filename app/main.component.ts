@@ -1,5 +1,6 @@
 import { Component, OnInit } from 'angular2/core';
 import { Observable, Observer } from 'rxjs/Rx';
+import 'rxjs/add/operator/delay';
 import { Flashcard } from './flashcard/index';
 import { LangItem } from './lang-item/index';
 import { InputPanel } from './input-panel/index';
@@ -12,8 +13,9 @@ import { Question, QuestionType, QuestionProvider, validateSolution, Result } fr
         <flashcard [langItem]="langItem"></flashcard>
         <input-panel 
             [questionType]="question.type"
-            [resultObservable]="resultObservable"
-            (solution)="compare($event)">
+            [results]="results"
+            (solution)="compare($event)"
+            (moveNext)="next()">
         </input-panel>
         <result></result>
     `
@@ -21,9 +23,9 @@ import { Question, QuestionType, QuestionProvider, validateSolution, Result } fr
 export class Main implements OnInit {
     private langItem: LangItem = new LangItem();
     private question: Question = new Question();
-    private questionObservable: Observable<Question>;
+    private questions: Observable<Question>;
     private questionObserver: Observer<Question>;
-    private resultObservable: Observable<Result>;
+    private results: Observable<Result>;
     private resultObserver: Observer<Result>;
     
     constructor(private questionProvider: QuestionProvider) {
@@ -31,18 +33,18 @@ export class Main implements OnInit {
     }
 
     ngOnInit() {
-        this.questionObservable = new Observable<Question>(
+        this.questions = new Observable<Question>(
             (observer: Observer<Question>) => {
                 this.questionObserver = observer;
             });
             
-        this.questionObservable
+        this.questions
             .subscribe((question: Question) => {
                 this.question = question;
                 this.langItem = question.langItem;
             });
             
-        this.resultObservable = new Observable<Result>(
+        this.results = new Observable<Result>(
             (observer: Observer<Result>) => {
                 this.resultObserver = observer;
             });
@@ -60,7 +62,12 @@ export class Main implements OnInit {
         
         if(result) {
             this.resultObserver.next('correct');
-            this.next();
+            
+            Observable.of(null)
+                .delay(1000)
+                .subscribe(() => {
+                    this.next();
+                })
         } else {
             this.resultObserver.next('incorrect');
         }

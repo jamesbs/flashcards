@@ -9,8 +9,8 @@ import 'rxjs/add/operator/delay';
     template: `
         <form [ngFormModel]="form" (submit)="submit($event)">
             <div class="input-area">
-                <div class="input-wrapper" [ngClass]="{ pinyin: questionType === 'pinyin', english: questionType === 'english' }">
-                    <input type="text" name="solution" ngControl="solution" />
+                <div class="input-wrapper" [ngClass]="[ questionType, result ].join(' ')">
+                    <input autocomplete="off" type="text" name="solution" ngControl="solution" />
                 </div>
                 <div class="answer correct" [hidden]="result !== 'correct'">
                     <i class="fa fa-check"></i>
@@ -18,6 +18,7 @@ import 'rxjs/add/operator/delay';
                 <div class="answer incorrect" [hidden]="result !== 'incorrect'">
                     <i class="fa fa-times"></i>
                 </div>
+                <a class="move-next" (click)="next()"><i class="fa fa-arrow-right"></i></a>
             </div>
         </form>
     `,
@@ -39,6 +40,14 @@ import 'rxjs/add/operator/delay';
         
         .input-wrapper.pinyin {
             background-color: #ffebee;
+        }
+        
+        .input-wrapper.correct input[name=solution] {
+            color: #43a047;
+        }
+        
+        .input-wrapper.incorrect input[name=solution] {
+            color: #d50000;
         }
         
         [name=solution] {
@@ -71,6 +80,17 @@ import 'rxjs/add/operator/delay';
             opacity: 0.78;
             color: #d50000;
         }
+        
+        .move-next {
+            top: 0.3rem;
+            right: -2.4rem;
+            font-size: 2rem;
+            position: absolute;
+        }
+        
+        .move-next:hover {
+            cursor: pointer;
+        }
     `]
 })
 export class InputPanel implements OnInit {
@@ -79,10 +99,11 @@ export class InputPanel implements OnInit {
     @Input() private questionType: QuestionType;
     
     private result: Result = 'unanswered';
-    @Input() private resultObservable: Observable<Result>;
+    @Input() private results: Observable<Result>;
     
     
     @Output() private solution: EventEmitter<string> = new EventEmitter<string>();
+    @Output() private moveNext: EventEmitter<any> = new EventEmitter<any>();
 
     constructor(private builder: FormBuilder) { }
     
@@ -100,15 +121,19 @@ export class InputPanel implements OnInit {
             solution: new Control(null, Validators.required)
         });
         
-        this.resultObservable
+        this.results
             .switchMap((result: Result) => Observable.merge(
                 Observable.of(result),
                 Observable.of('unanswered').delay(2000)))
             .subscribe((result: Result) => {
-                if(result === 'correct') {
+                if(result === 'unanswered' && this.result === 'correct') {
                     (<Control>this.form.find('solution')).updateValue('');
                 }
                 this.result = result;
             })
+    }
+    
+    next() {
+        this.moveNext.emit("");
     }
 }

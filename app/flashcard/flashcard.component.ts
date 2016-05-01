@@ -4,7 +4,7 @@ import { LangItem } from '../lang-item/index';
 @Component({
     selector: 'flashcard',
     template: `
-        <div class="card current">{{langItem.chinese}}</div>
+        <div class="card current {{result}}">{{langItem.chinese}}</div>
     `,
     styles: [`
         .card {
@@ -17,4 +17,7 @@ export class Flashcard {
     @Input() private langItem: LangItem;
 
     constructor() {}
+    
+    ngOnInit() {
+    }
 }
