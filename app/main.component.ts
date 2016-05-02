@@ -1,5 +1,5 @@
 import { Component, OnInit } from 'angular2/core';
-import { Observable, Observer } from 'rxjs/Rx';
+import { Observable, Observer, Subject } from 'rxjs/Rx';
 import 'rxjs/add/operator/delay';
 import { Flashcard } from './flashcard/flashcard.component';
 import { Character } from './lang-item/character';
@@ -10,7 +10,9 @@ import { Question, QuestionType, QuestionProvider, validateSolution, Result } fr
     selector: 'app-main',
     directives: [ Flashcard, InputPanel ],
     template: `
-        <flashcard [characters]="characters"></flashcard>
+        <flashcard
+            [characters]="characters"
+            [showPinyin]="true"></flashcard>
         <input-panel 
             [questionType]="question.type"
             [results]="results"
@@ -23,6 +25,8 @@ import { Question, QuestionType, QuestionProvider, validateSolution, Result } fr
 export class Main implements OnInit {
     private characters: Character[] = [];
     private question: Question = new Question();
+    private result: Result = 'unanswered';
+    
     private questions: Observable<Question>;
     private questionObserver: Observer<Question>;
     private results: Observable<Result>;
@@ -33,22 +37,26 @@ export class Main implements OnInit {
     }
 
     ngOnInit() {
-        this.questions = new Observable<Question>(
-            (observer: Observer<Question>) => {
-                this.questionObserver = observer;
-            });
+        const questions = new Subject<Question>();
+            
+        this.questions = questions;
+        this.questionObserver = questions;
             
         this.questions
             .subscribe((question: Question) => {
                 this.question = question;
-                console.log(question.characters);
                 this.characters = question.characters;
             });
             
-        this.results = new Observable<Result>(
-            (observer: Observer<Result>) => {
-                this.resultObserver = observer;
-            });
+        const results = new Subject<Result>();
+       
+        this.results = results;
+        this.resultObserver = results;
+        
+        /*
+        Observable.combineLatest(this.questions, this.results)
+            .subscribe((val) => {
+            })*/
             
         this.next();
     }
@@ -58,19 +66,24 @@ export class Main implements OnInit {
             .subscribe((question: Question) => this.questionObserver.next(question));
     }
     
+    // todo: refactor through observables. currently relying on state context
     compare(solution: string) {
-        const result: boolean = validateSolution(solution, this.question);
+        const correct: boolean = validateSolution(solution, this.question);
         
-        if(result) {
-            this.resultObserver.next('correct');
+        if(correct) {
+            this.publishResult('correct');
             
             Observable.of(null)
                 .delay(800)
                 .subscribe(() => {
-                    //this.next();
+                    this.next();
                 })
         } else {
-            this.resultObserver.next('incorrect');
+            this.publishResult('incorrect');
         }
+    }
+    
+    publishResult(result: Result) {
+        this.resultObserver.next(result);
     }
 }
