@@ -1,16 +1,16 @@
 import { Component, OnInit } from 'angular2/core';
 import { Observable, Observer } from 'rxjs/Rx';
 import 'rxjs/add/operator/delay';
-import { Flashcard } from './flashcard/index';
-import { LangItem } from './lang-item/index';
-import { InputPanel } from './input-panel/index';
+import { Flashcard } from './flashcard/flashcard.component';
+import { Character } from './lang-item/character';
+import { InputPanel } from './input-panel/input-panel.component';
 import { Question, QuestionType, QuestionProvider, validateSolution, Result } from './question/index';
 
 @Component({
     selector: 'app-main',
     directives: [ Flashcard, InputPanel ],
     template: `
-        <flashcard [langItem]="langItem"></flashcard>
+        <flashcard [characters]="characters"></flashcard>
         <input-panel 
             [questionType]="question.type"
             [results]="results"
@@ -21,7 +21,7 @@ import { Question, QuestionType, QuestionProvider, validateSolution, Result } fr
     `
 })
 export class Main implements OnInit {
-    private langItem: LangItem = new LangItem();
+    private characters: Character[] = [];
     private question: Question = new Question();
     private questions: Observable<Question>;
     private questionObserver: Observer<Question>;
@@ -41,7 +41,8 @@ export class Main implements OnInit {
         this.questions
             .subscribe((question: Question) => {
                 this.question = question;
-                this.langItem = question.langItem;
+                console.log(question.characters);
+                this.characters = question.characters;
             });
             
         this.results = new Observable<Result>(
@@ -64,9 +65,9 @@ export class Main implements OnInit {
             this.resultObserver.next('correct');
             
             Observable.of(null)
-                .delay(1000)
+                .delay(800)
                 .subscribe(() => {
-                    this.next();
+                    //this.next();
                 })
         } else {
             this.resultObserver.next('incorrect');

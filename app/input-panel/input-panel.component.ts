@@ -124,7 +124,7 @@ export class InputPanel implements OnInit {
         this.results
             .switchMap((result: Result) => Observable.merge(
                 Observable.of(result),
-                Observable.of('unanswered').delay(2000)))
+                Observable.of(result).delay(800)))
             .subscribe((result: Result) => {
                 if(result === 'unanswered' && this.result === 'correct') {
                     (<Control>this.form.find('solution')).updateValue('');

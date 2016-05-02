@@ -1,9 +1,11 @@
 import { Injectable } from 'angular2/core';
 import { QuestionType } from './question-type';
 import { LangItem } from '../lang-item/index';
+import { Character } from '../lang-item/character';
 
 @Injectable()
 export class Question {
     type: QuestionType;
-    langItem: LangItem;
+    characters: Character[];
+    english: string | string[];
 }

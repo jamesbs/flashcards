@@ -1,10 +1,15 @@
 import { Component,  Input } from 'angular2/core';
-import { LangItem } from '../lang-item/index';
+import { LangItem, getCharacters, Character, toBasic } from '../lang-item/index';
 
 @Component({
     selector: 'flashcard',
     template: `
-        <div class="card current {{result}}">{{langItem.chinese}}</div>
+        <div class="card current {{result}}">
+            <div class="character" *ngFor="#character of characters">
+                <div class="chinese">{{character.chinese}}</div>
+                <div class="pinyin">{{toBasic(character.pinyin)}}</div>
+            </div>
+       </div>
     `,
     styles: [`
         .card {
@@ -14,10 +19,12 @@ import { LangItem } from '../lang-item/index';
     `]
 })
 export class Flashcard {
-    @Input() private langItem: LangItem;
-
+    @Input() private characters: Character[] = [];
+    
     constructor() {}
     
     ngOnInit() {
     }
+
+    toBasic = toBasic;
 }
