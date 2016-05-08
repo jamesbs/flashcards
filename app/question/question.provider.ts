@@ -1,4 +1,4 @@
-import { Injectable } from 'angular2/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { LangItem, LangItemProvider, getCharacters, Character } from '../lang-item/index';
 import { Question } from './question';

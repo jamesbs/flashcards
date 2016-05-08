@@ -1,10 +1,6 @@
 SystemJS.config({
   transpiler: false,
   packages: {
-    "angular2-starter": {
-      "format": "esm",
-      "main": "angular2-starter.js"
-    },
     "app": {
       "defaultExtension": "ts",
       "meta": {
@@ -15,7 +11,7 @@ SystemJS.config({
     }
   },
   meta: {
-    "angular2/*": {
+    "app/*": {
       "deps": [
         "zone.js",
         "reflect-metadata"
@@ -38,20 +34,32 @@ SystemJS.config({
     "github:*/*.json"
   ],
   map: {
+    "@angular/common": "npm:@angular/common@2.0.0-rc.1",
+    "@angular/compiler": "npm:@angular/compiler@2.0.0-rc.1",
+    "@angular/core": "npm:@angular/core@2.0.0-rc.1",
+    "@angular/platform-browser": "npm:@angular/platform-browser@2.0.0-rc.1",
+    "@angular/platform-browser-dynamic": "npm:@angular/platform-browser-dynamic@2.0.0-rc.1",
+    "@angular/http": "npm:@angular/http@2.0.0-rc.1",
+    "angular-common": "npm:@angular/common@2.0.0-rc.1",
+    "angular-compiler": "npm:@angular/compiler@2.0.0-rc.1",
+    "angular-core": "npm:@angular/core@2.0.0-rc.1",
+    "angular-platform-browser": "npm:@angular/platform-browser@2.0.0-rc.1",
+    "angular-platform-browser-dynamic": "npm:@angular/platform-browser-dynamic@2.0.0-rc.1",
     "buffer": "github:jspm/nodelibs-buffer@0.2.0-alpha",
     "fs": "github:jspm/nodelibs-fs@0.2.0-alpha",
+    "http": "npm:@angular/http@2.0.0-rc.1",
     "os": "github:jspm/nodelibs-os@0.2.0-alpha",
     "process": "github:jspm/nodelibs-process@0.2.0-alpha",
     "readline": "github:jspm/nodelibs-readline@0.2.0-alpha",
+    "router": "npm:@angular/router@2.0.0-rc.1",
     "ts": "github:frankwallis/plugin-typescript@4.0.7",
     "typescript": "npm:typescript@1.8.10",
-    "angular2": "npm:angular2@2.0.0-beta.15",
     "es6-promise": "npm:es6-promise@3.1.2",
     "es6-shim": "npm:es6-shim@0.33.13",
     "path": "github:jspm/nodelibs-path@0.2.0-alpha",
     "plugin-typescript": "github:frankwallis/plugin-typescript@4.0.7",
     "reflect-metadata": "npm:reflect-metadata@0.1.2",
-    "rxjs": "npm:rxjs@5.0.0-beta.2",
+    "rxjs": "npm:rxjs@5.0.0-beta.6",
     "zone.js": "npm:zone.js@0.6.6"
   },
   packages: {
@@ -84,9 +92,6 @@ SystemJS.config({
       "map": {}
     },
     "npm:reflect-metadata@0.1.2": {
-      "map": {}
-    },
-    "npm:rxjs@5.0.0-beta.2": {
       "map": {}
     },
     "npm:zone.js@0.6.6": {

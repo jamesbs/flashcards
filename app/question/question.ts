@@ -1,4 +1,4 @@
-import { Injectable } from 'angular2/core';
+import { Injectable } from '@angular/core';
 import { QuestionType } from './question-type';
 import { LangItem } from '../lang-item/index';
 import { Character } from '../lang-item/character';

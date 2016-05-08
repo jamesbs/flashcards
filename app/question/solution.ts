@@ -1,4 +1,3 @@
-import { Injectable } from 'angular2/core';
 import { Question } from './question';
 import { Character, toBasic } from '../lang-item/index';
 

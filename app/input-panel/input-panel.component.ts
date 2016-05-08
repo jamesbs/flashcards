@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from 'angular2/core';
-import { Control, ControlGroup, FormBuilder, Validators } from 'angular2/common';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Control, ControlGroup, FormBuilder, Validators } from '@angular/common';
 import { QuestionType, Result } from '../question/index';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/delay';

@@ -1,4 +1,4 @@
-import { Component, OnInit } from 'angular2/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable, Observer, Subject } from 'rxjs/Rx';
 import 'rxjs/add/operator/delay';
 import { Flashcard } from './flashcard/flashcard.component';

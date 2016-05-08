@@ -1,11 +1,11 @@
-import { Component,  Input } from 'angular2/core';
+import { Component,  Input } from '@angular/core';
 import { LangItem, getCharacters, Character, toBasic } from '../lang-item/index';
 
 @Component({
     selector: 'flashcard',
     template: `
         <div class="card current">
-            <div class="character" *ngFor="#character of characters">
+            <div class="character" *ngFor="let character of characters">
                 <div class="chinese">{{character.chinese}}</div>
                 <div class="pinyin" [hidden]="!showPinyin">{{toBasic(character.pinyin)}}</div>
             </div>
