@@ -1,16 +1,13 @@
 {
     "compilerOptions": {
         "target": "es5",
-        "module": "system",
+        "module": "commonjs",
         "moduleResolution": "node",
         "noImplicitAny": false,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true
     },
     "exclude": [
-        "node_modules",
-        "jspm_packages",
-        "typings/main",
-        "typings/main.d.ts"
+        "node_modules"
     ]
 }
