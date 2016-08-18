@@ -1,13 +1,13 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const paths = require('./build/paths');
 const path = require('./build/tools').generatePath;
 
-console.log(path`${'dist'}/index.ts`);
 module.exports = {
-  context: paths.project, 
+  context: path`${'dist'}`, 
 
-  entry: path`${'dist'}/index.ts`,
+  entry: {
+    app: './index.ts'
+  },
 
   output: {
     path: 'dist',
@@ -17,18 +17,27 @@ module.exports = {
 
   devtool: 'source-map',
 
+  resolve: { 
+    extensions: ['', '.webpack.js', '.web.js', '.ts', '.js', '.styl']
+  },
+
   module: {
     loaders: [
       {
         test: /\.ts$/,
-        loader: 'awesome-typescript-loader',
+        loaders: ['awesome-typescript', 'angular2-template'],
+        exclude: /node_modules/
+      },
+      {
+        test: /\.html/,
+        loaders: ['html-loader'],
         exclude: /node_modules/
       },
       {
         test: /\.(jpg|jpeg|gif|png|svg|tif|ttf)$/,
         loaders: [
           {
-            loader: 'url-loader',
+            loader: 'url',
             query: {
               name: '[path][name].[ext]',
               context: './src'
@@ -39,16 +48,16 @@ module.exports = {
       {
         test: /\.styl/,
         loaders: [
-          'style-loader',
-          'css-loader',
-          'stylus-loader',
+          'to-string',
+          'css',
+          'stylus',
         ],
       },
       {
         test: /\.css$/, 
         loaders: [
-          'style-loader',
-          'css-loader',
+          'to-string',
+          'css',
         ]
       }
     ]
@@ -56,13 +65,13 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: './index.html',
       inject: 'body'
     })
   ],
 
   devServer: {
-    contentBase: paths.dist,
+    contentBase: path`${'dist'}`,
     historyApiFallback: true,
     inline: true,
     compress: true,

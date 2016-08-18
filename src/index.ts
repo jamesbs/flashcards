@@ -1,14 +1,19 @@
-import 'reflect-metadata'; // should be unnecessary
-import { bootstrap } from '@angular/platform-browser-dynamic';
+import 'zone.js/dist/zone';
+import 'reflect-metadata';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { HTTP_PROVIDERS } from '@angular/http';
-import { FORM_PROVIDERS } from '@angular/common';
-import { QuestionProvider } from './question/index';
-import { LangItemProvider } from './lang-item/index';
-import { App } from './app.component';
+import { QuestionProvider } from './question';
+import { LangItemProvider } from './lang-item';
+import { AppMain } from './app-main.component';
 
-bootstrap(App, [
-    HTTP_PROVIDERS,
-    FORM_PROVIDERS,
-    LangItemProvider,
-    QuestionProvider
-]);
+@NgModule({
+  declarations: [],
+  imports: [BrowserModule],
+  providers: [HTTP_PROVIDERS],
+  bootstrap: [AppMain],
+})
+class App { }
+
+platformBrowserDynamic().bootstrapModule(App);

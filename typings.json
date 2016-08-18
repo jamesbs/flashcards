@@ -1,8 +1,0 @@
-{
-  "name": "flashcards",
-  "dependencies": {},
-  "globalDependencies": {
-    "es2015": "registry:env/es2015#1.0.0+20160526151700",
-    "node": "registry:env/node#6.0.0+20160723033700"
-  }
-}
