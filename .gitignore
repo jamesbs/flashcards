@@ -1,5 +1,7 @@
+.awcache
 .vscode
 .DS_Store
 typings
 node_modules
 dist
+npm-debug.log

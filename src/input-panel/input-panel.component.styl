@@ -1,0 +1,55 @@
+.input-area
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+
+.input-wrapper
+  padding: 0.4rem;
+  border-bottom: 1px solid #888;
+
+.input-wrapper.english
+  background-color: #e3f2fd;
+
+.input-wrapper.pinyin
+  background-color: #ffebee;
+
+.input-wrapper.correct input[name=solution]
+  color: #43a047;
+
+.input-wrapper.incorrect input[name=solution]
+  color: #d50000;
+
+[name=solution]
+  width: 100%;
+  font-size: 1.8rem;
+  border: 0;
+  text-align: center;
+  background-color: transparent;
+
+[name=solution]:focus
+  outline-width: 0;
+
+.answer
+  font-size: 8rem;
+  position: absolute;
+
+.answer.correct
+  top: -3.5rem;
+  right: 0;
+  opacity: 0.8;
+  color: #43a047;
+
+.answer.incorrect
+  top: -3.5rem;
+  right: 0;
+  opacity: 0.78;
+  color: #d50000;
+
+.move-next
+  top: 0.3rem;
+  right: -2.4rem;
+  font-size: 2rem;
+  position: absolute;
+
+.move-next:hover
+  cursor: pointer;

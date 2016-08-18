@@ -2,16 +2,8 @@ import { Component } from "@angular/core";
 
 @Component({
     selector: 'app-header',
-    template: `
-        <a href="/">flashcards</a>
-    `,
-    styles: [`
-        a {
-            font-size: 1.2rem;
-            color: #333;
-            text-transform: uppercase;
-        }
-    `]
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.styl']
 })
 export class Header {
     

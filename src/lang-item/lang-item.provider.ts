@@ -10,16 +10,15 @@ const baseUrl = "http://localhost:8999";
 @Injectable()
 export class LangItemProvider {
 
-    constructor(private http: Http) {
-    }
-    
-    get(id: string): Observable<LangItem> {
-        return this.http.get(`${baseUrl}/lang-item/${id}`)
-            .map(response => <LangItem>response.json());
-    }
-    
-    next(): Observable<LangItem> { 
-        return this.http.get(`${baseUrl}/lang-item/next`)
-            .map(response => <LangItem>response.json());
-    }
+  constructor(private http: Http) { }
+  
+  get(id: string): Observable<LangItem> {
+    return this.http.get(`${baseUrl}/lang-item/${id}`)
+      .map(response => <LangItem>response.json());
+  }
+  
+  next(): Observable<LangItem> { 
+    return this.http.get(`${baseUrl}/lang-item/next`)
+        .map(response => <LangItem>response.json());
+  }
 }

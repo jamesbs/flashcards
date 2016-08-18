@@ -12,6 +12,8 @@
     "node_modules"
   ],
   "awesomeTypescriptLoaderOptions": {
-    "useWebpackText": true
+    "useWebpackText": true,
+    "useCache": true,
+    "useBabel": true
   }
 }

@@ -5,7 +5,7 @@ import { Character } from '../lang-item/character';
 
 @Injectable()
 export class Question {
-    type: QuestionType;
-    characters: Character[];
-    english: string | string[];
+  type: QuestionType;
+  characters: Character[];
+  english: string | string[];
 }

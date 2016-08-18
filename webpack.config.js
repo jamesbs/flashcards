@@ -49,7 +49,7 @@ module.exports = {
         test: /\.styl/,
         loaders: [
           'to-string',
-          'css',
+          'css?minimize',
           'stylus',
         ],
       },
@@ -64,6 +64,12 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      },
+      mangle: false,
+    }),
     new HtmlWebpackPlugin({
       template: './index.html',
       inject: 'body'

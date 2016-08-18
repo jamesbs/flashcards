@@ -1,19 +1,9 @@
-import 'zone.js/dist/zone';
+import 'babel-polyfill';
 import 'reflect-metadata';
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import 'core-js/es6';
+import 'core-js/es7/reflect';
+import 'zone.js/dist/zone';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { HTTP_PROVIDERS } from '@angular/http';
-import { QuestionProvider } from './question';
-import { LangItemProvider } from './lang-item';
-import { AppMain } from './app-main.component';
-
-@NgModule({
-  declarations: [],
-  imports: [BrowserModule],
-  providers: [HTTP_PROVIDERS],
-  bootstrap: [AppMain],
-})
-class App { }
+import { App } from './app.module';
 
 platformBrowserDynamic().bootstrapModule(App);

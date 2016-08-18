@@ -9,18 +9,8 @@ import { Question, QuestionType, QuestionProvider, validateSolution, Result } fr
 @Component({
     selector: 'app-main',
     directives: [ Flashcard, InputPanel ],
-    template: `
-        <flashcard
-            [characters]="characters"
-            [showPinyin]="true"></flashcard>
-        <input-panel 
-            [questionType]="question.type"
-            [results]="results"
-            (solution)="compare($event)"
-            (moveNext)="next()">
-        </input-panel>
-        <result></result>
-    `
+    templateUrl: 'main.component.html',
+    styleUrls: ['main.component.styl']
 })
 export class Main implements OnInit {
     private characters: Character[] = [];

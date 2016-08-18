@@ -1,0 +1,11 @@
+<flashcard
+  [characters]="characters"
+  [showPinyin]="true">
+</flashcard>
+<input-panel 
+  [questionType]="question.type"
+  [results]="results"
+  (solution)="compare($event)"
+  (moveNext)="next()">
+</input-panel>
+<result></result>
