@@ -1,12 +1,14 @@
 import { Character } from './character';
 import { fromBasic } from './pinyin';
 import { zip } from '../util/collection';
+import { Translation } from './translation';
 
-export class LangItem {
-  id: string = "";
-  chinese: string = "";
-  pinyin: string = "";
-  english: string | string[] = "";
+export class LangItem implements Translation {
+  id = '';
+  chinese = '';
+  pinyin = '';
+  english = '';
+  examples: Translation[] = [];
 }
     
 export const getCharacters = (langItem: LangItem): Character[] =>

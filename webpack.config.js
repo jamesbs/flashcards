@@ -64,12 +64,14 @@ module.exports = {
   },
 
   plugins: [
+    /*
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
       },
       mangle: false,
     }),
+    */
     new HtmlWebpackPlugin({
       template: './index.html',
       inject: 'body'
