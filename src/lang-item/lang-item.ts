@@ -1,7 +1,9 @@
 import { Character } from './character';
+import { Word } from './word';
 import { fromBasic } from './pinyin';
 import { zip } from '../util/collection';
 import { Translation } from './translation';
+import { SimpleTranslation } from './simple-translation';
 
 export class LangItem implements Translation {
   id = '';
@@ -11,12 +13,39 @@ export class LangItem implements Translation {
   examples: Translation[] = [];
 }
     
-export const getCharacters = (langItem: LangItem): Character[] =>
-  zip(langItem.chinese.split(''), splitPinyin(langItem.pinyin))
+export const getCharacters = (translation: Translation): Character[] =>
+  zip(translation.chinese.split(''), splitPinyin(translation.pinyin))
     .map(([ chinese, pinyin ]: [ string, string ]): Character => ({
       chinese,
       pinyin: fromBasic(pinyin)
     }));
+
+export const getWords = (translation: SimpleTranslation): Word[] => {
+  const pinyinWords = translation.pinyin.split(' ');
+  const chineseCharacters = translation.chinese.split('');
+  const englishWords = translation.english.split(' ');
+
+  return pinyinWords
+    .reduce((words, pinyinWord) => {
+      const word: Word = splitPinyin(pinyinWord)
+          .reduce((acc, pinyin) => {
+            return [
+              ...acc,
+              {
+                chinese: chineseCharacters[words.length + acc.length],
+                pinyin: fromBasic(pinyin),
+              }
+            ];
+          }, [] as Character[]);
+
+      word.english = englishWords[words.length];
+
+      return [
+        ...words,
+        word
+      ];
+    }, [] as Word[]);
+}
 
 export const splitPinyin = (pinyin: string) => {
   let index = 0;

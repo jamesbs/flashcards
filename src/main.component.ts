@@ -23,7 +23,6 @@ export class Main implements OnInit {
     private resultObserver: Observer<Result>;
     
     constructor(private questionProvider: QuestionProvider) {
-        
     }
 
     ngOnInit() {

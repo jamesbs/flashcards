@@ -1,5 +1,10 @@
 <div class="actions">
-  <div class="new-icon"></div>
+  <div class="learn-icon">
+    <icon-open-book></icon-open-book>
+  </div>
+  <div class="link">
+    <a class="fa fa-external-link" href="http://www.collinsdictionary.com/dictionary/chinese-english/{{langItem.chinese}}" title="External link"></a>
+  </div>
 </div>
 <div class="header">
   LEARN
@@ -21,8 +26,20 @@
   <div class="header">Examples</div>
   <div class="example"
     *ngFor="let example of examples">
-    <div class="chinese">{{example.chinese}}</div>
-    <div class="pinyin">{{example.pinyin}}</div>
-    <div class="english">{{example.english}}</div>
+    <div class="chinese">
+      <span class="word-{{i}}" 
+        *ngFor="let word of example.words; let i = index">
+        <span *ngFor="let character of word">{{character.chinese}}</span>
+      </span>
+    </div>
+    <div class="pinyin">
+      <span class="word-{{i}}" 
+        *ngFor="let word of example.words; let i = index">
+        <span *ngFor="let character of word">{{character.pinyin.syllable}}{{character.pinyin.tone}}</span>
+      </span>
+    </div>
+    <div class="english">
+      {{example.english}}
+    </div>
   </div>
 </div>

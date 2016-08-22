@@ -3,6 +3,13 @@
   position: relative
   padding-left: 4rem
 
+  #Book_1_ // learn icon
+    fill: #ef6c00
+
+  .learn-icon
+    margin-bottom: 1.2rem
+
+
   .header
     color: #ef6c00
     font-family: Montserrat
@@ -11,7 +18,7 @@
   & > .header
     font-size: 2.8rem
     letter-spacing: 1px
-    margin-bottom: 1rem
+    margin-bottom: 0.8rem
 
   & > .actions
     position: absolute;
@@ -19,7 +26,11 @@
     top: 0
     bottom: 0
     width: 3.1rem
-    background-color: green
+    padding-top: 0.2rem
+
+    .link a
+      font-size: 2.2rem
+
 
 .translation
   display: inline-block
@@ -28,19 +39,27 @@
   .character
     display: inline-block
 
+    &:hover
+      color: #00b8d4
+
     .chinese
       font-size: 10rem // font-size should be relative to phrase length
       line-height: 1.14em
       
   .english
     font-size: 1.6rem // font-size should be relative to phrase length
-    margin-top: 0.8rem
+    margin-top: 0.7rem
     
 .examples
-  margin-top: 1rem
+  margin-top: 1.8rem
 
   .header
     font-size: 1.4rem
+    margin-bottom: 0.8rem
 
   .chinese
-    font-size: 1.2\3rem
+    font-size: 1.3rem
+
+  .example
+    line-height: 1.4rem
+    margin-bottom: 1rem

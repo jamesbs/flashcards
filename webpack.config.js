@@ -30,11 +30,11 @@ module.exports = {
       },
       {
         test: /\.html/,
-        loaders: ['html-loader'],
+        loader: 'html',
         exclude: /node_modules/
       },
       {
-        test: /\.(jpg|jpeg|gif|png|svg|tif|ttf)$/,
+        test: /\.(jpg|jpeg|gif|png|tif|ttf)$/,
         loaders: [
           {
             loader: 'url',
@@ -52,6 +52,19 @@ module.exports = {
           'css?minimize',
           'stylus',
         ],
+      },
+      {
+        test: /\.svg/,
+        loader: 'url',
+        exclude: /icons/,
+        query: {
+          name: '[path][name].[ext]',
+          context: './src'
+        }
+      },
+      {
+        test: /\.svg/,
+        loader: 'raw'
       },
       {
         test: /\.css$/, 

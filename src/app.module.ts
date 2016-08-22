@@ -6,9 +6,10 @@ import { HTTP_PROVIDERS } from '@angular/http';
 import { QuestionProvider } from './question';
 import { LangItemProvider } from './lang-item';
 import { AppMain } from './app-main.component';
+import { Icons } from './style/icons';
 
 @NgModule({
-  declarations: [ ],
+  declarations: [ AppMain, Icons ],
   imports: [ BrowserModule, CommonModule, ReactiveFormsModule ],
   providers: [ HTTP_PROVIDERS, QuestionProvider, LangItemProvider ],
   bootstrap: [ AppMain ],
