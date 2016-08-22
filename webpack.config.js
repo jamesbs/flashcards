@@ -1,8 +1,9 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('./build/tools').generatePath;
+const merge = require('webpack-merge');
 
-module.exports = {
+const baseConfig = {
   context: path`${'dist'}`, 
 
   entry: {
@@ -14,8 +15,6 @@ module.exports = {
     filename: 'app.js',
     pathinfo: true
   },
-
-  devtool: 'source-map',
 
   resolve: { 
     extensions: ['', '.webpack.js', '.web.js', '.ts', '.js', '.styl']
@@ -34,33 +33,12 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.(jpg|jpeg|gif|png|tif|ttf)$/,
-        loaders: [
-          {
-            loader: 'url',
-            query: {
-              name: '[path][name].[ext]',
-              context: './src'
-            }
-          }
-        ]
-      },
-      {
         test: /\.styl/,
         loaders: [
           'to-string',
           'css?minimize',
           'stylus',
         ],
-      },
-      {
-        test: /\.svg/,
-        loader: 'url',
-        exclude: /icons/,
-        query: {
-          name: '[path][name].[ext]',
-          context: './src'
-        }
       },
       {
         test: /\.svg/,
@@ -77,19 +55,42 @@ module.exports = {
   },
 
   plugins: [
-    /*
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      },
-      mangle: false,
-    }),
-    */
     new HtmlWebpackPlugin({
       template: './index.html',
       inject: 'body'
     })
-  ],
+  ]
+};
+
+const devConfig = {
+
+  devtool: 'source-map',
+
+  module: {
+    loaders: [
+      {
+        test: /\.(jpg|jpeg|gif|png|tif|ttf)$/,
+        loaders: [
+          {
+            loader: 'file',
+            query: {
+              name: '[path][name].[ext]',
+              context: './src'
+            }
+          }
+        ]
+      },
+      {
+        test: /\.svg/,
+        loader: 'file',
+        exclude: /icons/,
+        query: {
+          name: '[path][name].[ext]',
+          context: './src'
+        }
+      },
+    ]
+  },
 
   devServer: {
     contentBase: path`${'dist'}`,
@@ -97,5 +98,47 @@ module.exports = {
     inline: true,
     compress: true,
     port: 8057,
-  }
+  },
 };
+
+
+const prodConfig = {
+  module: {
+    loaders: [
+      {
+        test: /\.(jpg|jpeg|gif|png|tif|ttf)$/,
+        loaders: [
+          {
+            loader: 'url',
+            query: {
+              name: '[path][name].[ext]',
+              context: './src'
+            }
+          }
+        ]
+      },
+      {
+        test: /\.svg/,
+        loader: 'url',
+        exclude: /icons/,
+        query: {
+          name: '[path][name].[ext]',
+          context: './src'
+        }
+      },
+    ]
+  },
+
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      },
+      mangle: false,
+    })
+  ]
+}
+
+module.exports = process.env.NODE_ENV === 'dev'
+  ? merge(baseConfig, devConfig)
+  : merge(baseConfig, prodConfig);

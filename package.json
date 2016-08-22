@@ -4,8 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
-    "dev": "webpack-dev-server",
+    "start": "NODE_ENV=dev webpack-dev-server",
+    "dev": "NODE_ENV=dev webpack-dev-server",
+    "prod": "NODE_ENV=prod npm run build",
+    "prebuild": "npm run clean",
+    "build": "webpack",
+    "clean": "rimraf dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -31,6 +35,7 @@
     "html-webpack-plugin": "^2.22.0",
     "raw-loader": "^0.5.1",
     "reflect-metadata": "^0.1.2",
+    "rimraf": "^2.5.4",
     "rxjs": "^5.0.0-beta.6",
     "style-loader": "^0.13.1",
     "stylus": "^0.54.5",
@@ -40,6 +45,7 @@
     "typescript": "^2.0.0",
     "url-loader": "^0.5.7",
     "webpack": "^2.1.0-beta.20",
+    "webpack-merge": "^0.14.1",
     "zone.js": "^0.6.12"
   },
   "devDependencies": {
