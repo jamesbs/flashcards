@@ -38,8 +38,6 @@ export const getWords = (translation: SimpleTranslation): Word[] => {
             ];
           }, [] as Character[]);
 
-      word.english = englishWords[words.length];
-
       return [
         ...words,
         word

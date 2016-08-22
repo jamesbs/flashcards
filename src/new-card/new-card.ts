@@ -35,8 +35,7 @@ export class NewCard {
           .map(example => ({
             words: getWords(<SimpleTranslation>example),
             english: example.english as string
-          });
-        console.log('examples', this.examples);
+          }));
       })
   }
 }
