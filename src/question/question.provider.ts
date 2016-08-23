@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
-import { LangItem, LangItemService, getCharacters, Character } from '../lang-item/index';
+import { LangItem, Character } from '../domain/models';
+import { LangItemService } from '../lang-item/lang-item.service';
+import { getCharacters } from '../domain/lang-item';
 import { Question } from './question';
 import { QuestionType } from './question-type';
 import { random } from '../util/random';

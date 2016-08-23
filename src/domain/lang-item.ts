@@ -1,16 +1,16 @@
-import { Character } from './character';
-import { Word } from './word';
-import { fromBasic } from './pinyin';
-import { zip } from '../util/collection';
-import { Translation } from './translation';
-import { SimpleTranslation } from './simple-translation';
+import { Character } from './character'
+import { Word } from './word'
+import { fromBasic } from './pinyin'
+import { zip } from '../util/collection'
+import { Translation } from './translation'
+import { SimpleTranslation } from './simple-translation'
 
 export class LangItem implements Translation {
-  id = '';
-  chinese = '';
-  pinyin = '';
-  english = '';
-  examples: Translation[] = [];
+  id = ''
+  chinese = ''
+  pinyin = ''
+  english = ''
+  examples: Translation[] = []
 }
     
 export const getCharacters = (translation: Translation): Character[] =>

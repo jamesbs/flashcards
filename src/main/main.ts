@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Observer, Subject } from 'rxjs/Rx';
 import 'rxjs/add/operator/delay';
-import { Flashcard } from './flashcard/flashcard';
-import { Character } from './lang-item/character';
-import { InputPanel } from './input-panel/input-panel.component';
-import { Question, QuestionType, QuestionProvider, validateSolution, Result } from './question/index';
+import { Flashcard } from '../flashcard/flashcard';
+import { Character } from '../domain/models';
+import { InputPanel } from '../input-panel/input-panel.component';
+import { Question, QuestionType, QuestionProvider, validateSolution, Result } from '../question';
 
 @Component({
     selector: 'app-main',
     directives: [ Flashcard, InputPanel ],
     templateUrl: 'main.component.html',
-    styleUrls: ['main.component.styl']
+    styleUrls: [ 'main.component.styl' ]
 })
 export class Main implements OnInit {
     private characters: Character[] = [];

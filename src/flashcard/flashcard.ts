@@ -1,19 +1,21 @@
-import { Component,  Input } from '@angular/core';
-import { LangItem, getCharacters, Character, toBasic } from '../lang-item/index';
+import { Component,  Input } from '@angular/core'
+import { LangItem, Character } from '../domain/models'
+import { getCharacters } from '../domain/lang-item'
+import { toBasic } from '../domain/pinyin'
 
 @Component({
     selector: 'flashcard',
     templateUrl: './flashcard.html',
-    styleUrls: ['./flashcard.styl']
+    styleUrls: [ './flashcard.styl' ]
 })
 export class Flashcard {
-  @Input() private characters: Character[] = [];
-  @Input() private showPinyin: boolean = false;
+  @Input() private characters: Character[] = []
+  @Input() private showPinyin: boolean = false
   
   constructor() {}
   
   ngOnInit() {
   }
 
-  toBasic = toBasic;
+  toBasic = toBasic
 }

@@ -1,5 +1,6 @@
-import { Question } from './question';
-import { Character, toBasic } from '../lang-item/index';
+import { Question } from './question'
+import { Character } from '../domain/models'
+import { toBasic } from '../domain/pinyin'
 
 export const normalize = (str: string): string => {
     return str.toLowerCase().trim();

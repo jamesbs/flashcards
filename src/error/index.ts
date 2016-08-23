@@ -1,1 +1,1 @@
-export * from './value-error';
+export { ValueError } from './value-error'
