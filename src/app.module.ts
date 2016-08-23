@@ -7,9 +7,10 @@ import { QuestionProvider } from './question';
 import { LangItemService } from './lang-item/lang-item.service';
 import { AppMain } from './app-main';
 import { Icons } from './style/icons';
+import { components } from './declarations';
 
 @NgModule({
-  declarations: [ AppMain, Icons ],
+  declarations: [ AppMain, components, Icons ],
   imports: [ BrowserModule, CommonModule, ReactiveFormsModule ],
   providers: [ HTTP_PROVIDERS, QuestionProvider, LangItemService ],
   bootstrap: [ AppMain ],

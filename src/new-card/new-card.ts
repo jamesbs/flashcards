@@ -16,7 +16,6 @@ interface ExampleView {
   selector: 'app-new-card',
   templateUrl: './new-card.html',
   styleUrls: [ './new-card.styl' ],
-  providers: [ LangItemService ],
 })
 export class NewCard {
   characters: {
