@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Observer, Subject } from 'rxjs/Rx';
 import 'rxjs/add/operator/delay';
-import { Flashcard } from './flashcard/flashcard.component';
+import { Flashcard } from './flashcard/flashcard';
 import { Character } from './lang-item/character';
 import { InputPanel } from './input-panel/input-panel.component';
 import { Question, QuestionType, QuestionProvider, validateSolution, Result } from './question/index';

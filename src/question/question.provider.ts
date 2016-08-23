@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
-import { LangItem, LangItemProvider, getCharacters, Character } from '../lang-item/index';
+import { LangItem, LangItemService, getCharacters, Character } from '../lang-item/index';
 import { Question } from './question';
 import { QuestionType } from './question-type';
 import { random } from '../util/random';
@@ -8,11 +8,11 @@ import { random } from '../util/random';
 
 @Injectable()
 export class QuestionProvider {
-  constructor(private langItemProvider: LangItemProvider) { }
+  constructor(private langItemService: LangItemService) { }
   
   next(): Observable<Question> {
     const questionTypes = [ 'english', 'pinyin' ];
-    return this.langItemProvider.next()
+    return this.langItemService.next()
       .map((langItem: LangItem): Question => ({
         type: <QuestionType>questionTypes[random(2)],
         characters: getCharacters(langItem),

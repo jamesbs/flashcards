@@ -4,14 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_PROVIDERS } from '@angular/http';
 import { QuestionProvider } from './question';
-import { LangItemProvider } from './lang-item';
-import { AppMain } from './app-main.component';
+import { LangItemService } from './lang-item';
+import { AppMain } from './app-main';
 import { Icons } from './style/icons';
 
 @NgModule({
   declarations: [ AppMain, Icons ],
   imports: [ BrowserModule, CommonModule, ReactiveFormsModule ],
-  providers: [ HTTP_PROVIDERS, QuestionProvider, LangItemProvider ],
+  providers: [ HTTP_PROVIDERS, QuestionProvider, LangItemService ],
   bootstrap: [ AppMain ],
 })
 export class App { }

@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 const baseUrl = "http://localhost:8999";
 
 @Injectable()
-export class LangItemProvider {
+export class LangItemService {
 
   constructor(private http: Http) { }
   
