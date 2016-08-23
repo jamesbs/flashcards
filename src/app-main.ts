@@ -6,7 +6,6 @@ import { NewCard } from './new-card/new-card';
   selector: 'app',
   templateUrl: './app-main.html',
   styleUrls: [ './app-main.styl' ],
-  directives: [ Header, NewCard ],
 })
 export class AppMain {
 }
