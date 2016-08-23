@@ -7,5 +7,4 @@ import { NewCard } from './new-card/new-card';
   templateUrl: './app-main.html',
   styleUrls: [ './app-main.styl' ],
 })
-export class AppMain {
-}
+export class AppMain { }

@@ -10,7 +10,7 @@
     "prebuild": "npm run clean",
     "build": "webpack",
     "clean": "rimraf dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "karma start"
   },
   "author": "",
   "license": "ISC",
@@ -49,8 +49,9 @@
     "zone.js": "^0.6.12"
   },
   "devDependencies": {
+    "@types/karma": "^0.13.31",
     "jasmine": "^2.4.1",
-    "karma": "^0.13.22",
+    "karma": "^1.2.0",
     "karma-jasmine": "^0.3.7",
     "lite-server": "^2.2.2",
     "tslint": "^3.5.0",
