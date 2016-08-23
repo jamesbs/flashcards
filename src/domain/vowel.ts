@@ -1,6 +1,6 @@
-export type Vowel = 'a' | 'e' | 'i' | 'o' | 'u';
+export type Vowel = 'a' | 'e' | 'i' | 'o' | 'u' | 'v';
 
-const vowels = new Set<Vowel>([ 'a', 'e', 'i', 'o', 'u' ]);
+const vowels = new Set<Vowel>([ 'a', 'e', 'i', 'o', 'u', 'v' ]);
 
 export function isPriorityVowel(letter: string): letter is Vowel {
   return letter === 'a'

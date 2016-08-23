@@ -35,7 +35,7 @@
     <div class="pinyin">
       <span class="word-{{i}}" 
         *ngFor="let word of example.words; let i = index">
-        <span *ngFor="let character of word">{{character.pinyin.syllable}}{{character.pinyin.tone}}</span>
+        <span *ngFor="let character of word">{{character.pinyin}}</span>
       </span>
     </div>
     <div class="english">
