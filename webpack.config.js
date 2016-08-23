@@ -24,7 +24,15 @@ const baseConfig = {
     loaders: [
       {
         test: /\.ts$/,
-        loaders: ['awesome-typescript', 'angular2-template'],
+        loaders: [
+          {
+            loader: 'awesome-typescript',
+            query: {
+              tsconfig: './webpack.tsconfig.json'
+            },
+          }, 
+          'angular2-template'
+        ],
         exclude: /node_modules/
       },
       {
