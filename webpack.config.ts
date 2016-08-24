@@ -1,7 +1,7 @@
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('./build/tools').generatePath;
-const merge = require('webpack-merge');
+import * as webpack from 'webpack'
+const HtmlWebpackPlugin = require('html-webpack-plugin') // typings are not up to date
+const merge = require('webpack-merge') // typings are not up to date
+import { generatePath as path } from './build/tools'
 
 const baseConfig = {
   context: path`${'dist'}`, 
@@ -28,7 +28,7 @@ const baseConfig = {
           {
             loader: 'awesome-typescript',
             query: {
-              tsconfig: './webpack.tsconfig.json'
+              tsconfig: './tsconfig.webpack.json'
             },
           }, 
           'angular2-template'
@@ -147,6 +147,6 @@ const prodConfig = {
   ]
 }
 
-module.exports = process.env.NODE_ENV === 'dev'
-  ? merge(baseConfig, devConfig)
-  : merge(baseConfig, prodConfig);
+export default process.env.NODE_ENV === 'dev'
+    ? merge(baseConfig, devConfig)
+    : merge(baseConfig, prodConfig);
