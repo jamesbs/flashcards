@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin') // typings are not up t
 const merge = require('webpack-merge') // typings are not up to date
 import { generatePath as path } from './build/tools'
 
-const baseConfig = {
+export const baseConfig = {
   context: path`${'dist'}`, 
 
   entry: {
@@ -70,7 +70,7 @@ const baseConfig = {
   ]
 };
 
-const devConfig = {
+export const devOnlyConfig = {
 
   devtool: 'source-map',
 
@@ -110,7 +110,7 @@ const devConfig = {
 };
 
 
-const prodConfig = {
+export const prodOnlyConfig = {
   module: {
     loaders: [
       {
@@ -147,6 +147,16 @@ const prodConfig = {
   ]
 }
 
+export const devConfig = merge(baseConfig, devOnlyConfig)
+export const prodConfig = merge(baseConfig, prodOnlyConfig)
+export const testConfig = {
+  context: devConfig.context,
+  resolve: devConfig.resolve,
+  devtool: devConfig.devtool,
+  module: devConfig.module,
+};
+
+
 export default process.env.NODE_ENV === 'dev'
-    ? merge(baseConfig, devConfig)
-    : merge(baseConfig, prodConfig);
+    ? devConfig
+    : prodConfig;

@@ -1270,6 +1270,16 @@
       "from": "encodeurl@>=1.0.1 <1.1.0",
       "resolved": "https://registry.npmjs.org/encodeurl/-/encodeurl-1.0.1.tgz"
     },
+    "engine.io": {
+      "version": "1.6.10",
+      "from": "engine.io@1.6.10",
+      "resolved": "https://registry.npmjs.org/engine.io/-/engine.io-1.6.10.tgz"
+    },
+    "engine.io-client": {
+      "version": "1.6.9",
+      "from": "engine.io-client@1.6.9",
+      "resolved": "https://registry.npmjs.org/engine.io-client/-/engine.io-client-1.6.9.tgz"
+    },
     "engine.io-parser": {
       "version": "1.2.4",
       "from": "engine.io-parser@1.2.4",
@@ -2660,6 +2670,16 @@
       "from": "jsonpointer@2.0.0",
       "resolved": "https://registry.npmjs.org/jsonpointer/-/jsonpointer-2.0.0.tgz"
     },
+    "karma-cli": {
+      "version": "1.0.1",
+      "from": "karma-cli@latest",
+      "resolved": "https://registry.npmjs.org/karma-cli/-/karma-cli-1.0.1.tgz"
+    },
+    "karma-jasmine": {
+      "version": "1.0.2",
+      "from": "karma-jasmine@latest",
+      "resolved": "https://registry.npmjs.org/karma-jasmine/-/karma-jasmine-1.0.2.tgz"
+    },
     "kind-of": {
       "version": "3.0.4",
       "from": "kind-of@>=3.0.2 <4.0.0",
@@ -3939,6 +3959,11 @@
       "from": "sntp@>=1.0.0 <2.0.0",
       "resolved": "https://registry.npmjs.org/sntp/-/sntp-1.0.9.tgz"
     },
+    "socket.io": {
+      "version": "1.4.7",
+      "from": "socket.io@1.4.7",
+      "resolved": "https://registry.npmjs.org/socket.io/-/socket.io-1.4.7.tgz"
+    },
     "socket.io-adapter": {
       "version": "0.4.0",
       "from": "socket.io-adapter@0.4.0",
@@ -3960,6 +3985,18 @@
               "resolved": "https://registry.npmjs.org/debug/-/debug-0.7.4.tgz"
             }
           }
+        }
+      }
+    },
+    "socket.io-client": {
+      "version": "1.4.6",
+      "from": "socket.io-client@1.4.6",
+      "resolved": "https://registry.npmjs.org/socket.io-client/-/socket.io-client-1.4.6.tgz",
+      "dependencies": {
+        "component-emitter": {
+          "version": "1.2.0",
+          "from": "component-emitter@1.2.0",
+          "resolved": "https://registry.npmjs.org/component-emitter/-/component-emitter-1.2.0.tgz"
         }
       }
     },
@@ -4549,6 +4586,11 @@
       "version": "1.0.2",
       "from": "wrappy@>=1.0.0 <2.0.0",
       "resolved": "https://registry.npmjs.org/wrappy/-/wrappy-1.0.2.tgz"
+    },
+    "ws": {
+      "version": "1.0.1",
+      "from": "ws@1.0.1",
+      "resolved": "https://registry.npmjs.org/ws/-/ws-1.0.1.tgz"
     },
     "xml-char-classes": {
       "version": "1.0.0",
