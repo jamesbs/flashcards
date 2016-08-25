@@ -1,5 +1,5 @@
-import { IconOpenBook } from './open-book/open-book';
+import { IconOpenBook } from './open-book/open-book'
 
 export const Icons = [
   IconOpenBook
-];
+]

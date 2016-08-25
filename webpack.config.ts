@@ -68,7 +68,7 @@ export const baseConfig = {
       inject: 'body'
     })
   ]
-};
+}
 
 export const devOnlyConfig = {
 
@@ -154,9 +154,10 @@ export const testConfig = {
   resolve: devConfig.resolve,
   devtool: devConfig.devtool,
   module: devConfig.module,
-};
+  verbose: false,
+}
 
 
 export default process.env.NODE_ENV === 'dev'
     ? devConfig
-    : prodConfig;
+    : prodConfig

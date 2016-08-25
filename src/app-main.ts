@@ -1,6 +1,6 @@
-import { Component, provide } from '@angular/core';
-import { Header } from './header/header';
-import { NewCard } from './new-card/new-card';
+import { Component, provide } from '@angular/core'
+import { Header } from './header/header'
+import { NewCard } from './new-card/new-card'
 
 @Component({
   selector: 'app',

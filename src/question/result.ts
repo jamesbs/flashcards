@@ -1,1 +1,1 @@
-export type Result = 'correct' | 'incorrect' | 'unanswered';
+export type Result = 'correct' | 'incorrect' | 'unanswered'

@@ -1,3 +1,3 @@
-export type Environment = 'prod' | 'dev' | 'test';
+export type Environment = 'prod' | 'dev' | 'test'
 
-export const environment: Environment = process.env.NODE_ENV || 'dev';
+export const environment: Environment = process.env.NODE_ENV || 'dev'

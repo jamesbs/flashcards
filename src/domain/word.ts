@@ -1,3 +1,3 @@
-import { Character } from './character';
+import { Character } from './character'
 
-export type Word = Character[];
+export type Word = Character[]
