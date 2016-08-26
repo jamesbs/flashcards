@@ -18,8 +18,8 @@
     "build": "webpack",
     "clean": "rimraf dist",
     "test": "NODE_ENV=test karma start",
+    "lint": "npm run lint:ts",
     "lint:ts": "tslint -e './node_modules/**/*' -e './dist/**/*' './**/*.ts'",
-    "tslint": "tslint"
   },
   "author": "",
   "license": "ISC",
