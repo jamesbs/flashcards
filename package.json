@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "engines" : { 
-    "node" : ">= 5.0.0",
-    "npm" : ">= 3.0.0"
+    "node": "6"
   },
   "scripts": {
     "start": "NODE_ENV=dev webpack-dev-server",
