@@ -4,6 +4,7 @@ import { fromBasic } from './pinyin'
 import { zip } from '../util/collection'
 import { Translation } from './translation'
 import { SimpleTranslation } from './simple-translation'
+import { splitPinyin } from './pinyin'
 
 export class LangItem implements Translation {
   id = ''
@@ -43,25 +44,4 @@ export const getWords = (translation: SimpleTranslation): Word[] => {
         word
       ];
     }, [] as Word[]);
-}
-
-export const splitPinyin = (pinyin: string) => {
-  let index = 0;
-  let pinyins: string[] = [];
-  let current = '';
-
-  pinyin.split(/(\d)/)
-    .filter(token => token !== '')
-    .map(token => token.trim())
-    .forEach(token => {
-      if(index === 0) {
-        current = token;
-        index = 1;
-      } else {
-        pinyins.push(current + token);
-        index = 0;
-      }
-    })
-
-  return pinyins;
 }
