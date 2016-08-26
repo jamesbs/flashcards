@@ -1,4 +1,5 @@
 import { zip } from './collection'
+import * as customMatchers from '../../test/matchers'
 
 describe('zip', () => {
   it('basic', () => {
@@ -36,5 +37,16 @@ describe('zip', () => {
     ]
 
     expect(zip(a1, a2)).toEqual(expected)
+  })
+
+  it('differently typed arrays', () => {
+    const a1 = [ 'a', 'b', 'c' ]
+    const a2 = [ [ 1, 2 ], [ 2, 3 ] ]
+
+    const expected = [ [ 'a', [ 1, 2 ] ], [ [ 'b' ], [ 2, 3 ] ] ]
+
+    const e = <any>expect(zip(a1, a2))
+    
+    e.toDeepEqual(expected);
   })
 })

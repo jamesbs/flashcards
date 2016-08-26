@@ -16,6 +16,7 @@ module.exports = config => {
     ],
 
     files: [
+      './test/prerun.ts',
       './src/**/*.spec.ts'
     ],
 
@@ -23,6 +24,7 @@ module.exports = config => {
 
     preprocessors: {
       './src/**/*.spec.ts': [ 'webpack', 'sourcemap' ],
+      './test/**/*.ts': [ 'webpack', 'sourcemap' ]
     },
 
     colors: true,
