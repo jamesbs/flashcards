@@ -13,18 +13,18 @@ export class LangItem implements Translation {
   english = ''
   examples: Translation[] = []
 }
-    
+
 export const getCharacters = (translation: Translation): Character[] =>
   zip(translation.chinese.split(''), splitPinyin(translation.pinyin))
     .map(([ chinese, pinyin ]: [ string, string ]): Character => ({
       chinese,
       pinyin: fromBasic(pinyin)
-    }));
+    }))
 
 export const getWords = (translation: SimpleTranslation): Word[] => {
-  const pinyinWords = translation.pinyin.split(' ');
-  const chineseCharacters = translation.chinese.split('');
-  const englishWords = translation.english.split(' ');
+  const pinyinWords = translation.pinyin.split(' ')
+  const chineseCharacters = translation.chinese.split('')
+  const englishWords = translation.english.split(' ')
 
   return pinyinWords
     .reduce((words, pinyinWord) => {
@@ -36,12 +36,12 @@ export const getWords = (translation: SimpleTranslation): Word[] => {
                 chinese: chineseCharacters[words.length + acc.length],
                 pinyin: fromBasic(pinyin),
               }
-            ];
-          }, [] as Character[]);
+            ]
+          }, [] as Character[])
 
       return [
         ...words,
         word
-      ];
-    }, [] as Word[]);
+      ]
+    }, [] as Word[])
 }

@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { QuestionType, Result } from '../question/index';
-import { Observable } from 'rxjs';
-import 'rxjs/add/operator/delay';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
+import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { QuestionType, Result } from '../question/index'
+import { Observable } from 'rxjs'
+import 'rxjs/add/operator/delay'
 
 @Component({
   selector: 'input-panel',
@@ -11,28 +11,26 @@ import 'rxjs/add/operator/delay';
 })
 export class InputPanel implements OnInit {
   private form: FormGroup = new FormGroup({
-    solution: new FormControl(null, Validators.required)
-  });
-  
-  @Input() private questionType: QuestionType;
-  
-  private result: Result = 'unanswered';
-  @Input() private results: Observable<Result>;
-  
-  @Output() private solution: EventEmitter<string> = new EventEmitter<string>();
-  @Output() private moveNext: EventEmitter<any> = new EventEmitter<any>();
+    solution: new FormControl(undefined, Validators.required)
+  })
 
-  constructor() { }
-  
+  @Input() private questionType: QuestionType
+
+  private result: Result = 'unanswered'
+  @Input() private results: Observable<Result>
+
+  @Output() private solution: EventEmitter<string> = new EventEmitter<string>()
+  @Output() private moveNext: EventEmitter<any> = new EventEmitter<any>()
+
   ngOnInit() {
-    this.init();
+    this.init()
   }
-  
+
   submit(event: Event) {
-    const value: string = this.form.find('solution').value || '';
-    this.solution.emit(value);
+    const value: string = this.form.find('solution').value || ''
+    this.solution.emit(value)
   }
-  
+
   init() {
     this.results
       .switchMap((result: Result) => Observable.merge(
@@ -40,13 +38,13 @@ export class InputPanel implements OnInit {
         Observable.of(result).delay(800)))
       .subscribe((result: Result) => {
         if(result === 'unanswered' && this.result === 'correct') {
-          (<FormControl>this.form['solution']).updateValue('');
+          (<FormControl>this.form['solution']).updateValue('')
         }
-        this.result = result;
+        this.result = result
       })
   }
-  
+
   next() {
-    this.moveNext.emit('');
+    this.moveNext.emit('')
   }
 }

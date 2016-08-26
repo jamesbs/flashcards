@@ -4,7 +4,7 @@ const merge = require('webpack-merge') // typings are not up to date
 import { generatePath as path } from './build/tools'
 
 export const baseConfig = {
-  context: path`${'dist'}`, 
+  context: path`${'dist'}`,
 
   entry: {
     app: './index.ts'
@@ -16,7 +16,7 @@ export const baseConfig = {
     pathinfo: true
   },
 
-  resolve: { 
+  resolve: {
     extensions: ['', '.webpack.js', '.web.js', '.ts', '.js', '.styl']
   },
 
@@ -30,7 +30,7 @@ export const baseConfig = {
             query: {
               tsconfig: './tsconfig.webpack.json'
             },
-          }, 
+          },
           'angular2-template'
         ],
         exclude: /node_modules/
@@ -53,7 +53,7 @@ export const baseConfig = {
         loader: 'raw'
       },
       {
-        test: /\.css$/, 
+        test: /\.css$/,
         loaders: [
           'to-string',
           'css',
@@ -107,7 +107,7 @@ export const devOnlyConfig = {
     compress: true,
     port: 8057,
   },
-};
+}
 
 
 export const prodOnlyConfig = {

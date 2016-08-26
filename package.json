@@ -7,7 +7,7 @@
     "type": "git",
     "url": "https://github.com/jamesbs/flashcards.git"
   },
-  "engines" : { 
+  "engines": {
     "node": "6"
   },
   "scripts": {
@@ -17,7 +17,9 @@
     "prebuild": "npm run clean",
     "build": "webpack",
     "clean": "rimraf dist",
-    "test": "NODE_ENV=test karma start"
+    "test": "NODE_ENV=test karma start",
+    "lint:ts": "tslint -e './node_modules/**/*' -e './dist/**/*' './**/*.ts'",
+    "tslint": "tslint"
   },
   "author": "",
   "license": "ISC",
@@ -59,6 +61,8 @@
     "zone.js": "^0.6.12"
   },
   "devDependencies": {
+    "@types/jasmine": "^2.2.33",
+    "@types/lodash": "^4.14.34",
     "jasmine": "^2.4.1",
     "karma": "^1.2.0",
     "karma-chrome-launcher": "^2.0.0",
@@ -66,9 +70,8 @@
     "karma-jasmine": "^1.0.2",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.8.0",
-    "lite-server": "^2.2.2",
     "lodash": "^4.15.0",
-    "tslint": "^3.5.0",
+    "tslint": "^3.15.1",
     "webpack-dev-server": "^2.1.0-beta.0"
   }
 }

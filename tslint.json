@@ -1,5 +1,32 @@
 {
-  "rules": {  
-    "eofline": true
+  "rules": {
+    "align": [true, "statements"],
+    "comment-format": [true, "check-space"],
+    "class-name": true,
+    "eofline": true,
+    "indent": [true, "spaces"],
+    "label-position": true,
+    "linebreak-style": [true, "LF"],
+    "max-line-length": [true, 120],
+    "no-arg": true,
+    "no-bitwise": true,
+    "no-conditional-assignment": true,
+    "no-console": [true, "log", "error"],
+    "no-debugger": true,
+    "no-empty": true,
+    "no-invalid-this": true,
+    "no-null-keyword": true,
+    "no-shadowed-variable": true,
+    "no-trailing-whitespace": true,
+    "no-var-keyword": true,
+    "no-unreachable": true,
+    "no-unsafe-finally": true,
+    "no-unused-expression": true,
+    "no-unused-new": true,
+    "one-line": [true, "check-catch", "check-finally"],
+    "quotemark": [true, "single", "avoid-escape"],
+    "radix": true,
+    "semicolon": [true, "never"],
+    "triple-equals": true
   }
 }

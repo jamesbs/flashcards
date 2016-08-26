@@ -11,11 +11,6 @@ import { toBasic } from '../domain/pinyin'
 export class Flashcard {
   @Input() private characters: Character[] = []
   @Input() private showPinyin: boolean = false
-  
-  constructor() {}
-  
-  ngOnInit() {
-  }
 
   toBasic = toBasic
 }

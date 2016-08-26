@@ -5,9 +5,9 @@ import { testConfig } from './webpack.config'
 module.exports = config => {
   config.set({
     frameworks: [ 'jasmine' ],
-    
+
     singleRun: true,
-    
+
     plugins: [
       'karma-jasmine',
       'karma-chrome-launcher',

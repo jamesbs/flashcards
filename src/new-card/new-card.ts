@@ -25,7 +25,7 @@ export class NewCard {
 
   langItem: LangItem = new LangItem()
   examples: ExampleView[] = []
-  
+
   pinyinDisplay = toStandard
 
   constructor(private langItemService: LangItemService) { }
@@ -45,7 +45,7 @@ export class NewCard {
             const words = getWords(<SimpleTranslation>example)
 
             return {
-              words: words.map(word => 
+              words: words.map(word =>
                 word.map(({ chinese, pinyin }) => ({
                   chinese,
                   pinyin: this.pinyinDisplay(pinyin)

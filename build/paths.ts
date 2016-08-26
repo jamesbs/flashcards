@@ -1,6 +1,6 @@
-import { join } from 'path';
+import { join } from 'path'
 
-export const paths: { [key: string]: any } = {};
+export const paths: { [key: string]: any } = {}
 
 paths['project'] = join(__dirname, '../')
-paths['dist'] = join(paths['project'], './src');
+paths['dist'] = join(paths['project'], './src')

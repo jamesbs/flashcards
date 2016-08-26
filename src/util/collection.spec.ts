@@ -1,12 +1,10 @@
 import { zip } from './collection'
-import * as customMatchers from '../../test/matchers'
-import { isEqual } from 'lodash'
 
 describe('zip', () => {
   it('basic', () => {
     const a1 = [1, 2, 3]
     const a2 = [4, 5, 6]
-    
+
     const expected = [
       [1, 4],
       [2, 5],
@@ -45,9 +43,9 @@ describe('zip', () => {
     const a2 = [ [ 1, 2 ], [ 2, 3 ] ]
 
     const expected = [ [ 'a', [ 1, 2 ] ], [ 'b' , [ 2, 3 ] ] ]
-    
+
     const e = <any>expect(zip(a1, a2))
-    
-    e.toDeepEqual(expected);
+
+    e.toDeepEqual(expected)
   })
 })

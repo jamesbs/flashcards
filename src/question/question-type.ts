@@ -1,1 +1,1 @@
-export type QuestionType = 'english' | 'pinyin';
+export type QuestionType = 'english' | 'pinyin'

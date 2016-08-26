@@ -7,35 +7,34 @@ export type Pinyin = {
   tone: Tone
 }
 
-/* Splits a string of pinyin into a flat array of each syllable
- */
+/** Splits a string of pinyin into a flat array of each syllable */
 export const splitPinyin = (pinyin: string) => {
-  let index = 0;
-  let pinyins: string[] = [];
-  let current = '';
+  let index = 0
+  let pinyins: string[] = []
+  let current = ''
 
   pinyin.split(/(\d)/)
     .filter(token => token !== '')
     .map(token => token.trim())
     .forEach(token => {
       if(index === 0) {
-        current = token;
-        index = 1;
+        current = token
+        index = 1
       } else {
-        pinyins.push(current + token);
-        index = 0;
+        pinyins.push(current + token)
+        index = 0
       }
     })
 
-  return pinyins;
+  return pinyins
 }
 
 export const fromBasic = (basic: string): Pinyin => {
   const normalized = basic.trim()
   const tone = normalized.slice(-1)
-  
+
   if(!isTone(tone)) {
-    throw new ValueError(basic + " is not valid pinyin.")
+    throw new ValueError(basic + ' is not valid pinyin.')
   } else {
     return {
       syllable: normalized.slice(0, -1),
@@ -121,7 +120,7 @@ export const pinyinTable: { [key: string]: ToneTable } = {
     '4': 'è',
   },
   'i': {
-    '1': 'ī', 
+    '1': 'ī',
     '2': 'í',
     '3': 'ǐ',
     '4': 'ì',
