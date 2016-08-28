@@ -154,7 +154,6 @@ export const testConfig = {
   resolve: devConfig.resolve,
   devtool: devConfig.devtool,
   module: devConfig.module,
-  verbose: false,
 }
 
 

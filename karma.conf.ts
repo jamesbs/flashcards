@@ -25,6 +25,10 @@ module.exports = (config) => {
 
     webpack: testConfig,
 
+    webpackMiddleware: {
+      quiet: true,
+    },
+
     preprocessors: {
       './src/**/*.spec.ts': [ 'webpack', 'sourcemap' ],
       './test/**/*.ts': [ 'webpack', 'sourcemap' ]
