@@ -1,5 +1,5 @@
 machine:
   node:
-    version: 6.x
+    version: 6
   post:
     - npm install -g npm@3.x.x
