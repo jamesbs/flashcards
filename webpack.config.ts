@@ -13,7 +13,6 @@ export const baseConfig = {
   output: {
     path: 'dist',
     filename: 'app.js',
-    pathinfo: true
   },
 
   resolve: {
@@ -71,6 +70,10 @@ export const baseConfig = {
 }
 
 export const devOnlyConfig = {
+
+  output: {
+    pathinfo: true
+  },
 
   devtool: 'source-map',
 
@@ -138,6 +141,7 @@ export const prodOnlyConfig = {
   },
 
   plugins: [
+    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false

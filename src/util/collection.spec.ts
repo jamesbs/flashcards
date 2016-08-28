@@ -44,8 +44,6 @@ describe('zip', () => {
 
     const expected = [ [ 'a', [ 1, 2 ] ], [ 'b' , [ 2, 3 ] ] ]
 
-    const e = <any>expect(zip(a1, a2))
-
-    e.toDeepEqual(expected)
+   ;(<any>expect(zip(a1, a2))).toDeepEqual(expected)
   })
 })
