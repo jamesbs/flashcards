@@ -1,0 +1,14 @@
+{
+  "exclude": ["node_modules/**/*"],
+  "colons": "never",
+  "commaSpace": "always",
+  "duplicates": true,
+  "efficient": "always",
+  "indentPref": 2,
+  "leadingZero": "always",
+  "none": "never",
+  "quotePref": "single",
+  "semicolons": "never",
+  "stackedProperties": "never",
+  "zeroUnits": "never"
+}
