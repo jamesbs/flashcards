@@ -10,38 +10,48 @@ export const toStandard = (pinyin: Pinyin) => {
          + pinyin.syllable.slice(matchingIndex + 1)
 }
 
-export function findApplyIndex(syllable: string) {
-  let matchingVowelIndex = -1
-
-  const matchVowel = (letter: Vowel, index: number) => {
-    if(isPriorityVowel(letter)) {
-      return index
-    } else {
-      return matchingIndex(index - 1)
-    }
-  }
-
-  const matchConsonant = (letter: string, index: number)=> {
-    if(matchingVowelIndex === -1) {
-      return matchingIndex(index - 1)
-    } else {
-      return matchingVowelIndex
-    }
-  }
-
-  const matchingIndex = (index: number) => {
-    const letter = syllable[index]
-    if(isVowel(letter)) {
-      if(matchingVowelIndex === -1) {
-        matchingVowelIndex = index
-      }
-      return matchVowel(letter as Vowel, index)
-    } else if(index < 0) {
-      return matchingVowelIndex
-    } else {
-      return matchConsonant(letter, index)
-    }
-  }
-
-  return matchingIndex(syllable.length - 1)
+export function findApplyIndex(syllable: string): number {
+  return isVowelBeforeMatch({ index: syllable.length - 1, syllable })
 }
+
+interface BeforeMatchContext {
+  index: number
+  syllable: string
+}
+
+interface AfterMatchContext {
+  index: number
+  syllable: string
+  matchingIndex: number
+  vowelGroup?: string
+}
+
+
+const isVowelBeforeMatch = ({ index, syllable }: BeforeMatchContext) =>
+  isVowel(syllable[index])
+    ? isPriorityVowelAfterMatch({
+        syllable,
+        index,
+        matchingIndex: index,
+    })
+    : isVowelBeforeMatch({ syllable, index: index - 1 })
+
+const isPriorityVowelAfterMatch = ({ syllable, index, matchingIndex, vowelGroup }: AfterMatchContext) =>
+  isPriorityVowel(syllable[index])
+    ? index
+    : vowelGroupExists({ syllable, index, matchingIndex, vowelGroup })
+
+const vowelGroupExists = ({ syllable, index, matchingIndex, vowelGroup }: AfterMatchContext) =>
+  vowelGroup === undefined
+    ? isVowelAfterMatch({ syllable, index: index - 1, matchingIndex: index, vowelGroup: syllable[index] })
+    : isOuVowelGroup({ syllable, index, matchingIndex, vowelGroup: syllable[index] + vowelGroup })
+
+const isOuVowelGroup = ({ syllable, index, matchingIndex, vowelGroup }: AfterMatchContext) =>
+  vowelGroup === 'ou'
+    ? isVowelAfterMatch({ syllable, index: index - 1, matchingIndex: index, vowelGroup })
+    : isVowelAfterMatch({ syllable, index: index - 1, matchingIndex, vowelGroup })
+
+const isVowelAfterMatch = ({ syllable, index, matchingIndex, vowelGroup }: AfterMatchContext) =>
+  isVowel(syllable[index])
+    ? isPriorityVowelAfterMatch({ syllable, index, matchingIndex, vowelGroup })
+    : matchingIndex

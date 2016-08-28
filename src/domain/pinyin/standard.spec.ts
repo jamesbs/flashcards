@@ -3,7 +3,7 @@ import { Pinyin } from './pinyin'
 
 describe('findApplyIndex', () => {
   it('ends with normal vowel', () => {
-    expect(findApplyIndex('tou')).toBe(2)
+    expect(findApplyIndex('huo')).toBe(2)
   })
 
   it('normal vowel only', () => {
@@ -33,11 +33,10 @@ describe('findApplyIndex', () => {
   it('priority vowel only', () => {
     expect(findApplyIndex('e')).toBe(0)
   })
-/*
+
   it('ends with ou', () => {
     expect(findApplyIndex('tou')).toBe(1)
   })
-  */
 })
 
 describe('toStandard', () => {
@@ -58,12 +57,11 @@ describe('toStandard', () => {
 
     expect(toStandard(input)).toBe('wǎng')
   })
-  /*
+
   it('ends with ou', () => {
     const input: Pinyin = { syllable: 'tou', tone: '2' }
 
-    expect(input).toBe('tóu')
+    expect(toStandard(input)).toBe('tóu')
   })
-  */
 })
 
