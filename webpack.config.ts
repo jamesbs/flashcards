@@ -1,4 +1,4 @@
-import * as webpack from 'webpack'
+import * as webpack from 'webpack' // throwing error on importing uglify-js
 const HtmlWebpackPlugin = require('html-webpack-plugin') // typings are not up to date
 const merge = require('webpack-merge') // typings are not up to date
 import { generatePath as path } from './build/tools'

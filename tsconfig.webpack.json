@@ -6,11 +6,11 @@
     "noImplicitAny": false,
     "sourceMap": true,
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "types": [
+      "node"
+    ]
   },
-  "exclude": [
-    "node_modules"
-  ],
   "awesomeTypescriptLoaderOptions": {
     "useWebpackText": true,
     "useCache": true,
