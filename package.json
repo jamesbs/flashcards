@@ -61,10 +61,12 @@
   },
   "devDependencies": {
     "@types/jasmine": "^2.2.33",
+    "@types/karma": "^0.13.32",
     "@types/lodash": "^4.14.34",
     "@types/source-map": "^0.1.26",
     "@types/uglify-js": "^2.0.27",
     "@types/webpack": "^1.12.32",
+    "istanbul": "^0.4.5",
     "jasmine": "^2.4.1",
     "karma": "^1.2.0",
     "karma-chrome-launcher": "^2.0.0",

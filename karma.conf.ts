@@ -1,8 +1,10 @@
 import { environment } from './environment'
 import { testConfig } from './webpack.config'
+import { Config, ConfigOptions } from 'karma'
 
 // export default doesn't work?
-module.exports = config => {
+// implement correct type using declaration merging
+module.exports = (config) => {
   config.set({
     frameworks: [ 'jasmine' ],
 
@@ -11,8 +13,9 @@ module.exports = config => {
     plugins: [
       'karma-jasmine',
       'karma-chrome-launcher',
+      'karma-sourcemap-loader',
+      'karma-spec-reporter',
       'karma-webpack',
-      'karma-sourcemap-loader'
     ],
 
     files: [
@@ -31,5 +34,7 @@ module.exports = config => {
 
     browsers: [ 'Chrome' ],
 
-  })
+    reporters: [ 'spec' ]
+
+  } as any)
 }

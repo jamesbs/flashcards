@@ -9,9 +9,12 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "types": [
+      "bluebird",
+      "jasmine",
+      "karma",
+      "log4js",
       "node",
       "source-map",
-      "jasmine",
       "uglify-js",
       "webpack"
     ]
