@@ -3,17 +3,11 @@ import { Vowel, isVowel, isPriorityVowel } from './vowel'
 import { applyTone } from './pinyin-tone'
 
 export const toStandard = (pinyin: Pinyin) => {
-  if (pinyin.tone === '5') {
-    return pinyin.syllable
-  } else {
-    const matchingIndex = findApplyIndex(pinyin.syllable)(pinyin.syllable.length - 1)
+    const matchingIndex = findApplyIndex(pinyin.syllable)
 
-    const res =  pinyin.syllable.slice(0, matchingIndex)
+    return pinyin.syllable.slice(0, matchingIndex)
          + applyTone(pinyin.syllable[matchingIndex] as Vowel, pinyin.tone)
          + pinyin.syllable.slice(matchingIndex + 1)
-
-    return res
-  }
 }
 
 export function findApplyIndex(syllable: string) {
@@ -49,5 +43,5 @@ export function findApplyIndex(syllable: string) {
     }
   }
 
-  return matchingIndex
+  return matchingIndex(syllable.length - 1)
 }
