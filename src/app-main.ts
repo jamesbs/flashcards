@@ -1,10 +1,8 @@
-import { Component, provide } from '@angular/core'
-import { Header } from './header/header'
-import { NewCard } from './new-card/new-card'
-
+import { Component } from '@angular/core'
 @Component({
   selector: 'app',
   templateUrl: './app-main.html',
   styleUrls: [ './app-main.styl' ],
 })
-export class AppMain { }
+export class AppMain {
+}

@@ -1,6 +1,6 @@
 import { NgModule, provide } from '@angular/core'
 import { APP_BASE_HREF } from '@angular/common'
-import { CommonModule, AsyncPipe } from '@angular/common'
+import { CommonModule } from '@angular/common'
 import { BrowserModule } from '@angular/platform-browser'
 import { ReactiveFormsModule } from '@angular/forms'
 import { HTTP_PROVIDERS } from '@angular/http'

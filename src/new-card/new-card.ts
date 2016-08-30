@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core'
 import { LangItemService } from '../lang-item/lang-item.service'
 import { LangItem, SimpleTranslation, Translation, Character, Word } from '../domain/models'
 import { getCharacters, getWords } from '../domain/lang-item'
@@ -14,20 +14,14 @@ const cardFormat = (characters: Character[]) =>
   selector: 'app-new-card',
   templateUrl: './new-card.html',
   styleUrls: ['./new-card.styl'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewCard {
-  characters: Character[]
+  @Input() langItem: LangItem
 
-  langItem: LangItem = new LangItem()
+  get characters() {
+    return getCharacters(this.langItem)
+  }
 
   constructor(private langItemService: LangItemService) { }
-
-  ngOnInit() {
-    this.langItemService.get('1')
-      .subscribe(langItem => {
-        this.langItem = langItem
-
-        this.characters = getCharacters(langItem)
-      })
-  }
 }

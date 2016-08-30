@@ -5,6 +5,7 @@ import {
   Settings,
   Example,
   CharacterView,
+  ActionPanel
 } from './components'
 
 export const declarations = [
@@ -14,4 +15,5 @@ export const declarations = [
   Settings,
   Example,
   CharacterView,
+  ActionPanel,
 ]
