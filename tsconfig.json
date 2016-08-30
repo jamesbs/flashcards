@@ -16,7 +16,8 @@
       "node",
       "source-map",
       "uglify-js",
-      "webpack"
+      "webpack",
+      "core-js"
     ]
   },
   "exclude": [

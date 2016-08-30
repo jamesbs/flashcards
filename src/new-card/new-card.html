@@ -11,35 +11,21 @@
 </div>
 <div class="translation">
   <div class="chinese">
-    <div 
+    <app-character
       class="character"
-      *ngFor="let character of characters">
-      <div class="chinese">{{character.chinese}}</div>
-      <div class="pinyin">{{character.pinyin}}</div>
-    </div>
+      *ngFor="let character of characters"
+      [character]="character">
+    </app-character>
   </div>
   <div class="english">
-    News
+    {{langItem.english}}
   </div>
 </div>
 <div class="examples">
   <div class="header">Examples</div>
-  <div class="example"
-    *ngFor="let example of examples">
-    <div class="chinese">
-      <span class="word-{{i}}" 
-        *ngFor="let word of example.words; let i = index">
-        <span *ngFor="let character of word">{{character.chinese}}</span>
-      </span>
-    </div>
-    <div class="pinyin">
-      <span class="word-{{i}}" 
-        *ngFor="let word of example.words; let i = index">
-        <span *ngFor="let character of word">{{character.pinyin}}</span>
-      </span>
-    </div>
-    <div class="english">
-      {{example.english}}
-    </div>
-  </div>
+  <app-example
+    *ngFor="let example of langItem.examples"
+    class="example"
+    [example]="example">
+  </app-example>
 </div>

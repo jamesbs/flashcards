@@ -1,4 +1,6 @@
 export { Header } from './header/header'
 export { Slides } from './slides/slides'
 export { NewCard } from './new-card/new-card'
+export { Example } from './new-card/example/example'
+export { CharacterView } from './new-card/character/character'
 export { Settings } from './settings/settings'

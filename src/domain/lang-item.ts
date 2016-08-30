@@ -11,7 +11,7 @@ export class LangItem implements Translation {
   chinese = ''
   pinyin = ''
   english = ''
-  examples: Translation[] = []
+  examples: SimpleTranslation[] = []
 }
 
 export const getCharacters = (translation: Translation): Character[] =>
