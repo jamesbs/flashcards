@@ -1,5 +1,4 @@
-import { Pinyin } from './pinyin'
-import { Vowel, isVowel, isPriorityVowel } from './vowel'
+import { Pinyin, Vowel, isVowel, isPriorityVowel } from '../../domain/pinyin'
 import { applyTone } from './pinyin-tone'
 
 export const toStandard = (pinyin: Pinyin) => {

@@ -1,5 +1,4 @@
-import { Vowel } from './vowel'
-import { Tone } from '../tone'
+import { Vowel, Tone } from '../../domain/models'
 
 export interface ToneTable {
   '1': string

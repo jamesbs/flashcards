@@ -7,7 +7,7 @@
 </div>
 <div class="pinyin">
   <span
-    *ngFor="let word of example.words; let i = index"
+    *ngFor="let word of words; let i = index"
     class="word-{{i}}">
     <span *ngFor="let character of word">{{character.pinyin}}</span>
   </span>

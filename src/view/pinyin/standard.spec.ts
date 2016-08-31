@@ -1,5 +1,5 @@
 import { toStandard, findApplyIndex } from './standard'
-import { Pinyin } from './pinyin'
+import { Pinyin } from '../../domain/models'
 
 describe('findApplyIndex', () => {
   it('ends with normal vowel', () => {

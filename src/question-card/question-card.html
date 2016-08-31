@@ -1,5 +1,7 @@
-<div class="card current">
-  <div class="character" *ngFor="let character of characters">
+<div class="card">
+  <div
+    *ngFor="let character of characters"
+    class="character">
     <div class="chinese">{{character.chinese}}</div>
     <div class="pinyin" [hidden]="!showPinyin">{{character.pinyin}}</div>
   </div>

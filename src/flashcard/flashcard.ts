@@ -4,9 +4,9 @@ import { getCharacters } from '../domain/lang-item'
 import { toBasic } from '../domain/pinyin'
 
 @Component({
-    selector: 'flashcard',
-    templateUrl: './flashcard.html',
-    styleUrls: [ './flashcard.styl' ]
+  selector: 'flashcard',
+  templateUrl: './flashcard.html',
+  styleUrls: [ './flashcard.styl' ]
 })
 export class Flashcard {
   @Input() private characters: Character[] = []

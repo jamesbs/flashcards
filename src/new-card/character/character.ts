@@ -1,19 +1,37 @@
-import { Component, Input } from '@angular/core'
-import { Character } from '../../domain/models'
-import { toStandard } from '../../domain/pinyin'
+import { Component, Input, HostListener } from '@angular/core'
+import { FormGroup, FormControl } from '@angular/forms'
+import { Character, Pinyin } from '../../domain/models'
+import { toStandard } from '../../view/pinyin'
 
 @Component({
   selector: 'app-character',
   templateUrl: './character.html'
 })
 export class CharacterView {
-  @Input() character: Character
+  private _character: Character
+
+  @Input()
+  get character() {
+    return this._character
+  }
+
+  set character(character: Character) {
+    this._character = character
+    this.pinyin = toStandard(this.character.pinyin)
+  }
+
+  // find a way to implement this as a memoized getter
+  pinyin: string
 
   get chinese() {
     return this.character.chinese
   }
 
-  get pinyin() {
-    return toStandard(this.character.pinyin)
+  input: FormGroup
+
+  ngOnInit() {
+    this.input = new FormGroup({
+      pinyin: new FormControl(this.pinyin)
+    })
   }
 }

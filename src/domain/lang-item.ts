@@ -14,9 +14,9 @@ export class LangItem implements Translation {
   examples: SimpleTranslation[] = []
 }
 
-export const getCharacters = (translation: Translation): Character[] =>
+export const getCharacters = (translation: Translation) =>
   zip(translation.chinese.split(''), splitPinyin(translation.pinyin))
-    .map(([ chinese, pinyin ]: [ string, string ]): Character => ({
+    .map(([ chinese, pinyin ]) => ({
       chinese,
       pinyin: fromBasic(pinyin)
     }))
