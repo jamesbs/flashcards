@@ -5,7 +5,8 @@ import { toStandard } from '../../view/pinyin'
 
 @Component({
   selector: 'app-character',
-  templateUrl: './character.html'
+  templateUrl: './character.html',
+  styleUrls: ['./character.styl'],
 })
 export class CharacterView {
   private _character: Character

@@ -1,0 +1,24 @@
+:host
+  display inline-block
+
+  &:hover
+    color #00b8d4
+
+    .pinyin input:not(:focus)
+      color #00b8d4
+
+.chinese
+  font-size 10rem // font-size should be relative to phrase length
+  line-height 1.14em
+
+.pinyin
+  font-size 1.5rem // font-size should be relative to phrase length
+
+input
+  width 70px
+  border 0
+  text-align center
+  box-sizing box
+
+input:focus
+  outline 0

@@ -1,18 +1,19 @@
 import * as webpack from 'webpack' // throwing error on importing uglify-js
 const HtmlWebpackPlugin = require('html-webpack-plugin') // typings are not up to date
 const merge = require('webpack-merge') // typings are not up to date
+import { vendor, app } from './build/entry'
 import { generatePath as path } from './build/tools'
+
+const chunkOrder = [ 'vendor', 'app' ]
 
 export const baseConfig = {
   context: path`${'dist'}`,
 
-  entry: {
-    app: './index.ts'
-  },
+  entry: { vendor, app },
 
   output: {
     path: 'dist',
-    filename: 'app.js',
+    filename: '[name].js',
   },
 
   resolve: {
@@ -64,7 +65,18 @@ export const baseConfig = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './index.html',
-      inject: 'body'
+      inject: 'body',
+      chunksSortMode: (chunk1, chunk2) => {
+        const c1i = chunkOrder.indexOf(chunk1.names[0])
+        const c2i = chunkOrder.indexOf(chunk2.names[0])
+
+        if(c1i < c2i)
+          return -1
+        else if(c1i === c2i)
+          return chunk1.id < chunk2.id ? -1 : 1
+        else
+          return 1
+      }
     })
   ]
 }
@@ -141,7 +153,8 @@ export const prodOnlyConfig = {
   },
 
   plugins: [
-    new webpack.optimize.DedupePlugin(),
+    // dedupe plugin causing bug: https://github.com/webpack/webpack/issues/2644
+    // new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false

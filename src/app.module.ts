@@ -1,9 +1,9 @@
-import { NgModule, provide } from '@angular/core'
+import { NgModule } from '@angular/core'
 import { APP_BASE_HREF } from '@angular/common'
 import { CommonModule } from '@angular/common'
 import { BrowserModule } from '@angular/platform-browser'
 import { ReactiveFormsModule } from '@angular/forms'
-import { HTTP_PROVIDERS } from '@angular/http'
+import { HttpModule } from '@angular/http'
 import { RouterModule } from '@angular/router'
 import { QuestionProvider } from './question'
 import { LangItemService } from './lang-item/lang-item.service'
@@ -22,13 +22,13 @@ import { Routes } from './app.routes'
     BrowserModule,
     CommonModule,
     ReactiveFormsModule,
+    HttpModule,
     RouterModule.forRoot(Routes),
   ],
   providers: [
-    HTTP_PROVIDERS,
     QuestionProvider,
     LangItemService,
-    provide(APP_BASE_HREF, { useValue: '/' })
+    { provide: APP_BASE_HREF, useValue: '/' },
   ],
   bootstrap: [ AppMain ],
 })
