@@ -1,46 +1,60 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core'
-import { FormControl } from '@angular/forms'
+import { Component, Input, Output, EventEmitter, HostListener } from '@angular/core'
+import { FormControl, FormGroup } from '@angular/forms'
+import { Pinyin } from '../../../domain/models'
 import { isTone } from '../../../domain/tone'
 import { toStandard } from '../../../view/pinyin'
+import { isValid } from './is-valid'
 
 @Component({
   selector: 'pinyin-input',
   templateUrl: './pinyin-input.html',
 })
 export class PinyinInput {
-  basicPinyin = new FormControl('')
   @Output() focus = new EventEmitter<FocusEvent>()
   @Output() blur = new EventEmitter<FocusEvent>()
-  @Output() standardized = new EventEmitter<string>()
+  @Output() valueChange = new EventEmitter<string>()
+  @Output() success = new EventEmitter<void>()
+  @Output() failure = new EventEmitter<void>()
 
-  standardPinyin = ''
+  private _pinyin: Pinyin
 
-  @Input() pinyin = ''
-
-  get dirty() {
-    return this.basicPinyin.dirty
+  @Input()
+  get pinyin() {
+    return this._pinyin
   }
 
-  ngOnInit() {
-    this.basicPinyin.valueChanges
-      .subscribe(pinyin => {
-        const last = pinyin.slice(-1)
+  set pinyin(pinyin) {
+    this._pinyin = pinyin
 
-        if(isTone(last)) {
-          this.standardPinyin = toStandard({ syllable: pinyin.slice(0, -1), tone: last })
-          this.standardized.emit(this.standardPinyin)
-        } else {
-          this.standardPinyin = pinyin
-        }
-      })
+    this.form = new FormGroup({
+      input: new FormControl('', isValid(pinyin))
+    })
+
+    this.isDefault = (input: HTMLInputElement) => input.value === toStandard(pinyin)
   }
 
-  handleKeydown(event: KeyboardEvent) {
-    if(event.code.slice(0,5) === 'Digit' || event.code.slice(0,3) === 'Key') {
-      this.basicPinyin.setValue(this.basicPinyin.value + event.key)
-      event.preventDefault()
+
+  private _form: FormGroup
+
+  get form() {
+    return this._form
+  }
+
+  set form(form) {
+    this._form = form
+
+    this._form.valueChanges.subscribe(value => {
+      this.valueChange.emit(value.input)
+    })
+  }
+
+  isDefault: (input: HTMLInputElement) => boolean = () => false
+
+  submit(event: Event) {
+    if (this.form.valid) {
+      this.success.emit(undefined)
+    } else {
+      this.failure.emit(undefined)
     }
   }
-
-  isDefault = (pinyin: string) => (input: HTMLInputElement) => input.value === pinyin
 }

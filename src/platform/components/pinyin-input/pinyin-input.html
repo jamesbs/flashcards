@@ -1,9 +1,7 @@
-<input type="hidden" [formControl]="basicPinyin">
-
-<input type="text" class="entry"
-  (keydown)="handleKeydown($event)"
-  (keypress)="handleKeyPress($event)"
-  (blur)="this.blur.emit($event)"
-  (focus)="this.focus.emit($event)"
-  [value]="standardPinyin"
-  [clearOnFocus]="isDefault(pinyin)">
+<form [formGroup]="form" (submit)="submit($event)">
+  <input type="text" class="entry"
+    (blur)="this.blur.emit($event)"
+    (focus)="this.focus.emit($event)"
+    [clearOnFocus]="isDefault"
+    formControlName="input">
+</form>

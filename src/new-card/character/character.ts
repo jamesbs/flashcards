@@ -1,5 +1,7 @@
 import { Component, Input, HostListener } from '@angular/core'
 import { FormGroup, FormControl } from '@angular/forms'
+import { isEqual } from 'lodash'
+
 import { Character, Pinyin } from '../../domain/models'
 import { toStandard } from '../../view/pinyin'
 
@@ -28,7 +30,32 @@ export class CharacterView {
   // find a way to implement this as a memoized getter
   formClass: string[] = []
 
+  empty = true
+
+  focused = false
+
+  success = false
+
   get chinese() {
     return this.character.chinese
+  }
+
+  private _hintClass: string[] = []
+  get hintClass() {
+    let generatedHintClass = []
+
+    if(this.success) {
+      generatedHintClass = [ 'success' ]
+    } else if (!this.empty || this.focused) {
+      generatedHintClass = [ 'input-active' ]
+    } else {
+      generatedHintClass = []
+    }
+
+    if(!isEqual(this._hintClass, generatedHintClass)) {
+      this._hintClass = generatedHintClass
+    }
+
+    return this._hintClass
   }
 }

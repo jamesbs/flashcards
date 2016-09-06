@@ -7,16 +7,19 @@
     .pinyin input:not(:focus)
       color #00b8d4
 
+.pinyin-input
+  border 0
+  position absolute
+  left 0
 
-  .pinyin-input
+  & /deep/ input[type=text]
+    width 50px
+    padding 0
     border 0
-    position absolute
-    left 0
+    background transparent
 
-    .entry
-      padding 0
-      border 0
-      background-color green
+    &:focus
+      outline 0
 
 .chinese
   font-size 10rem // font-size should be relative to phrase length
@@ -37,21 +40,12 @@
 
     .hint
       position absolute
-      top -30px
-      opacity 0.6
-      display none
+      left 0
 
-      &.show
+      &.input-active
+        top -30px
+        opacity 0.6
         display block
 
-
-    input
-      position absolute
-      left 0
-      padding 0
-      border 0
-      background 0
-      box-sizing box
-
-    input:focus
-      outline 0
+      &.success
+        font-weight bold

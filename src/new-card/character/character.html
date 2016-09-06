@@ -1,12 +1,15 @@
 <div class="chinese">{{chinese}}</div>
 <div class="pinyin">
   <div class="input-wrapper" [ngClass]="formClass">
-    <div class="hint" [class.show]="focused || input.dirty">{{pinyin}}</div>
+    <div class="hint" [ngClass]="hintClass">{{pinyin}}</div>
 
     <pinyin-input class="pinyin-input"
       (focus)="focused = true"
       (blur)="focused = false"
-      #input>
+      (valueChange)="empty = !$event"
+      [pinyin]="character.pinyin"
+      (success)="success = true"
+      *ngIf="!success">
     </pinyin-input>
   </div>
 </div>

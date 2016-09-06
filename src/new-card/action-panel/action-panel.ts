@@ -3,7 +3,8 @@ import { LangItem } from '../../domain/models'
 
 @Component({
   selector: 'app-action-panel',
-  templateUrl: './action-panel.html'
+  templateUrl: './action-panel.html',
+  styleUrls: ['./action-panel.styl'],
 })
 export class ActionPanel {
   @Input() langItem: LangItem
