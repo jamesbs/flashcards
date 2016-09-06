@@ -7,6 +7,17 @@
     .pinyin input:not(:focus)
       color #00b8d4
 
+
+  .pinyin-input
+    border 0
+    position absolute
+    left 0
+
+    .entry
+      padding 0
+      border 0
+      background-color green
+
 .chinese
   font-size 10rem // font-size should be relative to phrase length
   line-height 1.14em
@@ -14,11 +25,33 @@
 .pinyin
   font-size 1.5rem // font-size should be relative to phrase length
 
-input
-  width 70px
-  border 0
-  text-align center
-  box-sizing box
+  div
+    position relative
+    display inline-block
 
-input:focus
-  outline 0
+    &.length-3
+      width 40px // should be relative to font-size
+
+      input
+        width 50px
+
+    .hint
+      position absolute
+      top -30px
+      opacity 0.6
+      display none
+
+      &.show
+        display block
+
+
+    input
+      position absolute
+      left 0
+      padding 0
+      border 0
+      background 0
+      box-sizing box
+
+    input:focus
+      outline 0

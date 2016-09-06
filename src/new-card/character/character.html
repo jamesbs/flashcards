@@ -1,6 +1,12 @@
 <div class="chinese">{{chinese}}</div>
 <div class="pinyin">
-  <form [formGroup]="input">
-    <input type="text" formControlName="pinyin">
-  </form>
+  <div class="input-wrapper" [ngClass]="formClass">
+    <div class="hint" [class.show]="focused || input.dirty">{{pinyin}}</div>
+
+    <pinyin-input class="pinyin-input"
+      (focus)="focused = true"
+      (blur)="focused = false"
+      #input>
+    </pinyin-input>
+  </div>
 </div>

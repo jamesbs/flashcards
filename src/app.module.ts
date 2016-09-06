@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser'
 import { ReactiveFormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'
 import { RouterModule } from '@angular/router'
+import { PlatformModule } from './platform/platform.module'
 import { QuestionProvider } from './question'
 import { LangItemService } from './lang-item/lang-item.service'
 import { AppMain } from './app-main'
@@ -22,6 +23,7 @@ import { Routes } from './app.routes'
     BrowserModule,
     CommonModule,
     ReactiveFormsModule,
+    PlatformModule,
     HttpModule,
     RouterModule.forRoot(Routes),
   ],

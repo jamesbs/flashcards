@@ -1,5 +1,4 @@
 import { Header, Slides, NewCard, Settings, Example, CharacterView, ActionPanel } from './components'
-import { ResetIfEmpty } from './platform/directives'
 
 export const declarations = [
   Header,
@@ -9,5 +8,4 @@ export const declarations = [
   Example,
   CharacterView,
   ActionPanel,
-  ResetIfEmpty,
 ]

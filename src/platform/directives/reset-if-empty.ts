@@ -1,11 +1,12 @@
-import { Directive } from '@angular/core'
-import { FormControlName } from '@angular/forms'
+import { Directive, HostListener, Input } from '@angular/core'
 
 @Directive({ selector: '[resetIfEmpty]' })
 export class ResetIfEmpty {
-  constructor(private fcn: FormControlName) { }
+  @Input('resetIfEmpty') resetValue: string
 
-  ngAfterViewInit() {
-    console.log('fcn', this.fcn)
+  @HostListener('blur', ['$event.target'])
+  resetIfEmpty(input: HTMLInputElement) {
+    if (!input.value)
+      input.value = this.resetValue
   }
 }
