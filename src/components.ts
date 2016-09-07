@@ -1,4 +1,5 @@
 export { Header } from './header/header'
+export { Flashcard } from './flashcard/flashcard'
 export { Slides } from './slides/slides'
 export { NewCard } from './new-card/new-card'
 export { ActionPanel } from './new-card/action-panel/action-panel'

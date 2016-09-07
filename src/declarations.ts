@@ -1,4 +1,5 @@
-import { Header, Slides, NewCard, Settings, Example, CharacterView, ActionPanel } from './components'
+import { Header, Slides, NewCard, Settings, Example, CharacterView,
+  ActionPanel, Flashcard } from './components'
 
 export const declarations = [
   Header,
@@ -8,4 +9,5 @@ export const declarations = [
   Example,
   CharacterView,
   ActionPanel,
+  Flashcard,
 ]

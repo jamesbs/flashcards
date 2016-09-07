@@ -4,13 +4,26 @@ import { getCharacters } from '../domain/lang-item'
 import { toBasic } from '../domain/pinyin'
 
 @Component({
-  selector: 'flashcard',
+  selector: 'app-flashcard',
   templateUrl: './flashcard.html',
   styleUrls: [ './flashcard.styl' ]
 })
 export class Flashcard {
-  @Input() private characters: Character[] = []
   @Input() private showPinyin: boolean = false
+
+  private _langItem: LangItem
+
+  @Input() get langItem() {
+    return this._langItem
+  }
+
+  set langItem(langItem) {
+    this._langItem = langItem
+
+    this.characters = getCharacters(langItem)
+  }
+
+  characters: Character[] = []
 
   toBasic = toBasic
 }
