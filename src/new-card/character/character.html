@@ -8,8 +8,8 @@
       (blur)="focused = false"
       (valueChange)="empty = !$event"
       [pinyin]="character.pinyin"
-      (success)="success = true"
-      *ngIf="!success">
+      (success)="success.emit()"
+      *ngIf="!complete">
     </pinyin-input>
   </div>
 </div>

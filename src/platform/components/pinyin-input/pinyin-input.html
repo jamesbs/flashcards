@@ -1,7 +1,8 @@
-<form [formGroup]="form" (submit)="submit($event)">
+<form [formGroup]="form" (submit)="submit($event)" #inpp>
   <input type="text" class="entry"
     (blur)="this.blur.emit($event)"
     (focus)="this.focus.emit($event)"
     [clearOnFocus]="isDefault"
-    formControlName="input">
+    formControlName="input"
+    #input>
 </form>

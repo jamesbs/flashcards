@@ -1,4 +1,4 @@
-<app-flashcard [langItem]="currentItem">
-</app-flashcard>
-<app-new-card [langItem]="currentItem">
+<app-new-card
+  *ngIf="currentItem"
+  [langItem]="currentItem">
 </app-new-card>

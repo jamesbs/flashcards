@@ -11,7 +11,7 @@ import { LangItem } from '../domain/models'
 export class Slides {
   constructor(private langItemService: LangItemService) { }
 
-  currentItem: LangItem = new LangItem()
+  currentItem: LangItem
 
   ngOnInit() {
     this.langItemService.get('1')

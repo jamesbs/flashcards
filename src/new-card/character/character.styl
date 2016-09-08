@@ -7,6 +7,11 @@
     .pinyin input:not(:focus)
       color #00b8d4
 
+  &.complete
+    .hint
+      font-weight bold
+
+
 .pinyin-input
   border 0
   position absolute
@@ -40,12 +45,11 @@
 
     .hint
       position absolute
+      top 0
       left 0
 
       &.input-active
         top -30px
         opacity 0.6
         display block
-
-      &.success
-        font-weight bold
+        transition top 100ms ease-in

@@ -1,6 +1,6 @@
 import { Pinyin } from './pinyin'
 
-export type Character = {
+export interface Character {
   chinese: string
   pinyin: Pinyin
 }

@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter, HostListener } from '@angular/core'
+import { Component, Input, Output, EventEmitter, HostListener,
+  ViewChild, ElementRef, Renderer } from '@angular/core'
 import { FormControl, FormGroup } from '@angular/forms'
 import { Pinyin } from '../../../domain/models'
 import { isTone } from '../../../domain/tone'
@@ -16,6 +17,8 @@ export class PinyinInput {
   @Output() success = new EventEmitter<void>()
   @Output() failure = new EventEmitter<void>()
 
+  @ViewChild('input') input: ElementRef
+
   private _pinyin: Pinyin
 
   @Input()
@@ -31,6 +34,10 @@ export class PinyinInput {
     })
 
     this.isDefault = (input: HTMLInputElement) => input.value === toStandard(pinyin)
+  }
+
+  setFocus() {
+    this.renderer.invokeElementMethod(this.input.nativeElement, 'focus')
   }
 
 
@@ -57,4 +64,6 @@ export class PinyinInput {
       this.failure.emit(undefined)
     }
   }
+
+  constructor(private renderer: Renderer) { }
 }

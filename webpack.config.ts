@@ -41,14 +41,6 @@ export const baseConfig = {
         exclude: /node_modules/
       },
       {
-        test: /\.styl/,
-        loaders: [
-          'to-string',
-          'css?minimize',
-          'stylus',
-        ],
-      },
-      {
         test: /\.svg/,
         loader: 'raw'
       },
@@ -104,6 +96,14 @@ export const devOnlyConfig = {
         ]
       },
       {
+        test: /\.styl/,
+        loaders: [
+          'to-string',
+          'css',
+          'stylus',
+        ],
+      },
+      {
         test: /\.svg/,
         loader: 'file',
         exclude: /icons/,
@@ -139,6 +139,14 @@ export const prodOnlyConfig = {
             }
           }
         ]
+      },
+      {
+        test: /\.styl/,
+        loaders: [
+          'to-string',
+          'css?minimize',
+          'stylus',
+        ],
       },
       {
         test: /\.svg/,

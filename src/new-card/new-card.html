@@ -7,8 +7,9 @@
   <div class="chinese">
     <app-character
       class="character"
-      *ngFor="let character of characters"
-      [character]="character">
+      [character]="character"
+      *ngFor="let character of characters; let index = index"
+      (success)="characterSuccess(index)">
     </app-character>
   </div>
   <div class="english">

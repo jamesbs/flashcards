@@ -1,8 +1,8 @@
-import { Component, Input, HostListener } from '@angular/core'
+import { Component, Input, Output, HostListener, HostBinding, EventEmitter, ViewChild } from '@angular/core'
 import { FormGroup, FormControl } from '@angular/forms'
 import { isEqual } from 'lodash'
-
-import { Character, Pinyin } from '../../domain/models'
+import { PinyinInput } from '../../platform/components'
+import { Pinyin, Character } from '../../domain/models'
 import { toStandard } from '../../view/pinyin'
 
 @Component({
@@ -18,11 +18,20 @@ export class CharacterView {
     return this._character
   }
 
-  set character(character: Character) {
+  set character(character) {
     this._character = character
     this.pinyin = toStandard(this.character.pinyin)
     this.formClass = [ 'length-' + this.pinyin.length ]
   }
+
+  @HostBinding('class.complete')
+  @Input()
+  complete = false
+
+  @Output()
+  success = new EventEmitter<void>()
+
+  @ViewChild(PinyinInput) input: PinyinInput
 
   // find a way to implement this as a memoized getter
   pinyin: string
@@ -34,7 +43,9 @@ export class CharacterView {
 
   focused = false
 
-  success = false
+  setFocus() {
+    this.input.setFocus()
+  }
 
   get chinese() {
     return this.character.chinese
@@ -44,17 +55,13 @@ export class CharacterView {
   get hintClass() {
     let generatedHintClass = []
 
-    if(this.success) {
-      generatedHintClass = [ 'success' ]
-    } else if (!this.empty || this.focused) {
+    if(!this.complete && (!this.empty || this.focused))
       generatedHintClass = [ 'input-active' ]
-    } else {
+    else
       generatedHintClass = []
-    }
 
-    if(!isEqual(this._hintClass, generatedHintClass)) {
+    if(!isEqual(this._hintClass, generatedHintClass))
       this._hintClass = generatedHintClass
-    }
 
     return this._hintClass
   }
