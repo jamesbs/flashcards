@@ -1,15 +1,16 @@
 :host
   display inline-block
 
-  &:hover
-    color #00b8d4
-
-    .pinyin input:not(:focus)
-      color #00b8d4
+  &.focused:not(.complete)
+    color #00C1DE
 
   &.complete
     .hint
       font-weight bold
+
+  &:not(.complete)
+    .hint
+      transition top 50ms ease-out
 
 
 .pinyin-input
@@ -32,16 +33,18 @@
 
 .pinyin
   font-size 1.5rem // font-size should be relative to phrase length
+  padding-top 6px
 
-  div
+  .input-wrapper
     position relative
     display inline-block
+    height 28px
 
     &.length-3
       width 40px // should be relative to font-size
 
       input
-        width 50px
+        width 70px
 
     .hint
       position absolute
@@ -49,7 +52,6 @@
       left 0
 
       &.input-active
-        top -30px
-        opacity 0.6
+        top -24px
         display block
-        transition top 100ms ease-in
+        transition top 50ms ease-in

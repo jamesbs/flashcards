@@ -1,7 +1,7 @@
 import { Component, Input, Output, HostListener, HostBinding, EventEmitter, ViewChild } from '@angular/core'
 import { FormGroup, FormControl } from '@angular/forms'
 import { isEqual } from 'lodash'
-import { PinyinInput } from '../../platform/components'
+import { PinyinInput } from '../../common/components'
 import { Pinyin, Character } from '../../domain/models'
 import { toStandard } from '../../view/pinyin'
 
@@ -33,6 +33,16 @@ export class CharacterView {
 
   @ViewChild(PinyinInput) input: PinyinInput
 
+  @HostBinding('class.focused')
+  focused = false
+
+  @HostListener('click')
+  onClick() {
+    if (!this.complete)
+      this.setFocus()
+  }
+
+
   // find a way to implement this as a memoized getter
   pinyin: string
 
@@ -41,7 +51,6 @@ export class CharacterView {
 
   empty = true
 
-  focused = false
 
   setFocus() {
     this.input.setFocus()

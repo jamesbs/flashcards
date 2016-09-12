@@ -13,9 +13,9 @@ export const prodOnlyConfig = {
             query: {
               name: '[path][name].[ext]',
               context: './src'
-            }
-          }
-        ]
+            },
+          },
+        ],
       },
       {
         test: /\.styl/,
@@ -32,7 +32,7 @@ export const prodOnlyConfig = {
         query: {
           name: '[path][name].[ext]',
           context: './src'
-        }
+        },
       },
     ]
   },

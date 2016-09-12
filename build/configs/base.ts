@@ -16,7 +16,7 @@ export const baseConfig = {
   },
 
   resolve: {
-    extensions: ['', '.webpack.js', '.web.js', '.ts', '.js', '.styl']
+    extensions: ['', '.webpack.js', '.web.js', '.ts', '.js', '.styl', '.ogg']
   },
 
   module: {
@@ -32,24 +32,28 @@ export const baseConfig = {
           },
           'angular2-template',
         ],
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.html/,
         loader: 'html',
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.svg/,
-        loader: 'raw'
+        loader: 'raw',
       },
       {
         test: /\.css$/,
         loaders: [
           'to-string',
           'css',
-        ]
-      }
+        ],
+      },
+      {
+        test: /\.ogg$/,
+        loader: 'file',
+      },
     ]
   },
 
