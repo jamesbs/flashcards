@@ -11,4 +11,4 @@ import { declarations } from './declarations'
   providers: [],
   bootstrap: []
 })
-export class PlatformModule { }
+export class CommonModule { }
