@@ -1,0 +1,8 @@
+<div class="hint">{{value}}</div>
+<form [formGroup]="form" (submit)="submit($event)" *ngIf="!complete">
+  <input type="text" class="entry"
+    (blur)="onBlur($event)"
+    (focus)="onFocus($event)"
+    formControlName="input"
+    #input>
+</form>

@@ -29,6 +29,11 @@ export class NewCard {
     this.characterViews = views.toArray()
   }
 
+  successSound = new Howl({
+      src: [ require('../common/sound/success.ogg') ],
+      volume: 0.3,
+      rate: 1.5
+    })
 
   characterViews: CharacterView[] = []
 
@@ -37,7 +42,7 @@ export class NewCard {
 
   characterSuccess(successIndex: number) {
     this.characterViews[successIndex].complete = true
-
+    this.successSound.play()
     this.focusNext(successIndex)
   }
 
@@ -61,5 +66,11 @@ export class NewCard {
     const found = views.find(({ view, index }) => !view.complete)
 
     return found ? found.index : undefined
+  }
+
+  englishMatcher = (value: string) => this.langItem.english === value
+
+  englishSuccess() {
+
   }
 }

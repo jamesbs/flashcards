@@ -1,0 +1,41 @@
+:host
+  position relative
+  display inline-block
+
+  &.active
+    &.slide-down
+      .hint
+        top initial
+        bottom -1.1em
+        transition bottom 50ms ease-out
+
+    &.slide-up
+      .hint
+        top -1.1em
+        transition top 50ms ease-out
+
+  &.slide-down
+    .hint
+      bottom 0
+      transition bottom 50ms ease-in
+
+  &.slide-up
+    .hint
+      top 0
+      transition bottom 50ms ease-in
+
+.hint
+  position absolute
+  top 0
+  left 0
+
+.form-container
+  display inline
+
+input
+  padding 0
+  border 0
+  background transparent
+
+  &:focus
+    outline 0

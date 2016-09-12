@@ -1,9 +1,11 @@
 import { Component, Input, Output, HostListener, HostBinding, EventEmitter, ViewChild } from '@angular/core'
 import { FormGroup, FormControl } from '@angular/forms'
 import { isEqual } from 'lodash'
-import { PinyinInput } from '../../common/components'
+import { HintedInput } from '../../common/components'
+import { Matcher } from '../../common/components/hinted-input'
 import { Pinyin, Character } from '../../domain/models'
 import { toStandard } from '../../view/pinyin'
+import { toBasic } from'../../domain/pinyin'
 
 @Component({
   selector: 'app-character',
@@ -20,7 +22,15 @@ export class CharacterView {
 
   set character(character) {
     this._character = character
-    this.pinyin = toStandard(this.character.pinyin)
+    this.pinyin = toStandard(character.pinyin)
+
+    const basicPinyin = toBasic(this.character.pinyin)
+
+    this.pinyinMatcher = (value: string) => {
+      console.log('matching')
+      return value === basicPinyin
+    }
+
     this.formClass = [ 'length-' + this.pinyin.length ]
   }
 
@@ -31,7 +41,7 @@ export class CharacterView {
   @Output()
   success = new EventEmitter<void>()
 
-  @ViewChild(PinyinInput) input: PinyinInput
+  @ViewChild(HintedInput) input: HintedInput
 
   @HostBinding('class.focused')
   focused = false
@@ -51,7 +61,6 @@ export class CharacterView {
 
   empty = true
 
-
   setFocus() {
     this.input.setFocus()
   }
@@ -60,18 +69,5 @@ export class CharacterView {
     return this.character.chinese
   }
 
-  private _hintClass: string[] = []
-  get hintClass() {
-    let generatedHintClass = []
-
-    if(!this.complete && (!this.empty || this.focused))
-      generatedHintClass = [ 'input-active' ]
-    else
-      generatedHintClass = []
-
-    if(!isEqual(this._hintClass, generatedHintClass))
-      this._hintClass = generatedHintClass
-
-    return this._hintClass
-  }
+  pinyinMatcher: Matcher
 }

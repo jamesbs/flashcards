@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, HostListener,
+import { Component, Input, Output, EventEmitter,
   ViewChild, ElementRef, Renderer } from '@angular/core'
 import { FormControl, FormGroup } from '@angular/forms'
 import { Pinyin } from '../../../domain/models'

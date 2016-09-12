@@ -12,20 +12,10 @@
     .hint
       transition top 50ms ease-out
 
-
 .pinyin-input
-  border 0
-  position absolute
-  left 0
-
-  & /deep/ input[type=text]
+  /deep/ input
     width 50px
-    padding 0
-    border 0
-    background transparent
-
-    &:focus
-      outline 0
+    background-color skyblue
 
 .chinese
   font-size 10rem // font-size should be relative to phrase length
@@ -35,6 +25,7 @@
   font-size 1.5rem // font-size should be relative to phrase length
   padding-top 6px
 
+  /*
   .input-wrapper
     position relative
     display inline-block
@@ -55,3 +46,4 @@
         top -24px
         display block
         transition top 50ms ease-in
+*/
