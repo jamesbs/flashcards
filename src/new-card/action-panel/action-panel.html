@@ -2,5 +2,11 @@
   <icon-open-book></icon-open-book>
 </div>
 <div class="link">
-  <a class="fa fa-external-link" href="{{externalLink}}" title="External link"></a>
+  <i class="fa action"
+    [ngClass]="{
+      'fa-play': player.state === 'stopped',
+      'fa-stop': player.state === 'playing'
+    }"
+    (click)="player.toggle()"></i>
+  <a class="fa fa-external-link action" href="{{externalLink}}" title="External link"></a>
 </div>

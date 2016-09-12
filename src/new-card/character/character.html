@@ -5,6 +5,7 @@
     [value]="pinyin"
     [matcher]="pinyinMatcher"
     (success)="onSuccess()"
+    (failure)="failure.emit()"
     (focus)="focused = true"
     (blur)="focused = false"
     (valueChange)="empty = !$event">

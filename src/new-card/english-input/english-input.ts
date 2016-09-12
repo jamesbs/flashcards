@@ -7,8 +7,8 @@ import { HintedInput, Matcher } from '../../common/components/hinted-input'
   styleUrls: [ './english-input.styl' ],
 })
 export class EnglishInput {
-  @Output()
-  success = new EventEmitter<void>()
+  @Output() success = new EventEmitter<void>()
+  @Output() failure = new EventEmitter<void>()
 
   completed = false
 

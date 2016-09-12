@@ -8,4 +8,13 @@ export class CardSounds implements ActionSounds {
     volume: 0.3,
     rate: 1.5
   })
+
+  failure = new Howl({
+    src: [ require('../../sound/failure-2.ogg') ],
+    volume: 1,
+    sprite: {
+      main: [ 0, 240 ]
+    },
+    rate: 3
+  })
 }

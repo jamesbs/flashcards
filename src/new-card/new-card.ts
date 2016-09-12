@@ -88,5 +88,9 @@ export class NewCard {
       this.focusNext()
   }
 
+  onFailure() {
+    this.actionSounds.failure.play('main')
+  }
+
   constructor(private actionSounds: CardSounds) { }
 }

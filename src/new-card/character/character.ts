@@ -13,6 +13,9 @@ import { toBasic } from'../../domain/pinyin'
   styleUrls: ['./character.styl'],
 })
 export class CharacterView {
+  @Output() success = new EventEmitter<void>()
+  @Output() failure = new EventEmitter<void>()
+
   private _character: Character
 
   @Input()
@@ -34,8 +37,6 @@ export class CharacterView {
   @Input()
   completed = false
 
-  @Output()
-  success = new EventEmitter<void>()
 
   @ViewChild(HintedInput) input: HintedInput
 
