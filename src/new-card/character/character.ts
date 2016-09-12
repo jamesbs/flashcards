@@ -25,18 +25,14 @@ export class CharacterView {
     this.pinyin = toStandard(character.pinyin)
 
     const basicPinyin = toBasic(this.character.pinyin)
-
-    this.pinyinMatcher = (value: string) => {
-      console.log('matching')
-      return value === basicPinyin
-    }
+    this.pinyinMatcher = value => value === basicPinyin
 
     this.formClass = [ 'length-' + this.pinyin.length ]
   }
 
   @HostBinding('class.complete')
   @Input()
-  complete = false
+  completed = false
 
   @Output()
   success = new EventEmitter<void>()
@@ -48,8 +44,13 @@ export class CharacterView {
 
   @HostListener('click')
   onClick() {
-    if (!this.complete)
+    if (!this.completed)
       this.setFocus()
+  }
+
+  onSuccess() {
+    this.success.emit()
+    this.completed = true
   }
 
 

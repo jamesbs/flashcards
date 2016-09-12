@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, ViewChild,
-  Renderer, ElementRef, HostBinding, HostListener } from '@angular/core'
+  Renderer, ElementRef, HostBinding, HostListener, ChangeDetectorRef } from '@angular/core'
 import { FormGroup, FormControl, ValidatorFn } from '@angular/forms'
 
 type Matcher = (value: string) => boolean
@@ -58,8 +58,8 @@ export class HintedInput {
   @ViewChild('input') input: ElementRef
 
 
-  @HostBinding('class.complete')
-  complete = false
+  @HostBinding('class.completed')
+  completed = false
 
   @HostBinding('class.focused')
   focused = false
@@ -71,7 +71,7 @@ export class HintedInput {
 
   @HostBinding('class.active')
   get active() {
-    return !this.complete && (this.focused || !this.empty)
+    return !this.completed && (this.focused || !this.empty)
   }
 
   onFocus(event: FocusEvent) {
@@ -86,7 +86,7 @@ export class HintedInput {
 
   @HostListener('click')
   setFocus() {
-    if (!this.complete) {
+    if (!this.completed) {
       this.renderer.invokeElementMethod(this.input.nativeElement, 'focus')
     }
   }
@@ -95,13 +95,15 @@ export class HintedInput {
     if (this.form.valid) {
       this.success.emit(undefined)
       this.focused = false
-      this.complete = true
+      this.completed = true
+      // HACK: why do I need this? causing issues with change detection passes in conjunction with ngIf
+      this.cd.detectChanges()
     } else {
       this.failure.emit(undefined)
     }
   }
 
-  constructor(private renderer: Renderer) { }
+  constructor(private renderer: Renderer, private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.form = new FormGroup({

@@ -13,36 +13,42 @@
     letter-spacing 1px
     margin-bottom 0.8rem
 
+.character, .english
+  &.focused:not(.completed)
+    color #00c1de
 
-  .examples
-    margin-top 1.8rem
 
-    .header
-      font-size 1.4rem
-      margin-bottom 1rem
 
-    .chinese
-      font-size 1.4rem
+.examples
+  margin-top 1.8rem
 
-    .english
-      font-size 1.1rem
-      color #ad1457
+  .header
+    font-size 1.4rem
+    margin-bottom 1rem
 
-    .example
-      display block
-      line-height 1.4rem
-      margin-bottom 1.1rem
+  .chinese
+    font-size 1.4rem
 
-  .translation
-    display inline-block
-    text-align center
+  .english
+    font-size 1.1rem
+    color #ad1457
 
-    .english
-      font-size 1.6rem // font-size should be relative to phrase length
-      margin-top 0.7rem
+  .example
+    display block
+    line-height 1.4rem
+    margin-bottom 1.1rem
 
-  .english-input
-    /deep/ input
+.translation
+  display inline-block
+  text-align center
+
+  .english
+    font-size 1.6rem // font-size should be relative to phrase length
+    margin-top 0.7rem
+
+.english
+  /deep/
+    input
       border 0
 
       &:focus

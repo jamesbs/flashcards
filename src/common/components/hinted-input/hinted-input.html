@@ -1,5 +1,6 @@
+<div class="spacer">{{value}}</div>
 <div class="hint">{{value}}</div>
-<form [formGroup]="form" (submit)="submit($event)" *ngIf="!complete">
+<form [formGroup]="form" (submit)="submit($event)" *ngIf="!completed">
   <input type="text" class="entry"
     (blur)="onBlur($event)"
     (focus)="onFocus($event)"

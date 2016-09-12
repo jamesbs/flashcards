@@ -12,14 +12,10 @@
       (success)="characterSuccess(index)">
     </app-character>
   </div>
-  <div class="english">
-    <app-hinted-input class="english-input"
-      [matcher]="englishMatcher"
-      [value]="langItem.english"
-      hintDirection="slide-down"
-      (success)="englishSuccess()">
-    </app-hinted-input>
-  </div>
+  <app-english-input class="english"
+    [english]="langItem.english"
+    (success)="englishSuccess()">
+  </app-english-input>
 </div>
 <div class="examples">
   <div class="header">Examples</div>

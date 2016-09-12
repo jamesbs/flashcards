@@ -1,15 +1,12 @@
 <div class="chinese">{{chinese}}</div>
 <div class="pinyin">
-  <div class="input-wrapper" [ngClass]="formClass">
-
-    <app-hinted-input class="pinyin-input"
-      (focus)="focused = true"
-      (blur)="focused = false"
-      (valueChange)="empty = !$event"
-      [value]="pinyin"
-      hintDirection="slide-up"
-      (success)="success.emit()"
-      [matcher]="pinyinMatcher">
-    </app-hinted-input>
-  </div>
+  <app-hinted-input class="pinyin-input" [ngClass]="formClass"
+    hintDirection="slide-up"
+    [value]="pinyin"
+    [matcher]="pinyinMatcher"
+    (success)="onSuccess()"
+    (focus)="focused = true"
+    (blur)="focused = false"
+    (valueChange)="empty = !$event">
+  </app-hinted-input>
 </div>

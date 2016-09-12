@@ -1,21 +1,16 @@
 :host
   display inline-block
 
-  &.focused:not(.complete)
-    color #00C1DE
-
-  &.complete
+  &.completed
     .hint
       font-weight bold
 
-  &:not(.complete)
+  &:not(.completed)
     .hint
       transition top 50ms ease-out
 
 .pinyin-input
-  /deep/ input
-    width 50px
-    background-color skyblue
+  height 24px
 
 .chinese
   font-size 10rem // font-size should be relative to phrase length
@@ -24,26 +19,3 @@
 .pinyin
   font-size 1.5rem // font-size should be relative to phrase length
   padding-top 6px
-
-  /*
-  .input-wrapper
-    position relative
-    display inline-block
-    height 28px
-
-    &.length-3
-      width 40px // should be relative to font-size
-
-      input
-        width 70px
-
-    .hint
-      position absolute
-      top 0
-      left 0
-
-      &.input-active
-        top -24px
-        display block
-        transition top 50ms ease-in
-*/
