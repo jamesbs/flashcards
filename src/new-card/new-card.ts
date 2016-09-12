@@ -3,11 +3,14 @@ import { LangItem, Character } from '../domain/models'
 import { getCharacters } from '../domain/lang-item'
 import { CharacterView } from './character/character'
 import { EnglishInput } from './english-input/english-input'
+import { CardSounds } from '../common/services/sound'
+import { ActionSounds } from '../common/services/sound/action-sounds'
 
 @Component({
   selector: 'app-new-card',
   templateUrl: './new-card.html',
   styleUrls: ['./new-card.styl'],
+  providers: [ CardSounds ]
 })
 export class NewCard {
   private _langItem: LangItem
@@ -35,20 +38,14 @@ export class NewCard {
   pinyinCompleted = false
   englishCompleted = false
 
-  successSound = new Howl({
-      src: [ require('../common/sound/success.ogg') ],
-      volume: 0.3,
-      rate: 1.5
-    })
-
   characterViews: CharacterView[] = []
 
   // find a way to implement this as a memoized getter
   characters: Character[]
 
   characterSuccess(successIndex: number) {
-    this.successSound.play()
     this.focusNext(successIndex)
+    this.actionSounds.success.play()
   }
 
   focusNext(successIndex?: number) {
@@ -83,12 +80,13 @@ export class NewCard {
   }
 
   englishSuccess() {
-    if (this.pinyinCompleted) {
-      this.complete.emit()
-    } else {
-      this.focusNext()
-    }
+    this.actionSounds.success.play()
 
-    this.successSound.play()
+    if(this.pinyinCompleted)
+      this.complete.emit()
+    else
+      this.focusNext()
   }
+
+  constructor(private actionSounds: CardSounds) { }
 }
