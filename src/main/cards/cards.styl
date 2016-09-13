@@ -1,0 +1,12 @@
+.card {
+  display inline-block
+
+  &.loading {
+    transform: translateX(-100%)
+  }
+
+  &.in {
+    transform: translateX(0)
+    transition: transform 1000ms cubic-bezier(0.230, 1.000, 0.320, 1.000)
+  }
+}

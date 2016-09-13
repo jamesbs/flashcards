@@ -1,5 +1,5 @@
-import { Component, Input, ComponentFactoryResolver, ViewContainerRef } from '@angular/core'
-import { Card } from '../domain/models'
+import { Component, Input, Output, EventEmitter, HostBinding } from '@angular/core'
+import { Card, LangItem } from '../domain/models'
 import { LangItemProvider } from '../domain/providers'
 import { NewCard } from '../components'
 
@@ -9,20 +9,52 @@ import { NewCard } from '../components'
   styleUrls: ['./card.styl'],
 })
 export class CardView {
+  private _card: Card
+
   @Input()
+  get card() {
+    return this._card
+  }
+
   set card(card: Card) {
-    if (card.type === 'intro') {
-      this.langItemProvider.get(card.langItemId)
-        .subscribe(langItem => {
-          const cf = this.componentFactoryResolver.resolveComponentFactory(NewCard)
-          const component = this.viewContainer.createComponent(cf)
-          component.instance.langItem = langItem
-        })
+    if(card) {
+      this._card = card
+
+      if (card.type === 'intro') {
+        this.langItemProvider.get(card.langItemId)
+          .subscribe(langItem => {
+            this.langItem = langItem
+            this.enter = 'in'
+            this.ready.emit()
+          })
+      }
     }
   }
 
-  constructor(
-    private componentFactoryResolver: ComponentFactoryResolver,
-    private viewContainer: ViewContainerRef,
-    private langItemProvider: LangItemProvider) { }
+  @HostBinding('class.loading')
+  get loading() {
+    return this.enter === 'loading'
+  }
+
+  @HostBinding('class.in')
+  get in() {
+    return this.enter === 'in'
+  }
+
+  @HostBinding('class.unloading')
+  get unloading() {
+    return this.enter === 'unloading'
+  }
+
+  enter: 'loading' | 'in' | 'unloading' = 'loading'
+
+  @Output()
+  ready = new EventEmitter<void>()
+
+  langItem: LangItem
+
+  constructor(private langItemProvider: LangItemProvider) {
+      this.enter = 'loading'
+  }
 }
+

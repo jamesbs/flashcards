@@ -1,0 +1,9 @@
+<template [ngIf]="card && langItem">
+  <div class="card-container" [ngSwitch]="card?.type">
+    <app-new-card
+      *ngSwitchCase="'intro'"
+      [langItem]="langItem">
+    </app-new-card>
+    <div *ngSwitchDefault>default</div>
+  </div>
+</template>
