@@ -1,5 +1,6 @@
 export { Header } from './header/header'
 export { Flashcard } from './flashcard/flashcard'
+export { CardView } from './card/card'
 export { Start, Settings, Cards } from './main'
 export { NewCard } from './new-card/new-card'
 export { ActionPanel } from './new-card/action-panel/action-panel'
