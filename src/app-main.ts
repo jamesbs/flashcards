@@ -1,4 +1,5 @@
 import { Component } from '@angular/core'
+import { CardProvider } from './domain/providers'
 
 @Component({
   selector: 'app',

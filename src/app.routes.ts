@@ -1,6 +1,7 @@
-import { Slides, Settings } from './components'
+import { Start, Cards, Settings } from './components'
 
 export const Routes = [
-  { path: '', component: Slides },
+  { path: '', component: Start },
+  { path: 'run/:cardId', component: Cards },
   { path: 'settings', component: Settings },
 ]

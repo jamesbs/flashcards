@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { FormGroup, FormControl, ValidatorFn } from '@angular/forms'
-import { validUsername, validEmail } from '../domain/validators'
+import { validUsername, validEmail } from '../../domain/validators'
 
 @Component({
   selector: 'app-settings',

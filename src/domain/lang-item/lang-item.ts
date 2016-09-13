@@ -1,10 +1,10 @@
 import { Translation } from '../translation'
 import { SimpleTranslation } from '../simple-translation'
 
-export class LangItem implements Translation {
-  id = ''
-  chinese = ''
-  pinyin = ''
-  english = ''
-  examples: SimpleTranslation[] = []
+export interface LangItem extends Translation {
+  id: string
+  chinese: string
+  pinyin: string
+  english: string
+  examples: SimpleTranslation[]
 }
