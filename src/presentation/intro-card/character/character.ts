@@ -1,10 +1,10 @@
 import { Component, Input, Output, HostListener, HostBinding, EventEmitter, ViewChild } from '@angular/core'
 import { FormGroup, FormControl } from '@angular/forms'
 import { isEqual } from 'lodash'
-import { HintedInput } from '../../common/components'
-import { Matcher } from '../../common/components/hinted-input'
-import { Pinyin, Character } from '../../domain/models'
-import { toStandard } from '../../view/pinyin'
+import { HintedInput } from '../../../common/components'
+import { Matcher } from '../../../common/components/hinted-input'
+import { Pinyin, Character } from '../../../domain/models'
+import { toStandard } from '../../../view/pinyin'
 import { generatePinyinMatcher } from './pinyin-matcher'
 
 @Component({

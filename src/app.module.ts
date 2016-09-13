@@ -12,7 +12,6 @@ import { AppMain } from './app-main'
 import { Icons } from './style/icons'
 import { declarations } from './declarations'
 import { Routes } from './app.routes'
-import { NewCard } from './components'
 
 @NgModule({
   declarations: [
@@ -28,7 +27,6 @@ import { NewCard } from './components'
     HttpModule,
     RouterModule.forRoot(Routes),
   ],
-  entryComponents: [ NewCard ],
   providers: [
     QuestionProvider,
     LangItemProvider,

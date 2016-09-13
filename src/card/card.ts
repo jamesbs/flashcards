@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, HostBinding } from '@angular/core'
 import { Card, LangItem } from '../domain/models'
 import { LangItemProvider } from '../domain/providers'
-import { NewCard } from '../components'
+import { IntroCardView } from '../components'
 
 @Component({
   selector: 'app-card',

@@ -2,8 +2,6 @@ import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/
 import { ActivatedRoute } from '@angular/router'
 import { CardProvider } from '../../domain/providers'
 import { Card, LangItem } from '../../domain/models'
-import { NewCard } from '../../components'
-
 
 @Component({
   selector: 'app-cards',
