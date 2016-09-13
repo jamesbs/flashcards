@@ -12,6 +12,7 @@ import { NewCard } from '../../components'
 })
 export class Cards {
   current: Card
+  last: Card
 
   constructor(
     private route: ActivatedRoute,

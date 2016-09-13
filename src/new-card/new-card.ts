@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, ViewChildren, QueryList, ViewChild,
   ChangeDetectorRef } from '@angular/core'
+import { Observable } from 'rxjs'
 import { LangItem, Character } from '../domain/models'
 import { getCharacters } from '../domain/lang-item'
 import { CharacterView } from './character/character'
@@ -96,7 +97,11 @@ export class NewCard {
   constructor(private actionSounds: CardSounds, private cd: ChangeDetectorRef) { }
 
   ngAfterViewInit() {
-    this.focusNext()
+    Observable.of(undefined)
+      .delay(500)
+      .subscribe(() => {
+        this.focusNext()
+      })
     this.cd.detectChanges() // why?
   }
 }

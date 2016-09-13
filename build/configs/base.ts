@@ -6,12 +6,13 @@ const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin
 const chunkOrder = [ 'vendor', 'app' ]
 
 export const baseConfig = {
-  context: path`${'dist'}`,
+  context: path`${'app'}`,
 
   entry: { vendor, app },
 
   output: {
     path: path`${'dist'}`,
+    publicPath: '/',
     filename: '[name].js',
   },
 

@@ -53,8 +53,6 @@ export class CardView {
 
   langItem: LangItem
 
-  constructor(private langItemProvider: LangItemProvider) {
-      this.enter = 'loading'
-  }
+  constructor(private langItemProvider: LangItemProvider) { }
 }
 
