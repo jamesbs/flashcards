@@ -22,12 +22,8 @@ export class HintedInput {
   @Output() success = new EventEmitter<void>()
   @Output() failure = new EventEmitter<void>()
 
-  @Input()
-  value: string
-
-  @Input()
-  matcher: (value: string) => boolean
-
+  @Input() value: string
+  @Input() matcher: (value: string) => boolean
   @Input()
   set hintDirection(direction: 'slide-up' | 'slide-down') {
     if (direction === 'slide-up') {
@@ -39,11 +35,9 @@ export class HintedInput {
     }
   }
 
-  @HostBinding('class.slide-up')
-  slideUp = false
+  @HostBinding('class.slide-up') slideUp = false
 
-  @HostBinding('class.slide-down')
-  slideDown = false
+  @HostBinding('class.slide-down') slideDown = false
 
   private _form: FormGroup = new FormGroup({})
 
@@ -74,6 +68,13 @@ export class HintedInput {
     return !this.completed && (this.focused || !this.empty)
   }
 
+  @HostListener('click')
+  setFocus() {
+    if (!this.completed) {
+      this.renderer.invokeElementMethod(this.input.nativeElement, 'focus')
+    }
+  }
+
   onFocus(event: FocusEvent) {
     this.focused = true
     this.focus.emit(event)
@@ -82,13 +83,6 @@ export class HintedInput {
   onBlur(event: FocusEvent) {
     this.focused = false
     this.blur.emit(event)
-  }
-
-  @HostListener('click')
-  setFocus() {
-    if (!this.completed) {
-      this.renderer.invokeElementMethod(this.input.nativeElement, 'focus')
-    }
   }
 
   submit(event: Event) {

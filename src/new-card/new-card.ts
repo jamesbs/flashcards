@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter, ViewChildren, QueryList, ViewChild } from '@angular/core'
+import { Component, Input, Output, EventEmitter, ViewChildren, QueryList, ViewChild,
+  ChangeDetectorRef } from '@angular/core'
 import { LangItem, Character } from '../domain/models'
 import { getCharacters } from '../domain/lang-item'
 import { CharacterView } from './character/character'
@@ -10,7 +11,7 @@ import { ActionSounds } from '../common/services/sound/action-sounds'
   selector: 'app-new-card',
   templateUrl: './new-card.html',
   styleUrls: ['./new-card.styl'],
-  providers: [ CardSounds ]
+  providers: [ CardSounds ],
 })
 export class NewCard {
   private _langItem: LangItem
@@ -92,5 +93,10 @@ export class NewCard {
     this.actionSounds.failure.play('main')
   }
 
-  constructor(private actionSounds: CardSounds) { }
+  constructor(private actionSounds: CardSounds, private cd: ChangeDetectorRef) { }
+
+  ngAfterViewInit() {
+    this.focusNext()
+    this.cd.detectChanges() // why?
+  }
 }

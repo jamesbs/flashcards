@@ -41,5 +41,5 @@ export class EnglishInput {
     this.success.emit()
   }
 
-  matcher: Matcher = value => false
+  matcher: Matcher
 }

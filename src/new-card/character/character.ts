@@ -5,7 +5,7 @@ import { HintedInput } from '../../common/components'
 import { Matcher } from '../../common/components/hinted-input'
 import { Pinyin, Character } from '../../domain/models'
 import { toStandard } from '../../view/pinyin'
-import { toBasic } from'../../domain/pinyin'
+import { generatePinyinMatcher } from './pinyin-matcher'
 
 @Component({
   selector: 'app-character',
@@ -26,11 +26,7 @@ export class CharacterView {
   set character(character) {
     this._character = character
     this.pinyin = toStandard(character.pinyin)
-
-    const basicPinyin = toBasic(this.character.pinyin)
-    this.pinyinMatcher = value => value === basicPinyin
-
-    this.formClass = [ 'length-' + this.pinyin.length ]
+    this.pinyinMatcher = generatePinyinMatcher(character.pinyin)
   }
 
   @HostBinding('class.completed')
@@ -54,12 +50,8 @@ export class CharacterView {
     this.completed = true
   }
 
-
   // find a way to implement this as a memoized getter
   pinyin: string
-
-  // find a way to implement this as a memoized getter
-  formClass: string[] = []
 
   empty = true
 
