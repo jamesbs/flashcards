@@ -6,6 +6,9 @@ export const vendor = [
   'zone.js/dist/zone',
   'rxjs',
   'howler',
+  'normalize.css',
+  '../vendor/font-awesome/css/font-awesome.min.css',
+  '../vendor/fonts/montserrat/montserrat.css',
 ]
 
 export const app = './index'

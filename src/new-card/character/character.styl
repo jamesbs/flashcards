@@ -2,11 +2,16 @@
   display inline-block
 
   &.completed
-    .hint
-      font-weight bold
+    color #ffd54f
+
+    .chinese
+      text-shadow 2px 2px 1px #f9a825
+
+    /deep/ .hint
+      color #ffc107
 
   &:not(.completed)
-    .hint
+    /deep/ .hint
       transition top 50ms ease-out
 
 .pinyin-input

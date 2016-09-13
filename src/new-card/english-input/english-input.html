@@ -2,7 +2,7 @@
   [matcher]="matcher"
   [value]="english"
   hintDirection="slide-down"
-  (success)="success.emit()"
+  (success)="onSuccess()"
   (failure)="failure.emit()"
   (focus)="focused = true"
   (blur)="focused = false">

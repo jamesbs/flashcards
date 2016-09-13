@@ -6,7 +6,7 @@ export const prodOnlyConfig = {
   module: {
     loaders: [
       {
-        test: /\.(jpg|jpeg|gif|png|tif|ttf)$/,
+        test: /\.(jpg|jpeg|gif|png|tif|ttf|eot|woff|woff2)$/,
         loaders: [
           {
             loader: 'url',

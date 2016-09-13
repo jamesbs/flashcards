@@ -10,6 +10,7 @@ export class EnglishInput {
   @Output() success = new EventEmitter<void>()
   @Output() failure = new EventEmitter<void>()
 
+  @HostBinding('class.completed')
   completed = false
 
   @HostBinding('class.focused')

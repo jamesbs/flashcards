@@ -49,6 +49,15 @@ export const baseConfig = {
           'to-string',
           'css',
         ],
+        exclude: /vendor|node_modules/
+      },
+      {
+        test: /\.css$/,
+        loaders: [
+          'style',
+          'css',
+        ],
+        include: /vendor|node_modules/
       },
       {
         test: /\.ogg$/,

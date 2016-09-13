@@ -33,7 +33,7 @@ export class CharacterView {
     this.formClass = [ 'length-' + this.pinyin.length ]
   }
 
-  @HostBinding('class.complete')
+  @HostBinding('class.completed')
   @Input()
   completed = false
 

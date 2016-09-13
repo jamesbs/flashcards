@@ -13,7 +13,7 @@ export const devOnlyConfig = {
   module: {
     loaders: [
       {
-        test: /\.(jpg|jpeg|gif|png|tif|ttf)$/,
+        test: /\.(jpg|jpeg|gif|png|tif|ttf|eot|woff|woff2)(\?[a-z0-9=&.]+)?$/,
         loaders: [
           {
             loader: 'file',
