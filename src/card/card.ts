@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, HostBinding } from '@angular/co
 import { Card, LangItem } from '../domain/models'
 import { LangItemProvider } from '../domain/providers'
 import { IntroCardView } from '../components'
+import { CardActivity } from './card-activity'
 
 @Component({
   selector: 'app-card',
@@ -24,7 +25,7 @@ export class CardView {
         this.langItemProvider.get(card.langItemId)
           .subscribe(langItem => {
             this.langItem = langItem
-            this.enter = 'in'
+            this.enter = 'active'
             this.ready.emit()
           })
       }
@@ -36,9 +37,9 @@ export class CardView {
     return this.enter === 'loading'
   }
 
-  @HostBinding('class.in')
-  get in() {
-    return this.enter === 'in'
+  @HostBinding('class.active')
+  get active() {
+    return this.enter === 'active'
   }
 
   @HostBinding('class.unloading')
@@ -46,7 +47,7 @@ export class CardView {
     return this.enter === 'unloading'
   }
 
-  enter: 'loading' | 'in' | 'unloading' = 'loading'
+  enter: CardActivity = 'loading'
 
   @Output()
   ready = new EventEmitter<void>()

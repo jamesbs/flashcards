@@ -1,0 +1,21 @@
+:host
+  display block
+  position absolute
+  bottom 9px
+  width 100%
+  text-align center
+
+  .panel
+    display inline-block
+    padding 4px 20px
+    text-align center
+
+    &:hover
+      .back, .next
+        opacity 1
+        transition opacity 200ms
+
+    .back, .next
+      font-size 36px
+      opacity 0.2
+      margin-right 20px

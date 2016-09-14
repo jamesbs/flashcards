@@ -19,7 +19,7 @@
     (failure)="actionSounds.failure.play('main')">
   </app-english-input>
 </div>
-<div class="examples">
+<div class="examples" *ngIf="langItem.examples?.length > 0">
   <div class="header">Examples</div>
   <app-example
     *ngFor="let example of langItem.examples"

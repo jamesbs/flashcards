@@ -1,5 +1,5 @@
 import { Header, Cards, IntroCardView, Start, Settings, Example, CharacterView,
-  ActionPanel, Flashcard, EnglishInput, CardView } from './components'
+  ActionPanel, Flashcard, EnglishInput, CardView, HistoryPanel } from './components'
 
 export const declarations = [
   Header,
@@ -13,4 +13,5 @@ export const declarations = [
   Flashcard,
   EnglishInput,
   CardView,
+  HistoryPanel,
 ]

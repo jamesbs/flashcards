@@ -2,6 +2,7 @@ import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/
 import { ActivatedRoute } from '@angular/router'
 import { CardProvider } from '../../domain/providers'
 import { Card, LangItem } from '../../domain/models'
+import { CardViewModel } from '../../card'
 
 @Component({
   selector: 'app-cards',
@@ -9,8 +10,7 @@ import { Card, LangItem } from '../../domain/models'
   styleUrls: [ './cards.styl' ],
 })
 export class Cards {
-  current: Card
-  last: Card
+  cards: CardViewModel[]
 
   constructor(
     private route: ActivatedRoute,
@@ -18,9 +18,10 @@ export class Cards {
 
   ngOnInit() {
     this.route.params
-      .mergeMap<Card>(params => this.cardProvider.get(params['cardId']))
-      .subscribe(card => {
-        this.current = card
+      .mergeMap<CardViewModel[]>(params => this.cardProvider.get(params['cardId'])
+        .map(card =>  ([ Object.assign(card, { activity: 'loading' }) as CardViewModel ])))
+      .subscribe(cards => {
+        this.cards = cards
       })
   }
 }

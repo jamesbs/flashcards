@@ -1,4 +1,6 @@
+<app-history-panel></app-history-panel>
 <app-card
-  [card]="current"
-  class="card">
+  *ngFor="let card of cards; trackBy: card?.id"
+  class="card"
+  [card]="card">
 </app-card>
