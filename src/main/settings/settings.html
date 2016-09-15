@@ -1,6 +1,12 @@
 <h1>Settings!</h1>
 
+
+<div>
+  <button type="button" (click)="googleAuth()">Google Auth Testing</button>
+</div>
+
+
 <form [formGroup]="settingsForm">
-  Username: <input type="text" formControlName="name" /><br/>
+  Username: <input type="text" formControlName="username" /><br/>
   Email: <input type="text" formControlName="email" /><br/>
 </form>

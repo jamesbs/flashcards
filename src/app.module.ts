@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core'
+import { NgModule, Component } from '@angular/core'
 import { APP_BASE_HREF } from '@angular/common'
 import { CommonModule } from '@angular/common'
 import { BrowserModule } from '@angular/platform-browser'
@@ -12,6 +12,9 @@ import { AppMain } from './app-main'
 import { Icons } from './style/icons'
 import { declarations } from './declarations'
 import { Routes } from './app.routes'
+import { environment } from '../environment'
+import { config } from '../config'
+import { getConfigProviders } from './config'
 
 @NgModule({
   declarations: [
@@ -32,6 +35,7 @@ import { Routes } from './app.routes'
     LangItemProvider,
     CardProvider,
     { provide: APP_BASE_HREF, useValue: '/' },
+    getConfigProviders(config[environment])
   ],
   bootstrap: [ AppMain ],
 })
