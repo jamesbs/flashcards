@@ -7,26 +7,26 @@ export class GoogleApis {
     const scopes = 'profile'
 
     return new Promise((resolve, reject) => {
-        console.log('resolve', resolve, 'reject', reject)
+        // console.log('resolve', resolve, 'reject', reject)
         if(!gapi.auth2) {
           gapi.load('auth2', () => {
-            console.log('auth2 done')
+            // console.log('auth2 done')
             resolve()
           })
         } else {
-          console.log('has auth2')
+          // console.log('has auth2')
           resolve()
         }
       })
       .then(() => {
-        console.log('initializing auth2', this.clientId, scopes)
+        // console.log('initializing auth2', this.clientId, scopes)
         return gapi.auth2.init({
           client_id: this.clientId,
           scopes
         })
       })
       .then(() => {
-        console.log('attempting to sign in')
+        // console.log('attempting to sign in')
         return gapi.auth2.getAuthInstance().signIn()
       })
   }
