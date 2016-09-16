@@ -7,4 +7,6 @@ export interface IntroCard {
   langItemId: string
   seen?: Date
   completed?: Date
+  previous?: string
+  next?: string
 }

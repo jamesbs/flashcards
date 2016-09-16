@@ -2,7 +2,7 @@ import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/
 import { ActivatedRoute } from '@angular/router'
 import { CardProvider } from '../../domain/providers'
 import { Card, LangItem } from '../../domain/models'
-import { CardViewModel } from '../../card'
+import { CardViewModel } from '../../presentation/card'
 
 @Component({
   selector: 'app-cards',

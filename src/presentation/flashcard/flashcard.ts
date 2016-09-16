@@ -1,7 +1,7 @@
 import { Component,  Input } from '@angular/core'
-import { LangItem, Character } from '../domain/models'
-import { getCharacters } from '../domain/lang-item'
-import { toBasic } from '../domain/pinyin'
+import { LangItem, Character } from '../../domain/models'
+import { getCharacters } from '../../domain/lang-item'
+import { toBasic } from '../../domain/pinyin'
 
 @Component({
   selector: 'app-flashcard',

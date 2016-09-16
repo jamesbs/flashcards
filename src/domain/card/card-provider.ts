@@ -11,11 +11,13 @@ export class CardProvider {
         id: 'da39a3ee5e6b4b0d3255bfef95601890afd80709',
         type: 'intro',
         langItemId: '1',
+        next: '3da541559918a808c2402bba5012f6c60b27661c'
       },
       '3da541559918a808c2402bba5012f6c60b27661c': {
         id: '3da541559918a808c2402bba5012f6c60b27661c',
         type: 'intro',
         langItemId: '2',
+        previous: 'da39a3ee5e6b4b0d3255bfef95601890afd80709'
       },
     }
 

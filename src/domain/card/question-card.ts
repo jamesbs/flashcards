@@ -5,4 +5,6 @@ export interface QuestionCard {
   hintCount: number
   failureCount: number
   successCount: number
+  previous?: string
+  next?: string
 }
