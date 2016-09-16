@@ -1,7 +1,7 @@
-import { Start, Cards, Settings } from './components'
+import { HomeView, PlayCardsView, SettingsView } from './components'
 
 export const Routes = [
-  { path: '', component: Start },
-  { path: 'play/:cardId', component: Cards },
-  { path: 'settings', component: Settings },
+  { path: '', component: HomeView },
+  { path: 'play/:cardId', component: PlayCardsView },
+  { path: 'settings', component: SettingsView },
 ]

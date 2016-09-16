@@ -1,8 +1,10 @@
 export { Flashcard } from './presentation/flashcard/flashcard'
-export { Start, Settings, Cards } from './main'
+export { HomeView } from './presentation/home/home'
+export { SettingsView } from './presentation/settings/settings'
 export { IntroCardView, ActionPanel, Example, CharacterView, EnglishInput, ActionView,
   ActionIconView, ActionTooltipView } from './presentation/intro-card'
 export { CardView } from './presentation/card/card'
+export { PlayCardsView } from './presentation/play-cards/play-cards'
 export { Header } from './presentation/header/header'
 export { HistoryPanel } from './presentation/history-panel/history-panel'
 export { QuestionCardView } from './presentation/question-card/question-card'

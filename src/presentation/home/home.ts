@@ -4,10 +4,10 @@ import { Card } from '../../domain/models'
 import { CardProvider } from '../../domain/providers'
 
 @Component({
-  selector: 'app-start',
-  templateUrl: './start.html'
+  selector: 'app-home',
+  templateUrl: './home.html'
 })
-export class Start {
+export class HomeView {
   constructor(private cardProvider: CardProvider, private router: Router) { }
 
   ngOnInit() {

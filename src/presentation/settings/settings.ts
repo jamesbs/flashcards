@@ -7,14 +7,13 @@ import { GoogleApis } from '../../common/services/google-apis'
 // should be defined in configs not in repo
 const clientId = '229587405481-ld3ptvav3bggc4rp1367qqbudqqk9aa0.apps.googleusercontent.com'
 const scopes = 'profile'
-const apiKey = 'AIzaSyDJDoqCVigIvsDeo7ZmMmJzfbeDApLps20'
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.html',
   styleUrls: ['./settings.styl'],
 })
-export class Settings {
+export class SettingsView {
   settingsForm: FormGroup = new FormGroup({
     username: new FormControl('', validUsername),
     email: new FormControl('', validEmail),
