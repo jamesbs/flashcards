@@ -1,12 +1,23 @@
 <div class="learn-icon">
   <icon-open-book></icon-open-book>
 </div>
-<div class="link">
-  <i class="fa action"
-    [ngClass]="{
-      'fa-play': player.state === 'stopped',
-      'fa-stop': player.state === 'playing'
-    }"
-    (click)="player.toggle()"></i>
-  <a class="fa fa-external-link action" href="{{externalLink}}" title="External link"></a>
+<div class="actions">
+  <app-action class="play-toggle action">
+    <app-action-icon class="icon">
+      <i class="fa"
+        [ngClass]="{
+          'fa-play': player.state === 'stopped',
+          'fa-stop': player.state === 'playing'
+        }"
+        (click)="player.toggle()"></i>
+    </app-action-icon>
+    <app-action-tooltip>Play</app-action-tooltip>
+  </app-action>
+
+  <app-action class="link-to-dictionary action">
+    <app-action-icon class="icon">
+      <a class="fa fa-external-link" href="{{externalLink}}" title="External link"></a>
+    </app-action-icon>
+    <app-action-tooltip>Link to Dictionary</app-action-tooltip>
+  </app-action>
 </div>

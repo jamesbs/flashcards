@@ -15,6 +15,6 @@ export class CardSounds implements ActionSounds {
     sprite: {
       main: [ 0, 240 ]
     },
-    rate: 3
+    rate: 2.6
   })
 }

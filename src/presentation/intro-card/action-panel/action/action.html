@@ -1,0 +1,10 @@
+<div class="icon"
+  (mouseover)="iconHover.emit(true)"
+  (mouseout)="iconHover.emit(false)">
+  <ng-content select="app-action-icon"></ng-content>
+</div>
+<div class="tooltip">
+  <div class="tooltip-inner">
+    <ng-content select="app-action-tooltip"></ng-content>
+  </div>
+</div>
