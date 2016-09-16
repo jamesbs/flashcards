@@ -13,7 +13,7 @@ export class Start {
   ngOnInit() {
     this.cardProvider.next()
       .subscribe(cardId => {
-        this.router.navigate([ '/run', cardId ])
+        this.router.navigate([ '/play', cardId ])
       })
   }
 }
