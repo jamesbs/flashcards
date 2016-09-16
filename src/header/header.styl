@@ -1,5 +1,6 @@
 :host
-  display block
+  display flex
+  justify-content space-between
   padding-bottom 0.6rem
 
 a
@@ -7,8 +8,36 @@ a
   color #333
   text-transform uppercase
 
-.settings
-  float right
+
+.panel
+  justify-content flex-end
+  padding 1rem
+  margin -1rem
+
+  &:hover
+    a
+      opacity 1
+      transition opacity 200ms ease-in
+
+  a
+    display inline-block
+    opacity 0.4
+
+    &:hover
+      cursor pointer
+
+      i
+        color #01579b
+        transition color 300ms ease-in
+
+    i
+      vertical-align middle
+
+.account
+  margin-right 1rem
 
   i
-    font-size 1.6rem
+    font-size 2rem
+
+.settings i
+  font-size 1.6rem

@@ -1,5 +1,11 @@
 <a href="/">flashcards</a>
 
-<a class="settings" [routerLink]="['settings']">
-  <i class="fa fa-cog"></i>
-</a>
+<div class="panel">
+  <a class="account" (click)="showLogin()">
+    <i class="material-icons">&#xE853;</i>
+  </a>
+
+  <a class="settings" [routerLink]="['settings']">
+    <i class="fa fa-cog"></i>
+  </a>
+</div>

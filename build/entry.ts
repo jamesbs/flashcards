@@ -16,6 +16,7 @@ export const vendor = [
   'howler',
   'normalize.css',
   '../vendor/font-awesome/css/font-awesome.min.css',
+  '../vendor/material-icons/material-icons.css',
   '../vendor/fonts/montserrat/montserrat.css',
 ]
 
