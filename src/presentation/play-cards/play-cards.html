@@ -1,9 +1,18 @@
 <app-history-panel
   [previous]="card ? card.previous : undefined"
-  [next]="card ? card.next : undefined">
+  [next]="card ? card.next : undefined"
+  (move)="this.movement = $event">
 </app-history-panel>
-<app-card
-  [@entry]="card ? this.card.activity : 'before'"
-  class="card"
-  [card]="card">
-</app-card>
+<div class="cards">
+  <app-card
+    class="card"
+    [@entry]="card ? this.card.activity : 'before'"
+    [card]="card">
+  </app-card>
+  <app-card
+    *ngIf="unloadingCard"
+    class="card unloading"
+    [@entry]="this.unloadingCard.activity"
+    [card]="unloadingCard">
+  </app-card>
+</div>

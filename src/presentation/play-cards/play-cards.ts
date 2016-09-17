@@ -1,13 +1,15 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef,
-  trigger, transition, state, style, animate } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+  trigger, transition, state, style, animate, ChangeDetectorRef } from '@angular/core'
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router'
 import { CardProvider } from '../../domain/providers'
 import { Card, LangItem } from '../../domain/models'
 import { isIntroCard } from '../../domain/card'
 import { CardViewModel, CardViewState } from '../card'
 import { introCardWire } from '../card/intro-card-view-model'
 import { LangItemProvider } from '../../domain/providers'
+import { HistoryPanelMovement } from '../history-panel/history-panel-movement'
 
+const slide = animate('1200ms cubic-bezier(0.230, 1.000, 0.320, 1.000)')
 @Component({
   selector: 'app-play-cards',
   templateUrl: './play-cards.html',
@@ -16,20 +18,28 @@ import { LangItemProvider } from '../../domain/providers'
     trigger('entry', [
       state('before', style({ 'transform': 'translateX(-100%)' })),
       state('current', style({ 'transform': 'translateX(0)' })),
+      state('after', style({ 'transform': 'translateX(101%)' })),
 
-      transition(
-        'before => current',
-        animate('1200ms cubic-bezier(0.230, 1.000, 0.320, 1.000)'))
+      transition('before => current', slide),
+      transition('current => after', slide),
+      transition('after => current', slide),
+      transition('current => before', slide),
     ]),
   ]
 })
 export class PlayCardsView {
+  movement: HistoryPanelMovement
+
   card: CardViewModel & CardViewState
 
+  unloadingCard: CardViewModel & CardViewState
+
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private cardProvider: CardProvider,
-    private langItemProvider: LangItemProvider) { }
+    private langItemProvider: LangItemProvider,
+    private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.route.params
@@ -39,6 +49,23 @@ export class PlayCardsView {
           this.card = Object.assign(
             card,
             { activity: 'before' } as CardViewState)
+        } else {
+          this.unloadingCard = this.card
+          this.cd.detectChanges()
+
+          if(this.movement === 'forward') {
+            this.unloadingCard.activity = 'before'
+
+            this.card = Object.assign(
+              card,
+              { activity: 'after' } as CardViewState)
+          } else if(this.movement === 'back') {
+            this.unloadingCard.activity = 'after'
+
+            this.card = Object.assign(
+              card,
+              { activity: 'before' } as CardViewState)
+          }
         }
       })
       .mergeMap(card => this.langItemProvider.get(card.langItemId)

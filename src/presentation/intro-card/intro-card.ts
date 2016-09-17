@@ -100,7 +100,7 @@ export class IntroCardView {
     Observable.of(undefined)
       .delay(500)
       .subscribe(() => {
-        this.focusNext()
+        // set this as configurable this.focusNext()
       })
     this.cd.detectChanges() // why?
   }
