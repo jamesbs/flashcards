@@ -1,12 +1,10 @@
 <div class="panel">
-  <a class="move back"
-    [class.visible]="previous"
-    (click)="back()"
+  <a class="move back" [class.visible]="previous"
     [routerLink]="[ '/play', previous ? previous : '' ]">
     <i class="fa fa-chevron-left"></i>
   </a>
   <a class="move forward" [class.visible]="next"
-    (click)="forward()">
+    [routerLink]="[ '/play', next ? next : '' ]">
     <i class="fa fa-chevron-right"></i>
   </a>
 </div>

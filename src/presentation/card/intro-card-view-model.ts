@@ -10,6 +10,7 @@ export interface IntroCardViewModel {
   previous?: string
   next?: string
 }
+
 export const introCardWire: (card: IntroCard, langItem: LangItem) => IntroCardViewModel
   = (card: IntroCard, langItem: LangItem) =>
     ({
@@ -21,3 +22,14 @@ export const introCardWire: (card: IntroCard, langItem: LangItem) => IntroCardVi
       previous: card.previous,
       next: card.next,
     })
+
+export const introCardViewModelWire: (introCardViewModel: IntroCardViewModel) => IntroCard
+  = (introCardViewModel: IntroCardViewModel) => ({
+    id: introCardViewModel.id,
+    type: introCardViewModel.type,
+    langItemId: introCardViewModel.langItem.id,
+    seen: introCardViewModel.seen,
+    completed: introCardViewModel.completed,
+    previous: introCardViewModel.previous,
+    next: introCardViewModel.next,
+  })

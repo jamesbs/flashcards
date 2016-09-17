@@ -5,11 +5,12 @@ import { CardProvider } from '../../domain/providers'
 import { Card, LangItem } from '../../domain/models'
 import { isIntroCard } from '../../domain/card'
 import { CardViewModel, CardViewState } from '../card'
-import { introCardWire } from '../card/intro-card-view-model'
+import { IntroCardViewModel, introCardWire, introCardViewModelWire } from '../card/intro-card-view-model'
 import { LangItemProvider } from '../../domain/providers'
-import { HistoryPanelMovement } from '../history-panel/history-panel-movement'
+import { getDirection } from './slide-direction'
 
 const slide = animate('1200ms cubic-bezier(0.230, 1.000, 0.320, 1.000)')
+
 @Component({
   selector: 'app-play-cards',
   templateUrl: './play-cards.html',
@@ -28,7 +29,6 @@ const slide = animate('1200ms cubic-bezier(0.230, 1.000, 0.320, 1.000)')
   ]
 })
 export class PlayCardsView {
-  movement: HistoryPanelMovement
 
   card: CardViewModel & CardViewState
 
@@ -53,18 +53,22 @@ export class PlayCardsView {
           this.unloadingCard = this.card
           this.cd.detectChanges()
 
-          if(this.movement === 'forward') {
-            this.unloadingCard.activity = 'before'
+          const direction = getDirection(
+              introCardViewModelWire(this.unloadingCard as IntroCardViewModel),
+              card)
 
-            this.card = Object.assign(
-              card,
-              { activity: 'after' } as CardViewState)
-          } else if(this.movement === 'back') {
+          if(direction === 'forward') {
             this.unloadingCard.activity = 'after'
 
             this.card = Object.assign(
               card,
               { activity: 'before' } as CardViewState)
+          } else {
+            this.unloadingCard.activity = 'before'
+
+            this.card = Object.assign(
+              card,
+              { activity: 'after' } as CardViewState)
           }
         }
       })
