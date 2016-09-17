@@ -1,8 +1,11 @@
 <div class="panel">
-  <a [routerLink]="['/play', '3da541559918a808c2402bba5012f6c60b27661c']">
-    <i class="back fa fa-chevron-left"></i>
+  <a class="move back"
+    [class.visible]="previous"
+    [routerLink]="[ '/play', previous ? previous : '' ]">
+    <i class="fa fa-chevron-left"></i>
   </a>
-  <a [routerLink]="['/play', '3da541559918a808c2402bba5012f6c60b27661c']">
-    <i class="next fa fa-chevron-right"></i>
+  <a  class="move next" [class.visible]="next"
+    [routerLink]="[ '/play', next ? next : '' ]">
+    <i class="fa fa-chevron-right"></i>
   </a>
 </div>

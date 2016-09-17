@@ -10,3 +10,5 @@ export interface IntroCard {
   previous?: string
   next?: string
 }
+
+export const isIntroCard = (card: Card): card is IntroCard => card.type === 'intro'

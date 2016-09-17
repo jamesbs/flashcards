@@ -7,15 +7,24 @@
 
   .panel
     display inline-block
-    padding 4px 20px
+    padding 3rem
+    padding-bottom 0.6rem
     text-align center
 
     &:hover
       .back, .next
-        opacity 1
-        transition opacity 200ms
+        i
+          opacity 1
+          transition opacity 200ms
 
     .back, .next
-      font-size 36px
-      opacity 0.2
-      margin-right 20px
+      i
+        font-size 36px
+        opacity 0.2
+        margin-right 20px
+
+.move
+  visibility hidden
+
+  &.visible
+    visibility visible

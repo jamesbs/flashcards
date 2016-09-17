@@ -1,3 +1,9 @@
-<app-history-panel></app-history-panel>
-<app-card class="card" [card]="card">
+<app-history-panel
+  [previous]="card ? card.previous : undefined"
+  [next]="card ? card.next : undefined">
+</app-history-panel>
+<app-card
+  [@entry]="card ? this.card.activity : 'before'"
+  class="card"
+  [card]="card">
 </app-card>

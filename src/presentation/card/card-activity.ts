@@ -1,1 +1,1 @@
-export type CardActivity = 'waiting' | 'loading' | 'active' | 'unloading'
+export type CardActivity = 'waiting' | 'before' | 'after' | 'current'

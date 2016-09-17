@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, Input } from '@angular/core'
 
 @Component({
   selector: 'app-history-panel',
@@ -6,5 +6,9 @@ import { Component } from '@angular/core'
   styleUrls: [ './history-panel.styl' ],
 })
 export class HistoryPanel {
+  @Input()
+  previous: string
 
+  @Input()
+  next: string
 }
