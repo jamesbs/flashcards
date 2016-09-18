@@ -5,28 +5,89 @@
   width 100%
   text-align center
 
-  .panel
-    display inline-block
-    padding 3rem
-    padding-bottom 0.6rem
-    text-align center
+.panel
+  display inline-block
+  padding 3rem
+  padding-bottom 0.6rem
+  text-align center
 
-    &:hover
-      .back, .forward
+  &:hover
+    .back, .forward
+      a
         cursor pointer
 
         i
           opacity 1
           transition opacity 200ms
 
-    .back, .forward
+  .back, .forward
+    i
+      font-size 36px
+
+    a
       i
-        font-size 36px
         opacity 0.2
         margin-right 20px
 
-.move
-  visibility hidden
+    .echo
+      position absolute
+      top 0
 
-  &.visible
-    visibility visible
+      i
+        position absolute
+        opacity 0
+        transition opacity 20ms ease-out
+
+  .back
+    .echo
+      left 0
+
+      i
+        &:nth-child(1)
+          left -25px
+
+        &:nth-child(2)
+          left -50px
+
+        &:nth-child(3)
+          left -75px
+
+      i.in
+        &:nth-child(1)
+          left -25px
+          opacity 0.3
+
+        &:nth-child(2)
+          left -50px
+          opacity 0.2
+
+        &:nth-child(3)
+          left -75px
+          opacity 0.1
+
+  .forward
+    .echo
+      right 0
+
+      i.in
+        &:nth-child(1)
+          right -5px
+          opacity 0.3
+
+        &:nth-child(2)
+          right -30px
+          opacity 0.2
+
+        &:nth-child(3)
+          right -55px
+          opacity 0.1
+
+.move
+  display inline-block
+  position relative
+
+  a
+    visibility hidden
+
+    &.visible
+      visibility visible

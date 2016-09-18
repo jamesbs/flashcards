@@ -1,5 +1,5 @@
-import { Component, ComponentFactoryResolver, ViewContainerRef,
-  trigger, transition, state, style, animate, ChangeDetectorRef } from '@angular/core'
+import { Component, ComponentFactoryResolver, ViewContainerRef, ChangeDetectorRef,
+  trigger, transition, state, style, animate } from '@angular/core'
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router'
 import { CardProvider } from '../../domain/providers'
 import { Card, LangItem } from '../../domain/models'

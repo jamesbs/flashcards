@@ -1,10 +1,29 @@
 <div class="panel">
-  <a class="move back" [class.visible]="previous"
-    (click)="move.emit('back')">
-    <i class="fa fa-chevron-left"></i>
-  </a>
-  <a class="move forward" [class.visible]="next"
-    (click)="move.emit('forward')">
-    <i class="fa fa-chevron-right"></i>
-  </a>
+  <div class="move back">
+    <a [class.visible]="previous"
+      (click)="move.emit('back')"
+      (mouseover)="mouseover(back)"
+      (mouseout)="mouseout(back)">
+      <i class="fa fa-chevron-left"></i>
+    </a>
+    <div class="echo">
+      <i class="fa fa-chevron-left" [class.in]="back.index === 1"></i>
+      <i class="fa fa-chevron-left" [class.in]="back.index === 2"></i>
+      <i class="fa fa-chevron-left" [class.in]="back.index === 3"></i>
+    </div>
+  </div>
+  <div class="move forward">
+    <a [class.visible]="next"
+      (click)="move.emit('forward')"
+      (mouseover)="mouseover(forward)"
+      (mouseout)="mouseout(forward)">
+      <i class="fa fa-chevron-right"></i>
+    </a>
+
+    <div class="echo">
+      <i class="fa fa-chevron-right" [class.in]="forward.index === 1"></i>
+      <i class="fa fa-chevron-right" [class.in]="forward.index === 2"></i>
+      <i class="fa fa-chevron-right" [class.in]="forward.index === 3"></i>
+    </div>
+  </div>
 </div>
