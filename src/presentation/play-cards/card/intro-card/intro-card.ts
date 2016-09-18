@@ -1,12 +1,12 @@
 import { Component, Input, Output, EventEmitter, ViewChildren, QueryList, ViewChild,
   ChangeDetectorRef } from '@angular/core'
 import { Observable } from 'rxjs'
-import { LangItem, Character } from '../../domain/models'
-import { getCharacters } from '../../domain/lang-item'
+import { LangItem, Character } from '../../../../domain/models'
+import { getCharacters } from '../../../../domain/lang-item'
 import { CharacterView } from './character/character'
 import { EnglishInput } from './english-input/english-input'
-import { CardSounds } from '../../common/services/sound'
-import { ActionSounds } from '../../common/services/sound/action-sounds'
+import { CardSounds } from '../../../../common/services/sound'
+import { ActionSounds } from '../../../../common/services/sound/action-sounds'
 
 @Component({
   selector: 'app-intro-card',

@@ -4,3 +4,4 @@ export { ActionView, ActionIconView, ActionTooltipView } from './action-panel/ac
 export { CharacterView } from './character/character'
 export { EnglishInput } from './english-input/english-input'
 export { Example } from './example/example'
+export { IntroCardViewModel } from './intro-card-view-model'

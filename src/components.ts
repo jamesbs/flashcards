@@ -1,10 +1,10 @@
 export { Flashcard } from './presentation/flashcard/flashcard'
 export { HomeView } from './presentation/home/home'
 export { SettingsView } from './presentation/settings/settings'
+export { CardView } from './presentation/play-cards/card'
 export { IntroCardView, ActionPanel, Example, CharacterView, EnglishInput, ActionView,
-  ActionIconView, ActionTooltipView } from './presentation/intro-card'
-export { CardView } from './presentation/card/card'
+  ActionIconView, ActionTooltipView } from './presentation/play-cards/card/intro-card'
+export { QuestionCardView } from './presentation/play-cards/card/question-card'
 export { PlayCardsView } from './presentation/play-cards/play-cards'
 export { Header } from './presentation/header/header'
 export { HistoryPanel } from './presentation/history-panel/history-panel'
-export { QuestionCardView } from './presentation/question-card/question-card'

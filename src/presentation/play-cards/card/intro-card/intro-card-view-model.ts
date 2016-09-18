@@ -1,5 +1,5 @@
-import { LangItem, IntroCard } from '../../domain/models'
-import { CardViewModel } from './card-view-model'
+import { LangItem, IntroCard } from '../../../../domain/models'
+import { CardViewModel } from '../card-view-model'
 
 export interface IntroCardViewModel {
   id: string

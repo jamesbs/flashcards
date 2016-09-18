@@ -4,8 +4,8 @@ import { Router, ActivatedRoute, NavigationExtras } from '@angular/router'
 import { CardProvider } from '../../domain/providers'
 import { Card, LangItem } from '../../domain/models'
 import { isIntroCard } from '../../domain/card'
-import { CardViewModel, CardViewState } from '../card'
-import { IntroCardViewModel, introCardWire, introCardViewModelWire } from '../card/intro-card-view-model'
+import { CardViewModel, CardViewState } from './card'
+import { IntroCardViewModel, introCardWire, introCardViewModelWire } from './card/intro-card/intro-card-view-model'
 import { LangItemProvider } from '../../domain/providers'
 import { SlideDirection, getDirection } from './slide-direction'
 
@@ -49,34 +49,7 @@ export class PlayCardsView {
   ngOnInit() {
     this.route.params
       .mergeMap<Card>(params => this.cardProvider.get(params['cardId']))
-      .do(card => {
-        if (this.activeCard === undefined) {
-          this.activeCard = Object.assign(
-            card,
-            { activity: 'before' } as CardViewState)
-        } else {
-          this.unloadingCard = this.activeCard
-          this.cd.detectChanges()
-
-          const direction = getDirection(
-              introCardViewModelWire(this.unloadingCard as IntroCardViewModel),
-              card)
-
-          if(direction === 'forward') {
-            this.unloadingCard.activity = 'after'
-
-            this.activeCard = Object.assign(
-              card,
-              { activity: 'before' } as CardViewState)
-          } else {
-            this.unloadingCard.activity = 'before'
-
-            this.activeCard = Object.assign(
-              card,
-              { activity: 'after' } as CardViewState)
-          }
-        }
-      })
+      .do(this.prepareCard)
       .mergeMap(card => this.langItemProvider.get(card.langItemId)
         .map(langItem => ({ card, langItem })))
       .subscribe(({ card, langItem }) => {
@@ -97,5 +70,34 @@ export class PlayCardsView {
       this.router.navigate([ '/play', this.activeCard.next ])
     else
       this.router.navigate([ '/play', this.activeCard.previous ])
+  }
+
+  prepareCard = (card: Card) => {
+    if (this.activeCard === undefined) {
+      this.activeCard = Object.assign(
+        card,
+        { activity: 'before' } as CardViewState)
+    } else {
+      this.unloadingCard = this.activeCard
+      this.cd.detectChanges()
+
+      const direction = getDirection(
+          introCardViewModelWire(this.unloadingCard as IntroCardViewModel),
+          card)
+
+      if(direction === 'forward') {
+        this.unloadingCard.activity = 'after'
+
+        this.activeCard = Object.assign(
+          card,
+          { activity: 'before' } as CardViewState)
+      } else {
+        this.unloadingCard.activity = 'before'
+
+        this.activeCard = Object.assign(
+          card,
+          { activity: 'after' } as CardViewState)
+      }
+    }
   }
 }

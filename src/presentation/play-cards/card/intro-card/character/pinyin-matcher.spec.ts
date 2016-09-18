@@ -1,5 +1,5 @@
 import { generatePinyinMatcher } from './pinyin-matcher'
-import { Pinyin } from '../../domain/models'
+import { Pinyin } from '../../../../../domain/models'
 
 describe('generatePinyinMatcher', () => {
   it('basic match 1', () => {

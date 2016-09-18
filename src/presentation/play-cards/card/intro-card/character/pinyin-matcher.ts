@@ -1,5 +1,5 @@
-import { Pinyin, toBasic } from'../../../domain/pinyin'
-import { Matcher } from '../../../common/components/hinted-input'
+import { Pinyin, toBasic } from '../../../../../domain/pinyin'
+import { Matcher } from '../../../../../common/components/hinted-input'
 
 export const generatePinyinMatcher: (pinyin: Pinyin) => Matcher =
   (pinyin: Pinyin) => {

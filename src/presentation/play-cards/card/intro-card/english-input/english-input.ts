@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, ViewChild, HostListener, HostBinding } from '@angular/core'
-import { HintedInput, Matcher } from '../../../common/components/hinted-input'
+import { HintedInput, Matcher } from '../../../../../common/components/hinted-input'
 
 @Component({
   selector: 'app-english-input',

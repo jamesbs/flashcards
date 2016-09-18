@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core'
-import { SimpleTranslation } from '../../../domain/models'
-import { getWords } from '../../../domain/lang-item'
-import { StandardWord, toStandard } from '../../../view/standard-word'
+import { SimpleTranslation } from '../../../../../domain/models'
+import { getWords } from '../../../../../domain/lang-item'
+import { StandardWord, toStandard } from '../../../../../view/standard-word'
 
 @Component({
   selector: 'app-example',
