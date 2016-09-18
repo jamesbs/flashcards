@@ -17,8 +17,15 @@ export class CardProvider {
         id: '3da541559918a808c2402bba5012f6c60b27661c',
         type: 'intro',
         langItemId: '2',
-        previous: 'da39a3ee5e6b4b0d3255bfef95601890afd80709'
+        previous: 'da39a3ee5e6b4b0d3255bfef95601890afd80709',
+        next: '4b430c99a32d2c7572c6382c4a7700dea297335a',
       },
+      '4b430c99a32d2c7572c6382c4a7700dea297335a': {
+        id: '4b430c99a32d2c7572c6382c4a7700dea297335a',
+        type: 'intro',
+        langItemId: '3',
+        previous: '3da541559918a808c2402bba5012f6c60b27661c'
+      }
     }
 
     return Observable

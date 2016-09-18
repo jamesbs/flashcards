@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core'
 import { Router } from '@angular/router'
+import { SlideDirection } from '../play-cards/slide-direction'
 
 @Component({
   selector: 'app-history-panel',
@@ -8,8 +9,11 @@ import { Router } from '@angular/router'
 })
 export class HistoryPanel {
   @Input()
-  previous: string
+  previous: boolean
 
   @Input()
-  next: string
+  next: boolean
+
+  @Output()
+  move = new EventEmitter<SlideDirection>()
 }

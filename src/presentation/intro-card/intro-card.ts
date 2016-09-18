@@ -15,6 +15,9 @@ import { ActionSounds } from '../../common/services/sound/action-sounds'
   providers: [ CardSounds ],
 })
 export class IntroCardView {
+  @Input()
+  active: boolean
+
   private _langItem: LangItem
 
   @Input()
@@ -97,10 +100,11 @@ export class IntroCardView {
   constructor(private actionSounds: CardSounds, private cd: ChangeDetectorRef) { }
 
   ngAfterViewInit() {
-    Observable.of(undefined)
+    Observable.of(this.active)
       .delay(500)
-      .subscribe(() => {
-        // set this as configurable this.focusNext()
+      .subscribe(active => {
+        if (active)
+          this.focusNext()
       })
     this.cd.detectChanges() // why?
   }

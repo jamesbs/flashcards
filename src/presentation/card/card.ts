@@ -15,33 +15,11 @@ export class CardView {
   @Input()
   card: CardViewModel & CardViewState
 
-  @HostBinding('class.waiting')
-  get waiting() {
-    return this.card
-      ? this.card.activity === 'waiting'
-      : true
-  }
+  @Input()
+  active: boolean
 
-  @HostBinding('class.before')
-  get before() {
-    return this.card
-      ? this.card.activity === 'before'
-      : true
-  }
-
-  @HostBinding('class.current')
-  get current() {
-    return this.card
-      ? this.card.activity === 'current'
-      : true
-  }
-
-  @HostBinding('class.after')
-  get after() {
-    return this.card
-      ? this.card.activity === 'after'
-      : true
-  }
+  @Output()
+  complete = new EventEmitter<void>()
 
   constructor(private langItemProvider: LangItemProvider) { }
 }

@@ -2,7 +2,9 @@
   <div class="card-container" [ngSwitch]="card?.type">
     <app-intro-card
       *ngSwitchCase="'intro'"
-      [langItem]="card.langItem">
+      [active]="active"
+      [langItem]="card.langItem"
+      (complete)="complete.emit()">
     </app-intro-card>
     <div *ngSwitchDefault>default</div>
   </div>
