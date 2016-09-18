@@ -1,6 +1,7 @@
 <app-history-panel
-  [previous]="card?.previous ? true : false"
-  [next]="card?.next ? true : false">
+  [previous]="activeCard?.previous ? true : false"
+  [next]="activeCard?.next ? true : false"
+  (move)="move($event)">
 </app-history-panel>
 <div class="cards">
   <app-card
