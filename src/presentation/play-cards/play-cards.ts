@@ -4,8 +4,8 @@ import { Router, ActivatedRoute, NavigationExtras } from '@angular/router'
 import { CardProvider } from '../../domain/providers'
 import { Card, LangItem } from '../../domain/models'
 import { isIntroCard } from '../../domain/card'
-import { CardViewModel, CardViewState } from './card'
-import { IntroCardViewModel, introCardWire, introCardViewModelWire } from './card/intro-card/intro-card-view-model'
+import { CardViewModel, CardViewState, CardActivity, setActivity, cardWire } from './card'
+import { IntroCardViewModel, introCardViewModelWire } from './card/intro-card/intro-card-view-model'
 import { LangItemProvider } from '../../domain/providers'
 import { SlideDirection, getDirection } from './slide-direction'
 
@@ -53,15 +53,7 @@ export class PlayCardsView {
       .mergeMap(card => this.langItemProvider.get(card.langItemId)
         .map(langItem => ({ card, langItem })))
       .subscribe(({ card, langItem }) => {
-        let cardViewModel: CardViewModel = undefined
-
-        if(isIntroCard(card)) {
-          cardViewModel = introCardWire(card, langItem)
-        }
-
-        this.activeCard = Object.assign(
-          cardViewModel,
-          { activity: 'current' } as CardViewState)
+        this.activeCard = setActivity(cardWire(card, { langItem }), 'current')
       })
   }
 
@@ -74,30 +66,26 @@ export class PlayCardsView {
 
   prepareCard = (card: Card) => {
     if (this.activeCard === undefined) {
-      this.activeCard = Object.assign(
-        card,
-        { activity: 'before' } as CardViewState)
+      this.activeCard = setActivity(card, 'before')
     } else {
       this.unloadingCard = this.activeCard
       this.cd.detectChanges()
 
-      const direction = getDirection(
+      this.unloadAndPrepare(
+        card,
+        getDirection(
           introCardViewModelWire(this.unloadingCard as IntroCardViewModel),
-          card)
+          card))
+    }
+  }
 
-      if(direction === 'forward') {
-        this.unloadingCard.activity = 'after'
-
-        this.activeCard = Object.assign(
-          card,
-          { activity: 'before' } as CardViewState)
-      } else {
-        this.unloadingCard.activity = 'before'
-
-        this.activeCard = Object.assign(
-          card,
-          { activity: 'after' } as CardViewState)
-      }
+  unloadAndPrepare = (card: Card, direction: SlideDirection) => {
+    if(direction === 'forward') {
+      this.unloadingCard = setActivity(this.unloadingCard, 'after')
+      this.activeCard = setActivity(card, 'before')
+    } else {
+      this.unloadingCard = setActivity(this.unloadingCard, 'before')
+      this.activeCard = setActivity(card,  'after')
     }
   }
 }

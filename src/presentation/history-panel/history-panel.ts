@@ -19,14 +19,17 @@ export class HistoryPanel {
   @Output()
   move = new EventEmitter<SlideDirection>()
 
-  echo = Observable.of(1, 2, 3, 0)
-    .mergeMap(i => Observable.of(i).delay(200 + 140 * i))
+  echo = Observable.of(1, 2, 3, 4)
+    .mergeMap(i => Observable.of(i).delay(500 * i))
     .repeat()
 
   forward = {
     index: 0,
     mouseout: new EventEmitter<void>(),
-    bind: i => this.forward.index = i
+    bind: i => {
+      console.log('i is', i)
+      return this.forward.index = i
+    }
   }
 
   back = {

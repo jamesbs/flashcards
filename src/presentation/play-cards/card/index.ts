@@ -1,4 +1,4 @@
 export { CardView } from './card'
 export { CardActivity } from './card-activity'
-export { CardViewModel } from './card-view-model'
-export { CardViewState } from './card-view-state'
+export { CardViewModel, cardWire } from './card-view-model'
+export { CardViewState, setActivity } from './card-view-state'
