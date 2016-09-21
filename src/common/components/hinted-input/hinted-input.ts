@@ -1,6 +1,9 @@
 import { Component, Input, Output, EventEmitter, ViewChild,
   Renderer, ElementRef, HostBinding, HostListener, ChangeDetectorRef } from '@angular/core'
 import { FormGroup, FormControl, ValidatorFn } from '@angular/forms'
+import { isString } from 'lodash'
+import { longest } from '../../../util/collection'
+import { Test, fromValue } from './test'
 
 type Matcher = (value: string) => boolean
 
@@ -22,7 +25,28 @@ export class HintedInput {
   @Output() success = new EventEmitter<void>()
   @Output() failure = new EventEmitter<void>()
 
-  @Input() value: string
+  _value: string | string[]
+  spacerValue: string
+
+  tests: Test[]
+
+  @Input()
+  get value() {
+    return this._value
+  }
+  set value(value) {
+    this._value = value
+
+    if(isString(value))
+      this.tests = [ fromValue(value) ]
+    else
+      this.tests = value.map(fromValue)
+
+    const spacer = longest(this.tests.map(test => test.value))
+
+    this.spacerValue = spacer ? spacer.match : ''
+  }
+
   @Input() matcher: (value: string) => boolean
   @Input()
   set hintDirection(direction: 'slide-up' | 'slide-down') {

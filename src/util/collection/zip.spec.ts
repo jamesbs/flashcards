@@ -1,4 +1,4 @@
-import { zip } from './collection'
+import { zip } from './zip'
 
 describe('zip', () => {
   it('basic', () => {

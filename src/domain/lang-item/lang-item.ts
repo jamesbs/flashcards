@@ -5,6 +5,6 @@ export interface LangItem extends Translation {
   id: string
   chinese: string
   pinyin: string
-  english: string
+  english: string | string[]
   examples: SimpleTranslation[]
 }

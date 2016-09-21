@@ -1,5 +1,9 @@
-<div class="spacer">{{value}}</div>
-<div class="hint">{{value}}</div>
+<div class="spacer">{{spacerValue}}</div>
+<div class="hints">
+  <div *ngFor="let test of tests" [class.completed]="test.completed">
+    {{test.value}}
+  </div>
+</div>
 <form [formGroup]="form" (submit)="submit($event)" *ngIf="!completed">
   <input type="text" class="entry"
     (blur)="onBlur($event)"

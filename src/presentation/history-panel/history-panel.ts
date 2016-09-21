@@ -27,7 +27,6 @@ export class HistoryPanel {
     index: 0,
     mouseout: new EventEmitter<void>(),
     bind: i => {
-      console.log('i is', i)
       return this.forward.index = i
     }
   }

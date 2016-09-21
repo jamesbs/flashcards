@@ -1,5 +1,6 @@
 import { generatePath as path } from '../tools'
 import { vendor, app } from '../entry'
+import { ContextReplacementPlugin } from 'webpack'
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin
 
@@ -68,6 +69,11 @@ export const baseConfig = {
   },
 
   plugins: [
+    // necessary due to https://github.com/angular/angular/issues/11580
+    new ContextReplacementPlugin(
+      /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+      path`${'app'}`
+    ),
     new ForkCheckerPlugin(),
     new HtmlWebpackPlugin({
       template: './index.html',

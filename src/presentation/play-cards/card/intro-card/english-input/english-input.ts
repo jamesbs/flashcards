@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter, ViewChild, HostListener, HostBinding } from '@angular/core'
+import { isString } from 'lodash'
 import { HintedInput, Matcher } from '../../../../../common/components/hinted-input'
 
 @Component({
@@ -18,7 +19,7 @@ export class EnglishInput {
 
   @ViewChild(HintedInput) input: HintedInput
 
-  private _english: string
+  private _english: string | string[]
 
   @Input()
   get english() {
@@ -27,7 +28,10 @@ export class EnglishInput {
 
   set english(english) {
     this._english = english
-    this.matcher = (value: string) => english === value
+    this.matcher = (value: string) =>
+      isString(english)
+        ? english === value
+        : english.find(word => value === word) !== undefined
   }
 
   @HostListener('click')
