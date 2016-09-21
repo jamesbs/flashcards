@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, ViewChild, HostListener, HostBinding } from '@angular/core'
 import { isString } from 'lodash'
-import { HintedInput, Matcher } from '../../../../../common/components/hinted-input'
+import { HintedInput, Matcher, allComplete } from '../../../../../common/components/hinted-input'
 
 @Component({
   selector: 'app-english-input',
@@ -10,6 +10,7 @@ import { HintedInput, Matcher } from '../../../../../common/components/hinted-in
 export class EnglishInput {
   @Output() success = new EventEmitter<void>()
   @Output() failure = new EventEmitter<void>()
+  @Output() complete = new EventEmitter<void>()
 
   @HostBinding('class.completed')
   completed = false
@@ -19,20 +20,8 @@ export class EnglishInput {
 
   @ViewChild(HintedInput) input: HintedInput
 
-  private _english: string | string[]
-
   @Input()
-  get english() {
-    return this._english
-  }
-
-  set english(english) {
-    this._english = english
-    this.matcher = (value: string) =>
-      isString(english)
-        ? english === value
-        : english.find(word => value === word) !== undefined
-  }
+  english: string | string[]
 
   @HostListener('click')
   setFocus() {
@@ -41,9 +30,15 @@ export class EnglishInput {
   }
 
   onSuccess() {
-    this.completed = true
     this.success.emit()
   }
 
-  matcher: Matcher
+  onComplete() {
+    this.completed = true
+    this.complete.emit()
+  }
+
+  englishMatcher: Matcher = (input, comparison) => input === comparison
+
+  allComplete = allComplete
 }

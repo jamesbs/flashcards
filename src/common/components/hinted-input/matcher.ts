@@ -1,1 +1,2 @@
-export type Matcher = (inputValue: string) => boolean
+export type Matcher =
+  (input: string, comparison: string) => boolean

@@ -9,13 +9,14 @@
       class="character"
       [character]="character"
       *ngFor="let character of characters; let index = index"
-      (success)="characterSuccess(index)"
+      (complete)="characterComplete(index)"
       (failure)="onFailure()">
     </app-character>
   </div>
   <app-english-input class="english"
     [english]="langItem.english"
     (success)="englishSuccess()"
+    (complete)="englishComplete()"
     (failure)="actionSounds.failure.play('main')">
   </app-english-input>
 </div>

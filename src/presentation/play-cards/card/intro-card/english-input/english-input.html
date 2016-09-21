@@ -1,8 +1,10 @@
 <app-hinted-input class="input"
-  [matcher]="matcher"
+  [isValid]="englishMatcher"
+  [isComplete]="allComplete"
   [value]="english"
   hintDirection="slide-down"
   (success)="onSuccess()"
+  (complete)="onComplete()"
   (failure)="failure.emit()"
   (focus)="focused = true"
   (blur)="focused = false">

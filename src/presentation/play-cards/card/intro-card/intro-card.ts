@@ -48,7 +48,7 @@ export class IntroCardView {
   // find a way to implement this as a memoized getter
   characters: Character[]
 
-  characterSuccess(successIndex: number) {
+  characterComplete(successIndex: number) {
     this.focusNext(successIndex)
     this.actionSounds.success.play()
   }
@@ -86,7 +86,9 @@ export class IntroCardView {
 
   englishSuccess() {
     this.actionSounds.success.play()
+  }
 
+  englishComplete() {
     if(this.pinyinCompleted)
       this.complete.emit()
     else

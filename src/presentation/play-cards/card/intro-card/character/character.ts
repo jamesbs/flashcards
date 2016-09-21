@@ -1,7 +1,7 @@
 import { Component, Input, Output, HostListener, HostBinding, EventEmitter, ViewChild } from '@angular/core'
 import { FormGroup, FormControl } from '@angular/forms'
 import { isEqual } from 'lodash'
-import { HintedInput } from '../../../../../common/components'
+import { HintedInput, allComplete } from '../../../../../common/components/hinted-input'
 import { Matcher } from '../../../../../common/components/hinted-input'
 import { Pinyin, Character } from '../../../../../domain/models'
 import { toStandard } from '../../../../../view/pinyin'
@@ -13,8 +13,8 @@ import { generatePinyinMatcher } from './pinyin-matcher'
   styleUrls: ['./character.styl'],
 })
 export class CharacterView {
-  @Output() success = new EventEmitter<void>()
   @Output() failure = new EventEmitter<void>()
+  @Output() complete = new EventEmitter<void>()
 
   private _character: Character
 
@@ -45,10 +45,12 @@ export class CharacterView {
       this.setFocus()
   }
 
-  onSuccess() {
-    this.success.emit()
+  onComplete() {
+    this.complete.emit()
     this.completed = true
   }
+
+  allComplete = allComplete
 
   // find a way to implement this as a memoized getter
   pinyin: string

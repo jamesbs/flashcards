@@ -4,14 +4,8 @@ import { FormGroup, FormControl, ValidatorFn } from '@angular/forms'
 import { isString } from 'lodash'
 import { longest } from '../../../util/collection'
 import { Test, fromValue } from './test'
-
-type Matcher = (value: string) => boolean
-
-const validator = (matcher: Matcher) => (control: FormControl) =>
-  matcher(control.value)
-    ? undefined
-    : { invalid: "Value entered doesn't match." }
-
+import { Matcher } from './matcher'
+import { CompleteCondition } from './complete-condition'
 
 @Component({
   selector: 'app-hinted-input',
@@ -24,6 +18,7 @@ export class HintedInput {
   @Output() valueChange = new EventEmitter<string>()
   @Output() success = new EventEmitter<void>()
   @Output() failure = new EventEmitter<void>()
+  @Output() complete = new EventEmitter<void>()
 
   _value: string | string[]
   spacerValue: string
@@ -47,7 +42,8 @@ export class HintedInput {
     this.spacerValue = spacer ? spacer.match : ''
   }
 
-  @Input() matcher: (value: string) => boolean
+  @Input() isValid: Matcher
+
   @Input()
   set hintDirection(direction: 'slide-up' | 'slide-down') {
     if (direction === 'slide-up') {
@@ -63,18 +59,7 @@ export class HintedInput {
 
   @HostBinding('class.slide-down') slideDown = false
 
-  private _form: FormGroup = new FormGroup({})
-
-  get form() {
-    return this._form
-  }
-
-  set form(form) {
-    this._form = form
-  }
-
   @ViewChild('input') input: ElementRef
-
 
   @HostBinding('class.completed')
   completed = false
@@ -84,7 +69,7 @@ export class HintedInput {
 
   @HostBinding('class.empty')
   get empty() {
-    return this.form.controls['input'].value === ''
+    return this.input ? this.input.nativeElement.value === '' : false
   }
 
   @HostBinding('class.active')
@@ -94,9 +79,8 @@ export class HintedInput {
 
   @HostListener('click')
   setFocus() {
-    if (!this.completed) {
+    if (!this.completed)
       this.renderer.invokeElementMethod(this.input.nativeElement, 'focus')
-    }
   }
 
   onFocus(event: FocusEvent) {
@@ -109,23 +93,36 @@ export class HintedInput {
     this.blur.emit(event)
   }
 
+  // go away ControlContainer error
+  form = new FormGroup({})
+
+  @Input()
+  isComplete: CompleteCondition
+
   submit(event: Event) {
-    if (this.form.valid) {
-      this.success.emit(undefined)
+    const testValue = this.input.nativeElement.value
+    let hasSuccess = false
+
+    this.tests.forEach(test => {
+      if(this.isValid(testValue, test.value)) {
+        test.completed = true
+        this.success.emit(undefined)
+        hasSuccess = true
+        this.input.nativeElement.value = ''
+      }
+    })
+
+    if(this.isComplete(this.tests)) {
       this.focused = false
       this.completed = true
-      // HACK: why do I need this? causing issues with change detection passes in conjunction with ngIf
-      this.cd.detectChanges()
-    } else {
-      this.failure.emit(undefined)
+      this.complete.emit(undefined)
     }
+      // HACK: why do I need this? causing issues with change detection passes in conjunction with ngIf
+    this.cd.detectChanges()
+
+    if(!hasSuccess)
+      this.failure.emit(undefined)
   }
 
   constructor(private renderer: Renderer, private cd: ChangeDetectorRef) { }
-
-  ngOnInit() {
-    this.form = new FormGroup({
-      input: new FormControl('', validator(this.matcher))
-    })
-  }
 }
