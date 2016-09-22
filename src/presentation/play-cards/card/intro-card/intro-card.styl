@@ -14,9 +14,19 @@
     margin-bottom 0.8rem
 
 .character, .english
-  &.focused:not(.completed)
-    color #00c1de
+  color #333
+  transition 80ms color ease-out
 
+  &:hover:not(.completed)
+    color #00c1de
+    transition 80ms color ease-in
+
+    &.focused
+      color #333
+      transition 80ms color ease-out
+
+  &.completed
+    color #ffd54f
 
 .examples
   margin-top 1.8rem
@@ -52,3 +62,6 @@
 
       &:focus
         outline 0
+
+    .hints .completed
+      color #ffc107

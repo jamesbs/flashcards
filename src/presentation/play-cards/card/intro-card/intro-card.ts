@@ -59,11 +59,10 @@ export class IntroCardView {
     if(nextAvailable === undefined) {
       this.pinyinCompleted = true
 
-      if(!this.englishCompleted) {
+      if(!this.englishCompleted)
         this.englishInput.setFocus()
-      } else {
+      else
         this.complete.emit()
-      }
     } else {
       this.characterViews[nextAvailable].setFocus()
     }
@@ -89,6 +88,8 @@ export class IntroCardView {
   }
 
   englishComplete() {
+    this.englishCompleted = true
+
     if(this.pinyinCompleted)
       this.complete.emit()
     else
