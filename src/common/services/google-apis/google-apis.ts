@@ -1,27 +1,6 @@
 import { Injectable, Inject } from '@angular/core'
 import { googleApisClientId } from './google-apis-client-id'
-import { AsyncSubject, Subject, BehaviorSubject, Observable, Subscriber } from 'rxjs'
-
-const execAsync = <T>(run: (subject: AsyncSubject<T>) => void) => {
-  const subject = new AsyncSubject<T>()
-  run(subject)
-  return subject
-}
-
-const lazyAsync = <T>(run: (subject: AsyncSubject<T>) => void) => {
-  const sub = new AsyncSubject<T>()
-  let fired = false
-
-  return Observable.of(sub)
-    .flatMap(s => {
-      if (!fired) {
-        run(s)
-        fired = true
-      }
-
-      return s
-    })
-}
+import { execAsync, lazyAsync } from '../../../util/rxjs'
 
 @Injectable()
 export class GoogleApis {
@@ -30,7 +9,7 @@ export class GoogleApis {
 
     this.auth2Init
       .subscribe(user => {
-        console.log('user', user)
+        // do something with user
       })
   }
 
@@ -59,10 +38,10 @@ export class GoogleApis {
   auth2Config = { client_id: this.clientId, scopes: 'profile' }
 
   getAuthInstance = lazyAsync(subject => {
-    console.log('auth2 val', gapi.auth2)
+    // console.log('auth2 val', gapi.auth2)
     gapi.auth2.getAuthInstance()
       .isSignedIn.listen(res => {
-        console.log('signed in!')
+        // console.log('signed in!')
         subject.next(res)
         subject.complete()
       })
