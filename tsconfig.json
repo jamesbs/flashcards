@@ -3,21 +3,14 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es5",
+    "lib": ["es6", "dom"],
     "moduleResolution": "node",
     "noImplicitAny": false,
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "types": [
-      "bluebird",
-      "jasmine",
-      "karma",
-      "log4js",
-      "node",
-      "source-map",
-      "uglify-js",
-      "webpack",
-      "core-js"
+    "typeRoots": [
+      "./node_modules/@types"
     ]
   },
   "exclude": [

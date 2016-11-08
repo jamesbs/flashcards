@@ -5,5 +5,5 @@ export interface CardViewState {
   activity: CardActivity
 }
 
-export const setActivity = (card: CardViewModel, activity: CardActivity) =>
-  Object.assign(card, { activity } as CardViewState)
+export const setActivity: (card: CardViewModel, activity: CardActivity) => CardViewModel & CardViewState
+ = (card, activity) => Object.assign(card, { activity } as CardViewState)

@@ -6,8 +6,8 @@
 <div class="cards">
   <app-card
     class="card"
-    [@entry]="activeCard ? activeCard.activity : before"
-    [card]="activeCard"
+    [@entry]="activeCardActivity | async || 'before'"
+    [card]="activeCard | async"
     [active]="true"
     (complete)="move('forward')">
   </app-card>
