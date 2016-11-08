@@ -106,8 +106,8 @@ export class IntroCardView {
     Observable.of(this.active)
       .delay(500)
       .subscribe(active => {
-        if (active)
-          this.focusNext()
+        // if (active)
+        //   this.focusNext()
       })
     this.cd.detectChanges() // why?
   }
