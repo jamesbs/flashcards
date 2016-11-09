@@ -8,7 +8,7 @@ import { isIntroCard } from '../../domain/card'
 import { CardViewModel, CardViewState, CardActivity, setActivity, cardWire } from './card'
 import { IntroCardViewModel, introCardViewModelWire } from './card/intro-card/intro-card-view-model'
 import { LangItemProvider } from '../../domain/providers'
-import { SlideDirection, getDirection } from './slide-direction'
+import { SlideDirection, getDirection, gd } from './slide-direction'
 
 const slide = animate('1200ms cubic-bezier(0.230, 1.000, 0.320, 1.000)')
 
@@ -30,20 +30,24 @@ const slide = animate('1200ms cubic-bezier(0.230, 1.000, 0.320, 1.000)')
   ],
 })
 export class PlayCardsView {
-  activeCard: Observable<CardViewModel>
+  activeCard: Observable<CardViewModel> = this.route.params
+      .mergeMap<Card>(params => this.cardProvider.get(params['cardId']))
+      .mergeMap<CardViewModel>(card => this.langItemProvider.get(card.langItemId)
+          .map(langItem => cardWire(card, { langItem })))
 
-  activeCardState: Observable<CardActivity> =
-    this.activeCard.withLatestFrom<SlideDirection>(this.move)
-      .mergeMap<CardActivity>(([ card, direction ]) =>
+  unloadingCard: Observable<CardViewModel> = this.route.params
+    .withLatestFrom(this.activeCard)
+    .map(([ params, card ]) => card)
+
+  activeCardActivity: Observable<CardActivity> =
+    this.activeCard.withLatestFrom<SlideDirection>(this.moveDirection)
+      .map<CardActivity>(([ card, direction ]) =>
         direction === 'forward' ? 'before' : 'after')
 
-  uc: Observable<CardViewModel & CardViewState> = this.activeCard
-    .mergeMap(card => Observable.of(
-      card,
-
-    ))
-
-  unloadingCard: CardViewModel & CardViewState
+  unloadingCardActivity: Observable<CardActivity> =
+    this.unloadingCard.withLatestFrom<SlideDirection>(this.moveDirection)
+      .map<CardActivity>(([ card, direction ]) =>
+        direction === 'forward' ? 'after' : 'before')
 
   constructor(
     private router: Router,
@@ -52,14 +56,12 @@ export class PlayCardsView {
     private langItemProvider: LangItemProvider,
     private cd: ChangeDetectorRef) { }
 
-  ngOnInit() {
-    this.activeCard = this.route.params
-      .mergeMap<Card>(params => this.cardProvider.get(params['cardId']))
-      .mergeMap<CardViewModel>(card => this.langItemProvider.get(card.langItemId)
-          .map(langItem => cardWire(card, { langItem })))
-  }
-
   move = new EventEmitter<SlideDirection>()
+
+  moveDirection = Observable.merge(
+    this.move,
+    this.unloadingCard.withLatestFrom(this.route.params)
+      .map(([ unloadingCard, params ]) => gd(unloadingCard, params['cardId'])))
 
   moveRouter = Observable.combineLatest<CardViewModel & CardViewState, SlideDirection>(this.activeCard, this.move)
     .map<string>(([ card, direction ]: [ CardViewModel & CardViewState, SlideDirection]) =>
@@ -68,30 +70,57 @@ export class PlayCardsView {
       this.router.navigate([ '/play', nextId ])
     })
 
-  setActive = (card: Card)
+  ngOnInit() {
+    this.move.emit(undefined)
 
-  prepareCard = (card: Card) => {
-    if (this.activeCard === undefined) {
-      this.activeCard = setActivity(card, 'before')
-    } else {
-      this.unloadingCard = this.activeCard
-      this.cd.detectChanges()
+    this.activeCard.withLatestFrom(this.move)
+      .subscribe(args => {
+        console.log()
+      })
 
-      this.unloadAndPrepare(
-        card,
-        getDirection(
-          introCardViewModelWire(this.unloadingCard as IntroCardViewModel),
-          card))
-    }
+    console.log('fin')
+
+    this.activeCard.subscribe(card => {
+      console.log('active card', card)
+    })
+
+    this.activeCard.withLatestFrom<SlideDirection>(this.moveDirection)
+      .subscribe(([ card, direction ]) => {
+        console.log('ac direction', direction)
+        //direction === 'forward' ? 'before' : 'after')
+      })
+
+    this.unloadingCard.subscribe(card => {
+      console.log('unloading card', card)
+    })
+
+    this.activeCardActivity.subscribe(activity => {
+      console.log('active card activity', activity)
+    })
   }
 
-  unloadAndPrepare = (card: Card, direction: SlideDirection) => {
-    if(direction === 'forward') {
-      this.unloadingCard = setActivity(this.unloadingCard, 'after')
-      this.activeCard = setActivity(card, 'before')
-    } else {
-      this.unloadingCard = setActivity(this.unloadingCard, 'before')
-      this.activeCard = setActivity(card,  'after')
-    }
-  }
+  // prepareCard = (card: Card) => {
+  //   if (this.activeCard === undefined) {
+  //     this.activeCard = setActivity(card, 'before')
+  //   } else {
+  //     this.unloadingCard = this.activeCard
+  //     this.cd.detectChanges()
+
+  //     this.unloadAndPrepare(
+  //       card,
+  //       getDirection(
+  //         introCardViewModelWire(this.unloadingCard as IntroCardViewModel),
+  //         card))
+  //   }
+  // }
+
+  // unloadAndPrepare = (card: Card, direction: SlideDirection) => {
+  //   if(direction === 'forward') {
+  //     this.unloadingCard = setActivity(this.unloadingCard, 'after')
+  //     this.activeCard = setActivity(card, 'before')
+  //   } else {
+  //     this.unloadingCard = setActivity(this.unloadingCard, 'before')
+  //     this.activeCard = setActivity(card,  'after')
+  //   }
+  // }
 }

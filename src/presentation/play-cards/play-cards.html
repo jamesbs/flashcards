@@ -6,7 +6,7 @@
 <div class="cards">
   <app-card
     class="card"
-    [@entry]="activeCardActivity | async || 'before'"
+    [@entry]="( activeCardActivity | async ) || 'before'"
     [card]="activeCard | async"
     [active]="true"
     (complete)="move('forward')">
@@ -14,7 +14,7 @@
   <app-card
     class="card unloading"
     *ngIf="unloadingCard"
-    [@entry]="unloadingCard.activity"
+    [@entry]="unloadingCardActivity | async"
     [card]="unloadingCard">
   </app-card>
 </div>

@@ -4,7 +4,6 @@ import { LangItemProvider } from '../../../domain/providers'
 import { IntroCardView } from '../../../components'
 import { CardActivity } from './card-activity'
 import { CardViewModel } from './card-view-model'
-import { CardViewState } from './card-view-state'
 
 @Component({
   selector: 'app-card',
@@ -13,7 +12,7 @@ import { CardViewState } from './card-view-state'
 })
 export class CardView {
   @Input()
-  card: CardViewModel & CardViewState
+  card: CardViewModel
 
   @Input()
   active: boolean
