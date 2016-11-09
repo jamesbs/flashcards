@@ -1,4 +1,5 @@
-import { Component, Input, Output, HostListener, HostBinding, EventEmitter, ViewChild } from '@angular/core'
+import { Component, Input, Output, HostListener, HostBinding, EventEmitter, ViewChild,
+  ChangeDetectorRef } from '@angular/core'
 import { FormGroup, FormControl } from '@angular/forms'
 import { isEqual } from 'lodash'
 import { HintedInput, allComplete } from '../../../../../common/components/hinted-input'
@@ -66,4 +67,15 @@ export class CharacterView {
   }
 
   pinyinMatcher: Matcher
+
+  constructor(private cd: ChangeDetectorRef) { }
+
+  ngOnInit() {
+    console.log('values before', this)
+  }
+
+  ngAfterViewChecked() {
+    console.log('values after', this)
+    //this.cd.detectChanges() // don't know why
+  }
 }

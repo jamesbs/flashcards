@@ -1,7 +1,7 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef, ChangeDetectorRef, EventEmitter,
   trigger, transition, state, style, animate } from '@angular/core'
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router'
-import { Observable } from 'rxjs'
+import { Observable, BehaviorSubject } from 'rxjs'
 import { CardProvider } from '../../domain/providers'
 import { Card, LangItem } from '../../domain/models'
 import { isIntroCard } from '../../domain/card'
@@ -30,24 +30,80 @@ const slide = animate('1200ms cubic-bezier(0.230, 1.000, 0.320, 1.000)')
   ],
 })
 export class PlayCardsView {
-  activeCard: Observable<CardViewModel> = this.route.params
-      .mergeMap<Card>(params => this.cardProvider.get(params['cardId']))
-      .mergeMap<CardViewModel>(card => this.langItemProvider.get(card.langItemId)
-          .map(langItem => cardWire(card, { langItem })))
+  latestCard = this.route.params
+    .mergeMap<Card>(params => {
+      console.log('params', params)
+      return this.cardProvider.get(params['cardId'])
+    })
+    .mergeMap<CardViewModel>(card => {
+      console.log('active card', card)
+      return this.langItemProvider.get(card.langItemId).map(langItem => cardWire(card, { langItem }))
+    })
+
+  activeCard = this.latestCard.share()
 
   unloadingCard: Observable<CardViewModel> = this.route.params
+    .skip(1)
     .withLatestFrom(this.activeCard)
-    .map(([ params, card ]) => card)
+    .map(([ params, card ]) => {
+      console.log('uc', params, card)
+      return card
+    })
 
-  activeCardActivity: Observable<CardActivity> =
+  previous = this.activeCard.map(card => card.previous ? true : false)
+
+  next = this.activeCard.map(card => card.next ? true : false)
+
+  move = (direction: SlideDirection) => {
+    this.movement.next(direction)
+  }
+
+  movement = new BehaviorSubject<SlideDirection>(undefined)
+
+  moveDirection = Observable.merge(
+    this.movement,
+    this.unloadingCard.withLatestFrom(this.route.params)
+      .map(([ unloadingCard, params ]) => {
+        console.log('md.uc', unloadingCard)
+        const dir = gd(unloadingCard, params['cardId'])
+        console.log('md.gd', dir)
+        return dir
+      }))
+
+  moveRouter =
+    this.movement.withLatestFrom(this.activeCard)
+    .map<string>(([ direction, card ]) =>
+      direction === 'forward' ? card.next : card.previous)
+    .subscribe(nextId => {
+      console.log('moving router to', nextId)
+      this.router.navigate([ '/play', nextId ])
+    })
+
+  activeCardEntryAnimation: CardActivity
+
+  activeCardActivity =
     this.activeCard.withLatestFrom<SlideDirection>(this.moveDirection)
-      .map<CardActivity>(([ card, direction ]) =>
-        direction === 'forward' ? 'before' : 'after')
+      .mergeMap<CardActivity>(([ card, direction ]) =>
+        Observable.of(direction === 'backward' ? 'after' : 'before')
+          .concat(Observable.of('current').delay(0)))
+    .subscribe(activity => {
+      this.activeCardEntryAnimation = activity
+    })
 
-  unloadingCardActivity: Observable<CardActivity> =
+  unloadingCardEntryAnimation: CardActivity
+
+  unloadingCardActivity =
     this.unloadingCard.withLatestFrom<SlideDirection>(this.moveDirection)
-      .map<CardActivity>(([ card, direction ]) =>
-        direction === 'forward' ? 'after' : 'before')
+      .mergeMap<CardActivity>(([ card, direction ]) => {
+        return Observable.of('current')
+          .concat(Observable.of(direction === 'forward' ? 'after' : 'before')
+            .delay(0))
+      })
+      .subscribe(activity => {
+        this.unloadingCardEntryAnimation = activity
+      })
+
+
 
   constructor(
     private router: Router,
@@ -56,46 +112,13 @@ export class PlayCardsView {
     private langItemProvider: LangItemProvider,
     private cd: ChangeDetectorRef) { }
 
-  move = new EventEmitter<SlideDirection>()
-
-  moveDirection = Observable.merge(
-    this.move,
-    this.unloadingCard.withLatestFrom(this.route.params)
-      .map(([ unloadingCard, params ]) => gd(unloadingCard, params['cardId'])))
-
-  moveRouter = Observable.combineLatest<CardViewModel & CardViewState, SlideDirection>(this.activeCard, this.move)
-    .map<string>(([ card, direction ]: [ CardViewModel & CardViewState, SlideDirection]) =>
-      direction === 'forward' ? card.next : card.previous)
-    .subscribe(nextId => {
-      this.router.navigate([ '/play', nextId ])
-    })
-
   ngOnInit() {
-    this.move.emit(undefined)
-
-    this.activeCard.withLatestFrom(this.move)
-      .subscribe(args => {
-        console.log()
-      })
-
-    console.log('fin')
-
-    this.activeCard.subscribe(card => {
-      console.log('active card', card)
+    this.activeCard.subscribe(c => {
+      console.log('ac1', c)
     })
 
-    this.activeCard.withLatestFrom<SlideDirection>(this.moveDirection)
-      .subscribe(([ card, direction ]) => {
-        console.log('ac direction', direction)
-        //direction === 'forward' ? 'before' : 'after')
-      })
-
-    this.unloadingCard.subscribe(card => {
-      console.log('unloading card', card)
-    })
-
-    this.activeCardActivity.subscribe(activity => {
-      console.log('active card activity', activity)
+    this.activeCard.subscribe(c => {
+      console.log('ac2', c)
     })
   }
 

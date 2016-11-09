@@ -1,20 +1,14 @@
 <app-history-panel
-  [previous]="activeCard?.previous ? true : false"
-  [next]="activeCard?.next ? true : false"
+  [previous]="previous | async"
+  [next]="next | async"
   (move)="move($event)">
 </app-history-panel>
 <div class="cards">
   <app-card
     class="card"
-    [@entry]="( activeCardActivity | async ) || 'before'"
+    [@entry]="activeCardEntryAnimation"
     [card]="activeCard | async"
     [active]="true"
     (complete)="move('forward')">
-  </app-card>
-  <app-card
-    class="card unloading"
-    *ngIf="unloadingCard"
-    [@entry]="unloadingCardActivity | async"
-    [card]="unloadingCard">
   </app-card>
 </div>
