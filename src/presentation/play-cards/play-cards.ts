@@ -30,25 +30,18 @@ const slide = animate('1200ms cubic-bezier(0.230, 1.000, 0.320, 1.000)')
   ],
 })
 export class PlayCardsView {
-  latestCard = this.route.params
-    .mergeMap<Card>(params => {
-      console.log('params', params)
-      return this.cardProvider.get(params['cardId'])
-    })
-    .mergeMap<CardViewModel>(card => {
-      console.log('active card', card)
-      return this.langItemProvider.get(card.langItemId).map(langItem => cardWire(card, { langItem }))
-    })
+  cards = this.route.params
+    .mergeMap<Card>(params => this.cardProvider.get(params['cardId']))
+    .mergeMap<CardViewModel>(card =>
+      this.langItemProvider.get(card.langItemId).map(langItem => cardWire(card, { langItem })))
 
-  activeCard = this.latestCard.share()
+  activeCard = this.cards
+    .share()
 
   unloadingCard: Observable<CardViewModel> = this.route.params
     .skip(1)
     .withLatestFrom(this.activeCard)
-    .map(([ params, card ]) => {
-      console.log('uc', params, card)
-      return card
-    })
+    .map(([ params, card ]) => card)
 
   previous = this.activeCard.map(card => card.previous ? true : false)
 
@@ -63,19 +56,13 @@ export class PlayCardsView {
   moveDirection = Observable.merge(
     this.movement,
     this.unloadingCard.withLatestFrom(this.route.params)
-      .map(([ unloadingCard, params ]) => {
-        console.log('md.uc', unloadingCard)
-        const dir = gd(unloadingCard, params['cardId'])
-        console.log('md.gd', dir)
-        return dir
-      }))
+      .map(([ unloadingCard, params ]) => gd(unloadingCard, params['cardId'])))
 
   moveRouter =
     this.movement.withLatestFrom(this.activeCard)
     .map<string>(([ direction, card ]) =>
       direction === 'forward' ? card.next : card.previous)
     .subscribe(nextId => {
-      console.log('moving router to', nextId)
       this.router.navigate([ '/play', nextId ])
     })
 
@@ -111,16 +98,6 @@ export class PlayCardsView {
     private cardProvider: CardProvider,
     private langItemProvider: LangItemProvider,
     private cd: ChangeDetectorRef) { }
-
-  ngOnInit() {
-    this.activeCard.subscribe(c => {
-      console.log('ac1', c)
-    })
-
-    this.activeCard.subscribe(c => {
-      console.log('ac2', c)
-    })
-  }
 
   // prepareCard = (card: Card) => {
   //   if (this.activeCard === undefined) {

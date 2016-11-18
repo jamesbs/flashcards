@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, HostBinding } from '@angular/core'
+import { Component, Input, Output, EventEmitter, HostBinding, ChangeDetectorRef } from '@angular/core'
 import { Card, LangItem } from '../../../domain/models'
 import { LangItemProvider } from '../../../domain/providers'
 import { IntroCardView } from '../../../components'
@@ -11,8 +11,19 @@ import { CardViewModel } from './card-view-model'
   styleUrls: ['./card.styl']
 })
 export class CardView {
+
+  private _card: CardViewModel
+
   @Input()
-  card: CardViewModel
+  get card(): CardViewModel
+  {
+    return this._card
+  }
+
+  set card(val) {
+    this._card = val
+    this.cd.detectChanges()
+  }
 
   @Input()
   active: boolean
@@ -20,6 +31,6 @@ export class CardView {
   @Output()
   complete = new EventEmitter<void>()
 
-  constructor(private langItemProvider: LangItemProvider) { }
+  constructor(private langItemProvider: LangItemProvider, private cd: ChangeDetectorRef) { }
 }
 

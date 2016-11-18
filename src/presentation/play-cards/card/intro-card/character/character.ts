@@ -70,12 +70,4 @@ export class CharacterView {
 
   constructor(private cd: ChangeDetectorRef) { }
 
-  ngOnInit() {
-    console.log('values before', this)
-  }
-
-  ngAfterViewChecked() {
-    console.log('values after', this)
-    //this.cd.detectChanges() // don't know why
-  }
 }

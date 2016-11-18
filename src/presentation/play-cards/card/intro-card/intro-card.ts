@@ -103,13 +103,11 @@ export class IntroCardView {
   constructor(private actionSounds: CardSounds, private cd: ChangeDetectorRef) { }
 
   ngAfterViewInit() {
-    console.log('active is', this.active)
     Observable.of(this.active)
       .delay(500)
       .subscribe(active => {
         if (active)
           this.focusNext()
       })
-    this.cd.detectChanges() // why?
   }
 }
