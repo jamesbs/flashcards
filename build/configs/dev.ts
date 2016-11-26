@@ -16,7 +16,7 @@ export const devOnlyConfig = {
         test: /\.(jpg|jpeg|gif|png|tif|ttf|eot|woff|woff2)(\?[a-z0-9=&.]+)?$/,
         loaders: [
           {
-            loader: 'file',
+            loader: 'file-loader',
             query: {
               name: '[path][name].[ext]',
               context: './src'
@@ -27,14 +27,14 @@ export const devOnlyConfig = {
       {
         test: /\.styl/,
         loaders: [
-          'to-string',
-          'css',
-          'stylus',
+          'to-string-loader',
+          'css-loader',
+          'stylus-loader',
         ],
       },
       {
         test: /\.svg/,
-        loader: 'file',
+        loader: 'file-loader',
         exclude: /icons/,
         query: {
           name: '[path][name].[ext]',

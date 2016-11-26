@@ -18,7 +18,7 @@ export const baseConfig = {
   },
 
   resolve: {
-    extensions: ['', '.webpack.js', '.web.js', '.ts', '.js', '.styl', '.ogg']
+    extensions: ['.webpack.js', '.web.js', '.ts', '.js', '.styl', '.ogg']
   },
 
   module: {
@@ -27,43 +27,43 @@ export const baseConfig = {
         test: /\.ts$/,
         loaders: [
           {
-            loader: 'awesome-typescript',
+            loader: 'ts-loader',
             query: {
-              tsconfig: './tsconfig.webpack.json'
+              configFileName: './tsconfig.webpack.json'
             },
           },
-          'angular2-template',
+          'angular2-template-loader',
         ],
         exclude: /node_modules/,
       },
       {
         test: /\.html/,
-        loader: 'html',
+        loader: 'html-loader',
         exclude: /node_modules/,
       },
       {
         test: /\.svg/,
-        loader: 'raw',
+        loader: 'raw-loader',
       },
       {
         test: /\.css$/,
         loaders: [
-          'to-string',
-          'css',
+          'to-string-loader',
+          'css-loader',
         ],
         exclude: /vendor|node_modules/
       },
       {
         test: /\.css$/,
         loaders: [
-          'style',
-          'css',
+          'style-loader',
+          'css-loader',
         ],
         include: /vendor|node_modules/
       },
       {
         test: /\.ogg$/,
-        loader: 'file',
+        loader: 'file-loader',
       },
     ]
   },

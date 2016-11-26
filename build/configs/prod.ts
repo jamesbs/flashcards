@@ -9,7 +9,7 @@ export const prodOnlyConfig = {
         test: /\.(jpg|jpeg|gif|png|tif|ttf|eot|woff|woff2)$/,
         loaders: [
           {
-            loader: 'url',
+            loader: 'url-loader',
             query: {
               name: '[path][name].[ext]',
               context: './src'
@@ -20,14 +20,14 @@ export const prodOnlyConfig = {
       {
         test: /\.styl/,
         loaders: [
-          'to-string',
-          'css?minimize',
-          'stylus',
+          'to-string-loader',
+          'css-loader?minimize',
+          'stylus-loader',
         ],
       },
       {
         test: /\.svg/,
-        loader: 'url',
+        loader: 'url-loader',
         exclude: /icons/,
         query: {
           name: '[path][name].[ext]',

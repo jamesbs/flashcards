@@ -12,7 +12,6 @@
     ]
   },
   "awesomeTypescriptLoaderOptions": {
-    "useWebpackText": true, // not necessary
     "useCache": true,
     "useBabel": true
   }
