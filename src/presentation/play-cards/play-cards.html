@@ -1,13 +1,7 @@
-<app-history-panel
-  [previous]="previous | async"
-  [next]="next | async"
-  (move)="move($event)">
-</app-history-panel>
 <div class="cards">
   <app-card
     class="card"
-    [@entry]="activeCardEntryAnimation"
-    [card]="activeCard | async"
+    [card]="card | async"
     [active]="true"
     (complete)="move('forward')">
   </app-card>

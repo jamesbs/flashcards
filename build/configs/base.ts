@@ -2,7 +2,6 @@ import { generatePath as path } from '../tools'
 import { vendor, app } from '../entry'
 import { ContextReplacementPlugin } from 'webpack'
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin
 
 const chunkOrder = [ 'vendor', 'app' ]
 
@@ -27,7 +26,7 @@ export const baseConfig = {
         test: /\.ts$/,
         loaders: [
           {
-            loader: 'ts-loader',
+            loader: 'awesome-typescript-loader',
             query: {
               configFileName: './tsconfig.webpack.json'
             },
@@ -74,11 +73,10 @@ export const baseConfig = {
       /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
       path`${'app'}`
     ),
-    new ForkCheckerPlugin(),
     new HtmlWebpackPlugin({
       template: './index.html',
       inject: 'body',
-      chunksSortMode: (chunk1, chunk2) => {
+      chunksSortMode: (chunk1: any, chunk2: any) => {
         const c1i = chunkOrder.indexOf(chunk1.names[0])
         const c2i = chunkOrder.indexOf(chunk2.names[0])
 

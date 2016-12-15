@@ -27,70 +27,17 @@ const slide = animate('1200ms cubic-bezier(0.230, 1.000, 0.320, 1.000)')
       transition('after => current', slide),
       transition('current => before', slide),
     ]),
+    trigger('load', [
+
+    ]),
   ],
 })
 export class PlayCardsView {
-  cards = this.route.params
-    .mergeMap<Card>(params => this.cardProvider.get(params['cardId']))
-    .mergeMap<CardViewModel>(card =>
-      this.langItemProvider.get(card.langItemId).map(langItem => cardWire(card, { langItem })))
-
-  activeCard = this.cards
-    .share()
-
-  unloadingCard: Observable<CardViewModel> = this.route.params
-    .skip(1)
-    .withLatestFrom(this.activeCard)
-    .map(([ params, card ]) => card)
-
-  previous = this.activeCard.map(card => card.previous ? true : false)
-
-  next = this.activeCard.map(card => card.next ? true : false)
-
-  move = (direction: SlideDirection) => {
-    this.movement.next(direction)
-  }
-
-  movement = new BehaviorSubject<SlideDirection>(undefined)
-
-  moveDirection = Observable.merge(
-    this.movement,
-    this.unloadingCard.withLatestFrom(this.route.params)
-      .map(([ unloadingCard, params ]) => gd(unloadingCard, params['cardId'])))
-
-  moveRouter =
-    this.movement.withLatestFrom(this.activeCard)
-    .map<string>(([ direction, card ]) =>
-      direction === 'forward' ? card.next : card.previous)
-    .subscribe(nextId => {
-      this.router.navigate([ '/play', nextId ])
-    })
-
-  activeCardEntryAnimation: CardActivity
-
-  activeCardActivity =
-    this.activeCard.withLatestFrom<SlideDirection>(this.moveDirection)
-      .mergeMap<CardActivity>(([ card, direction ]) =>
-        Observable.of(direction === 'backward' ? 'after' : 'before')
-          .concat(Observable.of('current').delay(0)))
-    .subscribe(activity => {
-      this.activeCardEntryAnimation = activity
-    })
-
-  unloadingCardEntryAnimation: CardActivity
-
-  unloadingCardActivity =
-    this.unloadingCard.withLatestFrom<SlideDirection>(this.moveDirection)
-      .mergeMap<CardActivity>(([ card, direction ]) => {
-        return Observable.of('current')
-          .concat(Observable.of(direction === 'forward' ? 'after' : 'before')
-            .delay(0))
-      })
-      .subscribe(activity => {
-        this.unloadingCardEntryAnimation = activity
-      })
-
-
+  card = this.route.params
+    .mergeMap(({ cardId }) => this.cardProvider.get(cardId))
+    .mergeMap(card =>
+      this.langItemProvider.get(card.langItemId)
+        .map(langItem => cardWire(card, { langItem })))
 
   constructor(
     private router: Router,
@@ -99,28 +46,6 @@ export class PlayCardsView {
     private langItemProvider: LangItemProvider,
     private cd: ChangeDetectorRef) { }
 
-  // prepareCard = (card: Card) => {
-  //   if (this.activeCard === undefined) {
-  //     this.activeCard = setActivity(card, 'before')
-  //   } else {
-  //     this.unloadingCard = this.activeCard
-  //     this.cd.detectChanges()
-
-  //     this.unloadAndPrepare(
-  //       card,
-  //       getDirection(
-  //         introCardViewModelWire(this.unloadingCard as IntroCardViewModel),
-  //         card))
-  //   }
-  // }
-
-  // unloadAndPrepare = (card: Card, direction: SlideDirection) => {
-  //   if(direction === 'forward') {
-  //     this.unloadingCard = setActivity(this.unloadingCard, 'after')
-  //     this.activeCard = setActivity(card, 'before')
-  //   } else {
-  //     this.unloadingCard = setActivity(this.unloadingCard, 'before')
-  //     this.activeCard = setActivity(card,  'after')
-  //   }
-  // }
+  ngOnInit() {
+  }
 }

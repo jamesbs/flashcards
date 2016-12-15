@@ -26,7 +26,7 @@ interface AfterMatchContext {
 }
 
 
-const isVowelBeforeMatch = ({ index, syllable }: BeforeMatchContext) =>
+const isVowelBeforeMatch = ({ index, syllable }: BeforeMatchContext): number =>
   isVowel(syllable[index])
     ? isPriorityVowelAfterMatch({
         syllable,
@@ -50,7 +50,7 @@ const isOuVowelGroup = ({ syllable, index, matchingIndex, vowelGroup }: AfterMat
     ? isVowelAfterMatch({ syllable, index: index - 1, matchingIndex: index, vowelGroup })
     : isVowelAfterMatch({ syllable, index: index - 1, matchingIndex, vowelGroup })
 
-const isVowelAfterMatch = ({ syllable, index, matchingIndex, vowelGroup }: AfterMatchContext) =>
+const isVowelAfterMatch = ({ syllable, index, matchingIndex, vowelGroup }: AfterMatchContext): number =>
   isVowel(syllable[index])
     ? isPriorityVowelAfterMatch({ syllable, index, matchingIndex, vowelGroup })
     : matchingIndex

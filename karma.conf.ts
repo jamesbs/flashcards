@@ -4,7 +4,7 @@ import { Config, ConfigOptions } from 'karma'
 
 // export default doesn't work?
 // implement correct type using declaration merging
-module.exports = (config) => {
+module.exports = (config: any) => {
   config.set({
     frameworks: [ 'jasmine' ],
 

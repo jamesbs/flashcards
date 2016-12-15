@@ -27,7 +27,7 @@ export class InputPanel implements OnInit {
   }
 
   submit(event: Event) {
-    const value: string = this.form.find('solution').value || ''
+    const value: string = this.form.controls['solution'].value || ''
     this.solution.emit(value)
   }
 
@@ -37,9 +37,9 @@ export class InputPanel implements OnInit {
         Observable.of(result),
         Observable.of(result).delay(800)))
       .subscribe((result: Result) => {
-        if(result === 'unanswered' && this.result === 'correct') {
-          (<FormControl>this.form['solution']).updateValue('')
-        }
+        // if(result === 'unanswered' && this.result === 'correct') {
+        //   this.form.controls['solution'].updateValueAndValidity('')
+        // }
         this.result = result
       })
   }

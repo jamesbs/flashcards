@@ -1,6 +1,5 @@
 import { NgModule, Component } from '@angular/core'
 import { APP_BASE_HREF } from '@angular/common'
-import { CommonModule } from '@angular/common'
 import { BrowserModule } from '@angular/platform-browser'
 import { ReactiveFormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'
@@ -24,7 +23,6 @@ import { getConfigProviders } from './config'
   ],
   imports: [
     BrowserModule,
-    CommonModule,
     ReactiveFormsModule,
     AppCommonModule,
     HttpModule,

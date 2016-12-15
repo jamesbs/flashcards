@@ -1,9 +1,13 @@
 import { join } from 'path'
 import { paths } from './paths'
 
-export const generatePath = (parts, ...values) => {
-  const resolution = values.reduce(
-    (acc, value, index) => [...acc, parts[index], paths[value]],
+export const generatePath = (parts: TemplateStringsArray, ...values: string[]) => {
+  const resolution = values.reduce<string[]>(
+    (acc, value, index) => [
+      ...acc,
+      parts[index],
+      paths[value]
+    ],
     []
   )
 
