@@ -1,8 +1,14 @@
+<app-history-panel
+  [previous]="(previous?.id$ | async) !== undefined"
+  [next]="(next?.id$ | async) !== undefined"
+  [backward]="previous?.move"
+  [forward]="next?.move">
+</app-history-panel>
 <div class="cards">
   <app-card
     class="card"
-    [card]="card | async"
+    [card]="card$ | async"
     [active]="true"
-    (complete)="move('forward')">
+    (complete)="next?.move()">
   </app-card>
 </div>

@@ -1,8 +1,11 @@
-import { Component, Input, Output, EventEmitter,
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy,
   trigger, transition, state, style, animate } from '@angular/core'
 import { Router } from '@angular/router'
 import { Observable } from 'rxjs'
+
 import { SlideDirection } from '../play-cards/slide-direction'
+import { MoveAnimation } from './move-animation'
+
 
 @Component({
   selector: 'app-history-panel',
@@ -19,33 +22,41 @@ export class HistoryPanel {
   @Output()
   move = new EventEmitter<SlideDirection>()
 
+  @Input()
+  forward = () => { }
+
+  @Input()
+  backward = () => { }
+
   echo = Observable.of(1, 2, 3, 4)
     .mergeMap(i => Observable.of(i).delay(500 * i))
     .repeat()
 
-  forward = {
+
+  /* Animation State */
+  backAnimation: MoveAnimation = {
     index: 0,
     mouseout: new EventEmitter<void>(),
-    bind: i => {
-      return this.forward.index = i
+    bind: (i: number) => {
+      this.backAnimation.index = i
     }
   }
 
-  back = {
+  /* Animation State */
+  forwardAnimation: MoveAnimation = {
     index: 0,
     mouseout: new EventEmitter<void>(),
-    bind: i => this.back.index = i
+    bind: (i: number) => this.forwardAnimation.index = i
   }
 
-
-  mouseover(target) {
+  mouseover(target: MoveAnimation) {
     this.echo
       .delay(260)
       .takeUntil(target.mouseout)
       .subscribe(target.bind)
   }
 
-  mouseout(target) {
+  mouseout(target: MoveAnimation) {
     target.mouseout.emit()
     target.index = 0
   }

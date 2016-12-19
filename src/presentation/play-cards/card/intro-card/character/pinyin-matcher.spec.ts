@@ -9,7 +9,7 @@ describe('generatePinyinMatcher', () => {
     }
     const matchingInput = 'wo3'
 
-    expect(generatePinyinMatcher(input)(matchingInput)).toBe(true)
+    expect(generatePinyinMatcher(input)(matchingInput, undefined)).toBe(true)
   })
 
   it('basic match 2', () => {
@@ -19,7 +19,7 @@ describe('generatePinyinMatcher', () => {
     }
     const matchingInput = 'bing4'
 
-    expect(generatePinyinMatcher(input)(matchingInput)).toBe(true)
+    expect(generatePinyinMatcher(input)(matchingInput, undefined)).toBe(true)
   })
 
   it('not matching 1', () => {
@@ -29,7 +29,7 @@ describe('generatePinyinMatcher', () => {
     }
     const nonMatchingInput = 'wo2'
 
-    expect(generatePinyinMatcher(input)(nonMatchingInput)).toBe(false)
+    expect(generatePinyinMatcher(input)(nonMatchingInput, undefined)).toBe(false)
   })
 
   it('not matching 2', () => {
@@ -39,7 +39,7 @@ describe('generatePinyinMatcher', () => {
     }
     const nonMatchingInput = 'yang2'
 
-    expect(generatePinyinMatcher(input)(nonMatchingInput)).toBe(false)
+    expect(generatePinyinMatcher(input)(nonMatchingInput, undefined)).toBe(false)
   })
 
   it('not matching 3', () => {
@@ -49,7 +49,7 @@ describe('generatePinyinMatcher', () => {
     }
     const nonMatchingInput = 'jia1'
 
-    expect(generatePinyinMatcher(input)(nonMatchingInput)).toBe(false)
+    expect(generatePinyinMatcher(input)(nonMatchingInput, undefined)).toBe(false)
   })
 
 })

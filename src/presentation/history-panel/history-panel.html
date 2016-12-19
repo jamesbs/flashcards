@@ -1,29 +1,29 @@
 <div class="panel">
   <div class="move back">
     <a [class.visible]="previous"
-      (click)="move.emit('back')"
-      (mouseover)="mouseover(back)"
-      (mouseout)="mouseout(back)">
+      (click)="backward()"
+      (mouseover)="mouseover(backAnimation)"
+      (mouseout)="mouseout(backAnimation)">
       <i class="fa fa-chevron-left"></i>
     </a>
     <div class="echo">
-      <i class="fa fa-chevron-left" [class.in]="back.index === 1"></i>
-      <i class="fa fa-chevron-left" [class.in]="back.index === 2"></i>
-      <i class="fa fa-chevron-left" [class.in]="back.index === 3"></i>
+      <i class="fa fa-chevron-left" [class.in]="backAnimation.index === 1"></i>
+      <i class="fa fa-chevron-left" [class.in]="backAnimation.index === 2"></i>
+      <i class="fa fa-chevron-left" [class.in]="backAnimation.index === 3"></i>
     </div>
   </div>
   <div class="move forward">
     <a [class.visible]="next"
-      (click)="move.emit('forward')"
-      (mouseover)="mouseover(forward)"
-      (mouseout)="mouseout(forward)">
+      (click)="forward()"
+      (mouseover)="mouseover(forwardAnimation)"
+      (mouseout)="mouseout(forwardAnimation)">
       <i class="fa fa-chevron-right"></i>
     </a>
 
     <div class="echo">
-      <i class="fa fa-chevron-right" [class.in]="forward.index === 1"></i>
-      <i class="fa fa-chevron-right" [class.in]="forward.index === 2"></i>
-      <i class="fa fa-chevron-right" [class.in]="forward.index === 3"></i>
+      <i class="fa fa-chevron-right" [class.in]="forwardAnimation.index === 1"></i>
+      <i class="fa fa-chevron-right" [class.in]="forwardAnimation.index === 2"></i>
+      <i class="fa fa-chevron-right" [class.in]="forwardAnimation.index === 3"></i>
     </div>
   </div>
 </div>

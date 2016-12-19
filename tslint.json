@@ -13,7 +13,6 @@
     "no-conditional-assignment": true,
     "no-console": [true, "log", "error"],
     "no-debugger": true,
-    "no-empty": true,
     "no-invalid-this": true,
     "no-null-keyword": true,
     "no-shadowed-variable": true,

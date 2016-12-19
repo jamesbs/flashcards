@@ -1,11 +1,12 @@
-import { Component, Input } from '@angular/core'
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core'
 import { SimpleTranslation } from '../../../../../domain/models'
 import { getWords } from '../../../../../domain/lang-item'
 import { StandardWord, toStandard } from '../../../../../view/standard-word'
 
 @Component({
   selector: 'app-example',
-  templateUrl: './example.html'
+  templateUrl: './example.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Example {
   private _example: SimpleTranslation

@@ -33,3 +33,6 @@ export const introCardViewModelWire: (introCardViewModel: IntroCardViewModel) =>
     previous: introCardViewModel.previous,
     next: introCardViewModel.next,
   })
+
+export const getNext = ({ next }: IntroCardViewModel) => next
+export const getPrevious = ({ previous }: IntroCardViewModel) => previous
