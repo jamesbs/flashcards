@@ -1,7 +1,2 @@
-export { IntroCardComponent } from './intro-card'
-export { ActionPanelComponent } from './action-panel/action-panel'
-export { ActionComponent, ActionIconDirective, ActionTooltipDirective } from './action-panel/action'
-export { CharacterComponent } from './character/character'
-export { EnglishInputComponent } from './english-input/english-input'
-export { ExampleComponent } from './example/example'
+export { IntroCardComponent } from './intro-card.component'
 export { IntroCardViewModel } from './intro-card-view-model'

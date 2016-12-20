@@ -5,7 +5,7 @@ import { StandardWord, toStandard } from '../../../../../view/standard-word'
 
 @Component({
   selector: 'app-example',
-  templateUrl: './example.html',
+  templateUrl: './example.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExampleComponent {

@@ -10,8 +10,8 @@ const scopes = 'profile'
 
 @Component({
   selector: 'app-settings',
-  templateUrl: './settings.html',
-  styleUrls: ['./settings.styl'],
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.styl'],
 })
 export class SettingsComponent {
   settingsForm: FormGroup = new FormGroup({

@@ -4,8 +4,8 @@ import { HintedInput, Matcher, allComplete } from '../../../../../common/compone
 
 @Component({
   selector: 'app-english-input',
-  templateUrl: './english-input.html',
-  styleUrls: [ './english-input.styl' ],
+  templateUrl: './english-input.component.html',
+  styleUrls: [ './english-input.component.styl' ],
 })
 export class EnglishInputComponent {
   @Output() success = new EventEmitter<void>()

@@ -5,8 +5,8 @@ import { StandardWord, toStandard } from '../../../../view/standard-word'
 
 @Component({
   selector: 'app-question-card',
-  templateUrl: './question-card.html',
-  styleUrls: ['./question-card.styl'],
+  templateUrl: './question-card.component.html',
+  styleUrls: ['./question-card.component.styl'],
 })
 export class QuestionCardComponent {
   private _langItem: LangItem

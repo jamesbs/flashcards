@@ -4,7 +4,7 @@ import { CardProvider } from '../../domain/providers'
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.html'
+  templateUrl: './home.component.html'
 })
 export class HomeComponent {
   constructor(private cardProvider: CardProvider, private router: Router) { }

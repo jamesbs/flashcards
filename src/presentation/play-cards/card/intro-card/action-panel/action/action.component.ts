@@ -2,8 +2,8 @@ import { Component, Output, HostBinding, EventEmitter } from '@angular/core'
 
 @Component({
   selector: 'app-action',
-  templateUrl: './action.html',
-  styleUrls: ['./action.styl'],
+  templateUrl: './action.component.html',
+  styleUrls: ['./action.component.styl'],
 })
 export class ActionComponent {
   @Output()

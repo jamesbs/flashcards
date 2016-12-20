@@ -8,8 +8,8 @@ import { createEcho } from './echo'
 
 @Component({
   selector: 'app-history-panel',
-  templateUrl: './history-panel.html',
-  styleUrls: [ './history-panel.styl' ],
+  templateUrl: './history-panel.component.html',
+  styleUrls: [ './history-panel.component.styl' ],
 })
 export class HistoryPanelComponent {
   @Input()

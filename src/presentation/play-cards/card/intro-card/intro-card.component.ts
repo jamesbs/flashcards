@@ -3,15 +3,15 @@ import { Component, Input, Output, EventEmitter, ViewChildren, QueryList, ViewCh
 import { Observable } from 'rxjs'
 import { LangItem, Character } from '../../../../domain/entities'
 import { getCharacters } from '../../../../domain/lang-item'
-import { CharacterComponent } from './character/character'
-import { EnglishInputComponent } from './english-input/english-input'
+import { CharacterComponent } from './character'
+import { EnglishInputComponent } from './english-input'
 import { CardSounds } from '../../../../common/services/sound'
 import { ActionSounds } from '../../../../common/services/sound/action-sounds'
 
 @Component({
   selector: 'app-intro-card',
-  templateUrl: './intro-card.html',
-  styleUrls: ['./intro-card.styl'],
+  templateUrl: './intro-card.component.html',
+  styleUrls: ['./intro-card.component.styl'],
   providers: [ CardSounds ],
 })
 export class IntroCardComponent {

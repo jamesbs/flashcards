@@ -12,11 +12,10 @@ import { createMover } from './mover'
 
 const slide = animate('1200ms cubic-bezier(0.230, 1.000, 0.320, 1.000)')
 
-
 @Component({
   selector: 'app-play-cards',
-  templateUrl: './play-cards.html',
-  styleUrls: [ './play-cards.styl' ],
+  templateUrl: './play-cards.component.html',
+  styleUrls: [ './play-cards.component.styl' ],
   animations: [
     trigger('entry', [
       state('before', style({ 'transform': 'translateX(-100%)' })),

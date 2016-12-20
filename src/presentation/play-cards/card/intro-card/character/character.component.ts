@@ -10,8 +10,8 @@ import { generatePinyinMatcher } from './pinyin-matcher'
 
 @Component({
   selector: 'app-character',
-  templateUrl: './character.html',
-  styleUrls: ['./character.styl'],
+  templateUrl: './character.component.html',
+  styleUrls: ['./character.component.styl'],
 })
 export class CharacterComponent {
   @Output() failure = new EventEmitter<void>()

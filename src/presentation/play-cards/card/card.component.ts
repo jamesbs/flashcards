@@ -7,8 +7,8 @@ import { CardViewModel } from './card-view-model'
 
 @Component({
   selector: 'app-card',
-  templateUrl: './card.html',
-  styleUrls: ['./card.styl']
+  templateUrl: './card.component.html',
+  styleUrls: ['./card.component.styl']
 })
 export class CardComponent {
 
@@ -31,6 +31,8 @@ export class CardComponent {
   @Output()
   complete = new EventEmitter<void>()
 
-  constructor(private langItemProvider: LangItemProvider, private cd: ChangeDetectorRef) { }
+  constructor(
+    private langItemProvider: LangItemProvider,
+    private cd: ChangeDetectorRef) { }
 }
 
