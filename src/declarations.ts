@@ -2,6 +2,8 @@ import { Header, PlayCardsView, IntroCardView, HomeView, SettingsView, Example, 
   ActionPanel, Flashcard, EnglishInput, CardView, HistoryPanel, ActionView,
   ActionTooltipView, ActionIconView, QuestionCardView } from './components'
 
+import { directives } from './directives'
+
 export const declarations = [
   Header,
   PlayCardsView,
@@ -19,4 +21,5 @@ export const declarations = [
   ActionTooltipView,
   ActionIconView,
   QuestionCardView,
+  ...directives,
 ]

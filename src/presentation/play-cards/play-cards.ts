@@ -1,7 +1,7 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef, ChangeDetectorRef, EventEmitter,
   trigger, transition, state, style, animate } from '@angular/core'
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router'
-import { Observable } from 'rxjs'
+import { Observable, Subject, BehaviorSubject } from 'rxjs'
 
 import { CardProvider } from '../../domain/providers'
 import { cardWire } from './card'
@@ -11,6 +11,7 @@ import { SlideDirection, getDirection, gd } from './slide-direction'
 import { createMover } from './mover'
 
 const slide = animate('1200ms cubic-bezier(0.230, 1.000, 0.320, 1.000)')
+
 
 @Component({
   selector: 'app-play-cards',
