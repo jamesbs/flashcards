@@ -33,7 +33,7 @@ const slide = animate('1200ms cubic-bezier(0.230, 1.000, 0.320, 1.000)')
     ]),
   ],
 })
-export class PlayCardsView {
+export class PlayCardsComponent {
   card$ = this.route.params
     .mergeMap(({ cardId }) => this.cardProvider.get(cardId))
     .mergeMap(card =>

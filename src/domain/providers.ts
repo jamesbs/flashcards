@@ -1,2 +1,12 @@
-export { LangItemProvider } from './lang-item'
-export { CardProvider } from './card'
+import { LangItemProvider } from './lang-item'
+import { CardProvider } from './card'
+
+export const providers = [
+  LangItemProvider,
+  CardProvider
+]
+
+export {
+  LangItemProvider,
+  CardProvider
+}

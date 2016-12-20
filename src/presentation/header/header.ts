@@ -5,7 +5,6 @@ import { Component } from '@angular/core'
   templateUrl: './header.html',
   styleUrls: [ './header.styl' ]
 })
-export class Header {
-  showLogin() {
-  }
+export class HeaderComponent {
+  showLogin() { }
 }

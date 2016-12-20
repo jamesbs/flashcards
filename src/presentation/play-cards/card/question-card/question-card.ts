@@ -8,7 +8,7 @@ import { StandardWord, toStandard } from '../../../../view/standard-word'
   templateUrl: './question-card.html',
   styleUrls: ['./question-card.styl'],
 })
-export class QuestionCardView {
+export class QuestionCardComponent {
   private _langItem: LangItem
 
   @Input()

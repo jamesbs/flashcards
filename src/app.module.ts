@@ -7,20 +7,16 @@ import { RouterModule } from '@angular/router'
 import { CommonModule as AppCommonModule } from './common/common.module'
 import { QuestionProvider } from './question'
 import { LangItemProvider, CardProvider } from './domain/providers'
-import { AppMain } from './app-main'
-import { Icons } from './style/icons'
+import { AppRootComponent } from './app-root'
 import { declarations } from './declarations'
 import { Routes } from './app.routes'
+import { providers } from './domain/providers'
 import { environment } from '../environment'
 import { config } from '../config'
 import { getConfigProviders } from './config'
 
 @NgModule({
-  declarations: [
-    AppMain,
-    declarations,
-    Icons,
-  ],
+  declarations,
   imports: [
     BrowserModule,
     ReactiveFormsModule,
@@ -29,12 +25,10 @@ import { getConfigProviders } from './config'
     RouterModule.forRoot(Routes),
   ],
   providers: [
-    QuestionProvider,
-    LangItemProvider,
-    CardProvider,
+    ...providers,
     { provide: APP_BASE_HREF, useValue: '/' },
     getConfigProviders(config[environment])
   ],
-  bootstrap: [ AppMain ],
+  bootstrap: [ AppRootComponent ],
 })
-export class App { }
+export class AppModule { }

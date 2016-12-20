@@ -4,7 +4,6 @@ import { Router } from '@angular/router'
 import { Observable } from 'rxjs'
 
 import { SlideDirection } from '../play-cards/slide-direction'
-import { MoveAnimation } from './move-animation'
 import { createEcho } from './echo'
 
 @Component({
@@ -12,7 +11,7 @@ import { createEcho } from './echo'
   templateUrl: './history-panel.html',
   styleUrls: [ './history-panel.styl' ],
 })
-export class HistoryPanel {
+export class HistoryPanelComponent {
   @Input()
   previous: boolean
 

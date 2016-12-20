@@ -8,7 +8,7 @@ import { StandardWord, toStandard } from '../../../../../view/standard-word'
   templateUrl: './example.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Example {
+export class ExampleComponent {
   private _example: SimpleTranslation
 
   @Input()

@@ -3,8 +3,8 @@ import { Component, Input, Output, EventEmitter, ViewChildren, QueryList, ViewCh
 import { Observable } from 'rxjs'
 import { LangItem, Character } from '../../../../domain/entities'
 import { getCharacters } from '../../../../domain/lang-item'
-import { CharacterView } from './character/character'
-import { EnglishInput } from './english-input/english-input'
+import { CharacterComponent } from './character/character'
+import { EnglishInputComponent } from './english-input/english-input'
 import { CardSounds } from '../../../../common/services/sound'
 import { ActionSounds } from '../../../../common/services/sound/action-sounds'
 
@@ -14,7 +14,7 @@ import { ActionSounds } from '../../../../common/services/sound/action-sounds'
   styleUrls: ['./intro-card.styl'],
   providers: [ CardSounds ],
 })
-export class IntroCardView {
+export class IntroCardComponent {
   @Input()
   active: boolean
 
@@ -33,17 +33,17 @@ export class IntroCardView {
   @Output()
   complete = new EventEmitter<void>()
 
-  @ViewChildren(CharacterView)
-  set characterViewsQuery(views: QueryList<CharacterView>) {
+  @ViewChildren(CharacterComponent)
+  set characterViewsQuery(views: QueryList<CharacterComponent>) {
     this.characterViews = views.toArray()
   }
 
-  @ViewChild(EnglishInput) englishInput: EnglishInput
+  @ViewChild(EnglishInputComponent) englishInput: EnglishInputComponent
 
   pinyinCompleted = false
   englishCompleted = false
 
-  characterViews: CharacterView[] = []
+  characterViews: CharacterComponent[] = []
 
   // find a way to implement this as a memoized getter
   characters: Character[]

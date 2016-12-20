@@ -5,7 +5,7 @@ import { Component, Output, HostBinding, EventEmitter } from '@angular/core'
   templateUrl: './action.html',
   styleUrls: ['./action.styl'],
 })
-export class ActionView {
+export class ActionComponent {
   @Output()
   iconHover = new EventEmitter<boolean>()
 

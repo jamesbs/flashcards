@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, HostBinding, ChangeDetectorRef } from '@angular/core'
 import { Card, LangItem } from '../../../domain/entities'
 import { LangItemProvider } from '../../../domain/providers'
-import { IntroCardView } from '../../../components'
+import { IntroCardComponent } from '../../../components'
 import { CardActivity } from './card-activity'
 import { CardViewModel } from './card-view-model'
 
@@ -10,7 +10,7 @@ import { CardViewModel } from './card-view-model'
   templateUrl: './card.html',
   styleUrls: ['./card.styl']
 })
-export class CardView {
+export class CardComponent {
 
   private _card: CardViewModel
 

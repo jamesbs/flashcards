@@ -13,7 +13,7 @@ import { generatePinyinMatcher } from './pinyin-matcher'
   templateUrl: './character.html',
   styleUrls: ['./character.styl'],
 })
-export class CharacterView {
+export class CharacterComponent {
   @Output() failure = new EventEmitter<void>()
   @Output() complete = new EventEmitter<void>()
 

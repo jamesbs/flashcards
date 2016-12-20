@@ -13,7 +13,7 @@ const scopes = 'profile'
   templateUrl: './settings.html',
   styleUrls: ['./settings.styl'],
 })
-export class SettingsView {
+export class SettingsComponent {
   settingsForm: FormGroup = new FormGroup({
     username: new FormControl('', validUsername),
     email: new FormControl('', validEmail),

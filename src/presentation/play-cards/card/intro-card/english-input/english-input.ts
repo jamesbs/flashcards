@@ -7,7 +7,7 @@ import { HintedInput, Matcher, allComplete } from '../../../../../common/compone
   templateUrl: './english-input.html',
   styleUrls: [ './english-input.styl' ],
 })
-export class EnglishInput {
+export class EnglishInputComponent {
   @Output() success = new EventEmitter<void>()
   @Output() failure = new EventEmitter<void>()
   @Output() complete = new EventEmitter<void>()

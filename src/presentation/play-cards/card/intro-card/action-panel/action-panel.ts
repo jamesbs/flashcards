@@ -8,7 +8,7 @@ import { Player } from './player'
   styleUrls: ['./action-panel.styl'],
   viewProviders: [ Player ]
 })
-export class ActionPanel {
+export class ActionPanelComponent {
   @Input() langItem: LangItem
 
   get externalLink() {
