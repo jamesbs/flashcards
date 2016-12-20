@@ -5,10 +5,10 @@ import { ngEventHandler } from '../../util/rxjs'
 export type Echo = {
   mouseover: () => void
   mouseout: () => void
-  effect: Observable<number>
+  effect$: Observable<number>
 }
 
-export const createEcho = () => {
+export const createEcho = (): Echo => {
   const echoEffect = Observable.range(1, 5)
     .mergeMap(i => Observable.of(i).delay(500 * i))
     .repeat()

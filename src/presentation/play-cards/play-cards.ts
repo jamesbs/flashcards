@@ -54,7 +54,7 @@ export class PlayCardsView {
   ngOnInit() {
     Observable.merge(this.previous.moveId$, this.next.moveId$)
       .subscribe(moveId => {
-        this.router.navigate([ '/play', moveId])
+        this.router.navigate([ 'play', moveId])
       })
   }
 }
