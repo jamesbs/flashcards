@@ -1,5 +1,5 @@
 import { getDirection } from './slide-direction'
-import { Card } from '../../domain/models'
+import { Card } from '../../domain/entities'
 
 describe('getDirection', () => {
   it('forward', () => {

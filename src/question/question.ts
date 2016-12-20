@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { QuestionType } from './question-type'
-import { LangItem, Character } from '../domain/models'
+import { LangItem, Character } from '../domain/entities'
 
 @Injectable()
 export class Question {

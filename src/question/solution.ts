@@ -1,5 +1,5 @@
 import { Question } from './question'
-import { Character } from '../domain/models'
+import { Character } from '../domain/entities'
 import { toBasic } from '../domain/pinyin'
 
 export const normalize = (str: string): string => {

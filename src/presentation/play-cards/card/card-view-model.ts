@@ -1,4 +1,4 @@
-import { Card, LangItem } from '../../../domain/models'
+import { Card, LangItem } from '../../../domain/entities'
 import { isIntroCard } from '../../../domain/card'
 import { CardViewState } from './card-view-state'
 import { IntroCardViewModel, introCardWire } from './intro-card/intro-card-view-model'

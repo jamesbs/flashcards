@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs/Rx'
-import { LangItem, Character } from '../domain/models'
+import { LangItem, Character } from '../domain/entities'
 import { LangItemProvider } from '../domain/providers'
 import { getCharacters } from '../domain/lang-item'
 import { Question } from './question'

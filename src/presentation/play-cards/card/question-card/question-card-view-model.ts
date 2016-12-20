@@ -1,4 +1,4 @@
-import { LangItem } from '../../../../domain/models'
+import { LangItem } from '../../../../domain/entities'
 
 export interface QuestionCardViewModel {
   id: string

@@ -1,4 +1,4 @@
-import { LangItem, IntroCard } from '../../../../domain/models'
+import { LangItem, IntroCard } from '../../../../domain/entities'
 import { CardViewModel } from '../card-view-model'
 
 export interface IntroCardViewModel {

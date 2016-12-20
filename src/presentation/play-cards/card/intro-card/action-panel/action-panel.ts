@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core'
-import { LangItem } from '../../../../../domain/models'
+import { LangItem } from '../../../../../domain/entities'
 import { Player } from './player'
 
 @Component({

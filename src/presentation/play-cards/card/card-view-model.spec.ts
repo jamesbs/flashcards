@@ -1,6 +1,6 @@
 import 'reflect-metadata' // why is this needed?
 import { cardWire } from './card-view-model'
-import { Card, LangItem } from '../../../domain/models'
+import { Card, LangItem } from '../../../domain/entities'
 
 describe('cardWire', () => {
   it('basic', () => {

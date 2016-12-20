@@ -1,4 +1,4 @@
-import { Card } from '../../domain/models'
+import { Card } from '../../domain/entities'
 
 
 export type SlideDirection = 'forward' | 'backward'

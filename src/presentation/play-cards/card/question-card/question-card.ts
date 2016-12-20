@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core'
-import { LangItem, Character } from '../../../../domain/models'
+import { LangItem, Character } from '../../../../domain/entities'
 import { getCharacters } from '../../../../domain/lang-item'
 import { StandardWord, toStandard } from '../../../../view/standard-word'
 

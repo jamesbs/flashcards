@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
-import { Card } from '../../domain/models'
+import { Card } from '../../domain/entities'
 import { CardProvider } from '../../domain/providers'
 
 @Component({
