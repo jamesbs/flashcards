@@ -1,6 +1,6 @@
 import { Observable, Subject } from 'rxjs'
 
-import { IntroCardViewModel } from './card/intro-card/intro-card-view-model'
+import { Historical } from '../../domain/types'
 
 export type Mover = {
   move: () => void,
@@ -8,9 +8,9 @@ export type Mover = {
   moveId$: Observable<string>
 }
 
-export const createMover = (
-  card$: Observable<IntroCardViewModel>,
-  getId: (card: IntroCardViewModel) => string) => {
+export const createMover = <T extends Historical>(
+  card$: Observable<T>,
+  getId: (card: Historical) => string): Mover => {
 
   const move$ = new Subject<void>()
   const move = () => { move$.next() }

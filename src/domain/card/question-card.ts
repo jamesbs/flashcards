@@ -1,10 +1,12 @@
-export interface QuestionCard {
-  id: string
-  type: 'question'
-  langItemId: string
-  hintCount: number
-  failureCount: number
-  successCount: number
-  previous?: string
-  next?: string
-}
+import { Identifiable, Historical, Typed } from '../types'
+
+export type QuestionCard =
+    Identifiable
+  & Historical
+  & Typed<'question'>
+  & {
+      langItemId: string
+      hintCount: number
+      failureCount: number
+      successCount: number
+    }

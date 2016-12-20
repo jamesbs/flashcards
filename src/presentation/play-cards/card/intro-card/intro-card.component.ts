@@ -27,7 +27,7 @@ export class IntroCardComponent {
 
   set langItem(langItem) {
     this._langItem = langItem
-    this.characters = getCharacters(this.langItem)
+    this.characters = getCharacters(langItem)
   }
 
   @Output()

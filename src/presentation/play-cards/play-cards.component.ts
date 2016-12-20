@@ -1,14 +1,13 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef, ChangeDetectorRef, EventEmitter,
   trigger, transition, state, style, animate } from '@angular/core'
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router'
-import { Observable, Subject, BehaviorSubject } from 'rxjs'
+import { Observable } from 'rxjs'
 
 import { CardProvider } from '../../domain/providers'
-import { cardWire } from './card'
-import { IntroCardViewModel } from './card/intro-card/intro-card-view-model'
 import { LangItemProvider } from '../../domain/providers'
 import { SlideDirection, getDirection, gd } from './slide-direction'
 import { createMover } from './mover'
+import { createCardContext } from './card'
 
 const slide = animate('1200ms cubic-bezier(0.230, 1.000, 0.320, 1.000)')
 
@@ -33,12 +32,13 @@ const slide = animate('1200ms cubic-bezier(0.230, 1.000, 0.320, 1.000)')
   ],
 })
 export class PlayCardsComponent {
-  card$ = this.route.params
-    .mergeMap(({ cardId }) => this.cardProvider.get(cardId))
-    .mergeMap(card =>
-      this.langItemProvider.get(card.langItemId)
-        .map(langItem => cardWire(card, { langItem })))
-    .share()
+  card$ =
+    this.route.params
+      .mergeMap(({ cardId }) => this.cardProvider.get(cardId))
+      .mergeMap(card =>
+        this.langItemProvider.get(card.langItemId)
+          .map(langItem => createCardContext(card, langItem)))
+      .share()
 
   previous = createMover(this.card$, ({ previous }) => previous)
   next = createMover(this.card$, ({ next }) => next)
@@ -53,7 +53,7 @@ export class PlayCardsComponent {
   ngOnInit() {
     Observable.merge(this.previous.moveId$, this.next.moveId$)
       .subscribe(moveId => {
-        this.router.navigate([ 'play', moveId])
+        this.router.navigate(['play', moveId])
       })
   }
 }

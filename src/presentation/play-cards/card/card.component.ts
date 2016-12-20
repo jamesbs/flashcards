@@ -2,8 +2,8 @@ import { Component, Input, Output, EventEmitter, HostBinding, ChangeDetectorRef 
 import { Card, LangItem } from '../../../domain/entities'
 import { LangItemProvider } from '../../../domain/providers'
 import { IntroCardComponent } from '../../../components'
+import { CardContext } from './card-context'
 import { CardActivity } from './card-activity'
-import { CardViewModel } from './card-view-model'
 
 @Component({
   selector: 'app-card',
@@ -11,12 +11,10 @@ import { CardViewModel } from './card-view-model'
   styleUrls: ['./card.component.styl']
 })
 export class CardComponent {
-
-  private _card: CardViewModel
+  private _card: CardContext
 
   @Input()
-  get card(): CardViewModel
-  {
+  get card() {
     return this._card
   }
 
