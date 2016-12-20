@@ -1,6 +1,6 @@
 import { Pinyin } from './pinyin'
 import { Tone, isTone } from '../tone'
-import { ValueError } from '../../error/value-error'
+import { ValueError } from '../../error/value.error'
 
 export const fromBasic = (basic: string): Pinyin => {
   const normalized = basic.trim()

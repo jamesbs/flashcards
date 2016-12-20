@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core'
-import { BrowserModule } from '@angular/platform-browser'
+import { CommonModule } from '@angular/common'
 import { ReactiveFormsModule } from '@angular/forms'
-import { declarations } from './declarations'
-import { providers } from './providers'
+import { declarations } from './shared.declarations'
+import { providers } from './shared.providers'
 
 @NgModule({
   declarations,
   imports: [
     ReactiveFormsModule,
-    BrowserModule,
+    CommonModule,
   ],
   exports: declarations,
   providers,
   bootstrap: []
 })
-export class CommonModule { }
+export class SharedModule { }

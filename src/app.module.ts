@@ -1,13 +1,13 @@
-import { NgModule, Component } from '@angular/core'
+import { NgModule } from '@angular/core'
 import { APP_BASE_HREF } from '@angular/common'
 import { BrowserModule } from '@angular/platform-browser'
 import { ReactiveFormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'
 import { RouterModule } from '@angular/router'
-import { CommonModule as AppCommonModule } from './common/common.module'
-import { LangItemProvider, CardProvider } from './domain/providers'
+
+import { SharedModule } from './shared/shared.module'
 import { AppRootComponent } from './presentation/app-root'
-import { declarations } from './declarations'
+import { declarations } from './app.declarations'
 import { Routes } from './app.routes'
 import { providers } from './domain/providers'
 import { environment } from '../environment'
@@ -19,9 +19,9 @@ import { getConfigProviders } from './config'
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    AppCommonModule,
     HttpModule,
     RouterModule.forRoot(Routes),
+    SharedModule,
   ],
   providers: [
     ...providers,

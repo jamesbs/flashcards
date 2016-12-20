@@ -1,6 +1,6 @@
 import { fromBasic, toBasic } from './basic'
 import { Pinyin } from './pinyin'
-import { ValueError } from '../../error/value-error'
+import { ValueError } from '../../error/value.error'
 
 describe('fromBasic', () => {
   it('base case', () => {

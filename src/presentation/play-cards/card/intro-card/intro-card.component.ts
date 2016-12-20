@@ -5,8 +5,8 @@ import { LangItem, Character } from '../../../../domain/entities'
 import { getCharacters } from '../../../../domain/lang-item'
 import { CharacterComponent } from './character'
 import { EnglishInputComponent } from './english-input'
-import { CardSounds } from '../../../../common/services/sound'
-import { ActionSounds } from '../../../../common/services/sound/action-sounds'
+import { CardSounds } from '../../../../shared/services/sound'
+import { ActionSounds } from '../../../../shared/services/sound/action-sounds'
 
 @Component({
   selector: 'app-intro-card',

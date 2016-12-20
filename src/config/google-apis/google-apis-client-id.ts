@@ -1,7 +1,7 @@
 import { OpaqueToken } from '@angular/core'
 import { Config } from '../config'
 import { generateConfigProvider } from '../generate-config-provider'
-import { googleApisClientId } from '../../common/services/google-apis'
+import { googleApisClientId } from '../../shared/services/google-apis'
 
 
 export const googleApisClientIdFactory = generateConfigProvider(

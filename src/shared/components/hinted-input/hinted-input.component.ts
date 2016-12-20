@@ -9,10 +9,10 @@ import { CompleteCondition } from './complete-condition'
 
 @Component({
   selector: 'app-hinted-input',
-  templateUrl: './hinted-input.html',
-  styleUrls: ['./hinted-input.styl']
+  templateUrl: './hinted-input.component.html',
+  styleUrls: ['./hinted-input.component.styl']
 })
-export class HintedInput {
+export class HintedInputComponent {
   @Output() focus = new EventEmitter<FocusEvent>()
   @Output() blur = new EventEmitter<FocusEvent>()
   @Output() valueChange = new EventEmitter<string>()

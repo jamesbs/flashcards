@@ -2,8 +2,8 @@ import { Component, Input, Output, HostListener, HostBinding, EventEmitter, View
   ChangeDetectorRef } from '@angular/core'
 import { FormGroup, FormControl } from '@angular/forms'
 import { isEqual } from 'lodash'
-import { HintedInput, allComplete } from '../../../../../common/components/hinted-input'
-import { Matcher } from '../../../../../common/components/hinted-input'
+import { HintedInputComponent, allComplete } from '../../../../../shared/components/hinted-input'
+import { Matcher } from '../../../../../shared/components/hinted-input'
 import { Pinyin, Character } from '../../../../../domain/entities'
 import { toStandard } from '../../../../../view/pinyin'
 import { generatePinyinMatcher } from './pinyin-matcher'
@@ -35,7 +35,7 @@ export class CharacterComponent {
   completed = false
 
 
-  @ViewChild(HintedInput) input: HintedInput
+  @ViewChild(HintedInputComponent) input: HintedInputComponent
 
   @HostBinding('class.focused')
   focused = false

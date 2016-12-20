@@ -2,7 +2,7 @@ import { Component } from '@angular/core'
 import { FormGroup, FormControl, ValidatorFn } from '@angular/forms'
 import { validUsername, validEmail } from '../../domain/validators'
 import { URLSearchParams, Http } from '@angular/http'
-import { GoogleApis } from '../../common/services/google-apis'
+import { GoogleApis } from '../../shared/services/google-apis'
 
 // should be defined in configs not in repo
 const clientId = '229587405481-ld3ptvav3bggc4rp1367qqbudqqk9aa0.apps.googleusercontent.com'

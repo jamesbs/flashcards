@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, ViewChild, HostListener, HostBinding } from '@angular/core'
 import { isString } from 'lodash'
-import { HintedInput, Matcher, allComplete } from '../../../../../common/components/hinted-input'
+import { HintedInputComponent, Matcher, allComplete } from '../../../../../shared/components/hinted-input'
 
 @Component({
   selector: 'app-english-input',
@@ -18,7 +18,7 @@ export class EnglishInputComponent {
   @HostBinding('class.focused')
   focused = false
 
-  @ViewChild(HintedInput) input: HintedInput
+  @ViewChild(HintedInputComponent) input: HintedInputComponent
 
   @Input()
   english: string | string[]
