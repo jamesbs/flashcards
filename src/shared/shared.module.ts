@@ -12,6 +12,5 @@ import { providers } from './shared.providers'
   ],
   exports: declarations,
   providers,
-  bootstrap: []
 })
 export class SharedModule { }

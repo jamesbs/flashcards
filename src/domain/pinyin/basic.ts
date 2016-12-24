@@ -11,9 +11,10 @@ export const fromBasic = (basic: string): Pinyin => {
   } else {
     return {
       syllable: normalized.slice(0, -1),
-      tone: <Tone>tone
+      tone
     }
   }
 }
 
-export const toBasic = (pinyin: Pinyin) => pinyin.syllable + pinyin.tone
+export const toBasic = (pinyin: Pinyin) =>
+  pinyin.syllable + pinyin.tone

@@ -1,12 +1,11 @@
-<app-hinted-input
+<app-intro-input
   class="input"
-  [isValid]="englishMatcher"
+  hintDirection="down"
+  [tests]="tests"
   [isComplete]="allComplete"
-  [value]="english"
-  hintDirection="slide-down"
-  (success)="onSuccess()"
-  (complete)="onComplete()"
-  (failure)="failure.emit()"
-  (focus)="focused = true"
-  (blur)="focused = false">
-</app-hinted-input>
+  [complete]="onComplete"
+  [success]="success"
+  [failure]="failure"
+  [focus]="focus"
+  [blur]="blur">
+</app-intro-input>

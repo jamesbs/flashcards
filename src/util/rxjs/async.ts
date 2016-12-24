@@ -12,7 +12,7 @@ export const lazyAsync = <T>(run: (subject: AsyncSubject<T>) => void) => {
 
   return Observable.of(sub)
     .flatMap(s => {
-      if (!fired) {
+      if(!fired) {
         run(s)
         fired = true
       }

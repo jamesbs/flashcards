@@ -1,3 +1,5 @@
 export { Historical } from './historical'
 export { Identifiable } from './identifiable'
 export { Typed } from './typed'
+export { Direction } from './direction'
+export { VerticalDirection } from './vertical-direction'

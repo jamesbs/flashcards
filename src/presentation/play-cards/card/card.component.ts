@@ -26,8 +26,8 @@ export class CardComponent {
   @Input()
   active: boolean
 
-  @Output()
-  complete = new EventEmitter<void>()
+  @Input()
+  complete = () => { }
 
   constructor(
     private langItemProvider: LangItemProvider,

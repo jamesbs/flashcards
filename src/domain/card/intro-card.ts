@@ -10,4 +10,5 @@ export type IntroCard =
       langItemId: string
     }
 
-export const isIntroCard = (card: Card): card is IntroCard => card.type === 'intro'
+export const isIntroCard = (card: Card): card is IntroCard =>
+  card.type === 'intro'

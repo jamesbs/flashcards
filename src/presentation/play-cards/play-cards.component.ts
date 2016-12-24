@@ -56,4 +56,8 @@ export class PlayCardsComponent {
         this.router.navigate(['play', moveId])
       })
   }
+
+  complete = () => {
+    this.next.move()
+  }
 }

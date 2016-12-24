@@ -9,6 +9,6 @@
     class="card"
     [card]="card$ | async"
     [active]="true"
-    (complete)="next?.move()">
+    [complete]="complete">
   </app-card>
 </div>

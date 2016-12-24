@@ -4,7 +4,7 @@
       *ngSwitchCase="'intro'"
       [active]="active"
       [langItem]="card.langItem"
-      (complete)="complete.emit()">
+      [complete]="complete">
     </app-intro-card>
     <div *ngSwitchDefault>default</div>
   </div>

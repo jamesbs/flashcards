@@ -2,11 +2,14 @@ import { Component, Input, Output, HostListener, HostBinding, EventEmitter, View
   ChangeDetectorRef } from '@angular/core'
 import { FormGroup, FormControl } from '@angular/forms'
 import { isEqual } from 'lodash'
-import { HintedInputComponent, allComplete } from '../../../../../shared/components/hinted-input'
+
+import { IntroInputComponent, allComplete } from '../intro-input'
 import { Matcher } from '../../../../../shared/components/hinted-input'
 import { Pinyin, Character } from '../../../../../domain/entities'
 import { toStandard } from '../../../../../view/pinyin'
+import { toBasic } from '../../../../../domain/pinyin'
 import { generatePinyinMatcher } from './pinyin-matcher'
+import { Test } from '../intro-input'
 
 @Component({
   selector: 'app-character',
@@ -14,8 +17,9 @@ import { generatePinyinMatcher } from './pinyin-matcher'
   styleUrls: ['./character.component.styl'],
 })
 export class CharacterComponent {
-  @Output() failure = new EventEmitter<void>()
-  @Output() complete = new EventEmitter<void>()
+  @Input() failure = () => { }
+
+  tests: Test<Pinyin>[] = []
 
   private _character: Character
 
@@ -26,48 +30,44 @@ export class CharacterComponent {
 
   set character(character) {
     this._character = character
-    this.pinyin = toStandard(character.pinyin)
-    this.pinyinMatcher = generatePinyinMatcher(character.pinyin)
+
+    this.tests = [ {
+      value: character.pinyin,
+      display: toStandard(character.pinyin),
+      completed: false,
+    } ]
   }
 
   @HostBinding('class.completed')
-  @Input()
   completed = false
 
+  @Input() complete = () => { }
 
-  @ViewChild(HintedInputComponent) input: HintedInputComponent
+  onComplete = () => {
+    this.completed = true
+    this.complete()
+  }
 
   @HostBinding('class.focused')
   focused = false
 
+  focus = () => { this.focused = true }
+  blur = () => { this.focused = false }
+
+  // find a better way to handle focus
+  @ViewChild(IntroInputComponent) input: IntroInputComponent
+
   @HostListener('click')
   onClick() {
-    if (!this.completed)
+    if(!this.completed)
       this.setFocus()
   }
-
-  onComplete() {
-    this.complete.emit()
-    this.completed = true
-  }
-
-  allComplete = allComplete
-
-  // find a way to implement this as a memoized getter
-  pinyin: string
-
-  empty = true
 
   setFocus() {
     this.input.setFocus()
   }
 
-  get chinese() {
-    return this.character.chinese
-  }
+  passes = (inputValue: string, test: Test<Pinyin>) => inputValue === toBasic(test.value)
 
-  pinyinMatcher: Matcher
-
-  constructor(private cd: ChangeDetectorRef) { }
-
+  allComplete = allComplete
 }

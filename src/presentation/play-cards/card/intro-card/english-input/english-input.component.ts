@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewChild, HostListener, HostBinding } from '@angular/core'
-import { isString } from 'lodash'
-import { HintedInputComponent, Matcher, allComplete } from '../../../../../shared/components/hinted-input'
+import { isArray } from 'lodash'
+import { IntroInputComponent, Matcher, allComplete } from '../intro-input'
+import { Test } from '../intro-input'
 
 @Component({
   selector: 'app-english-input',
@@ -8,37 +9,59 @@ import { HintedInputComponent, Matcher, allComplete } from '../../../../../share
   styleUrls: [ './english-input.component.styl' ],
 })
 export class EnglishInputComponent {
-  @Output() success = new EventEmitter<void>()
-  @Output() failure = new EventEmitter<void>()
-  @Output() complete = new EventEmitter<void>()
-
   @HostBinding('class.completed')
   completed = false
 
   @HostBinding('class.focused')
   focused = false
 
-  @ViewChild(HintedInputComponent) input: HintedInputComponent
+  focus = () => { this.focused = true }
+  blur = () => { this.focused = false }
+
+  @Input() success = () => { }
+
+  @Input() failure = () => { }
+
+  @Input() complete = () => { }
+
+  onComplete = () => {
+    this.completed = true
+    this.complete()
+  }
+
+  tests: Test<string>[] = []
+
+  _english: string | string[] = ''
 
   @Input()
-  english: string | string[]
+  get english() {
+    return this._english
+  }
+
+  set english(english) {
+    this._english = english
+
+    if(isArray(english))
+      this.tests = english.map(e => ({
+        value: e,
+        display: e,
+        completed: false
+      }))
+    else
+      this.tests = [{
+        value: english,
+        display: english,
+        completed: false
+      }]
+  }
+
+  @ViewChild(IntroInputComponent) input: IntroInputComponent
 
   @HostListener('click')
-  setFocus() {
+  setFocus = () => {
     if(!this.completed)
       this.input.setFocus()
   }
-
-  onSuccess() {
-    this.success.emit()
-  }
-
-  onComplete() {
-    this.completed = true
-    this.complete.emit()
-  }
-
-  englishMatcher: Matcher = (input, comparison) => input === comparison
 
   allComplete = allComplete
 }

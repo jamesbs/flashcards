@@ -6,7 +6,7 @@ export class ResetIfEmptyDirective {
 
   @HostListener('blur', ['$event.target'])
   resetIfEmpty(input: HTMLInputElement) {
-    if (!input.value)
+    if(!input.value)
       input.value = this.resetValue
   }
 }

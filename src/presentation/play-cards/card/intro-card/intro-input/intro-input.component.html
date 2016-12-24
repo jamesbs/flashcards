@@ -1,0 +1,19 @@
+<div class="spacer">{{spacerValue}}</div>
+<div class="hints">
+  <div *ngFor="let test of tests" [class.completed]="test.completed">
+    {{test.display}}
+  </div>
+</div>
+<form
+  [formGroup]="form"
+  (submit)="sub(form.controls.test.value)"
+  *ngIf="!completed">
+
+  <input
+    type="text"
+    class="entry"
+    (blur)="onBlur($event)"
+    (focus)="onFocus($event)"
+    formControlName="test"
+    #input>
+</form>

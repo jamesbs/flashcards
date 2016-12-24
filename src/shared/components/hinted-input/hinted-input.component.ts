@@ -29,6 +29,7 @@ export class HintedInputComponent {
   get value() {
     return this._value
   }
+
   set value(value) {
     this._value = value
 
@@ -46,7 +47,7 @@ export class HintedInputComponent {
 
   @Input()
   set hintDirection(direction: 'slide-up' | 'slide-down') {
-    if (direction === 'slide-up') {
+    if(direction === 'slide-up') {
       this.slideUp = true
       this.slideDown = false
     } else {
@@ -55,11 +56,12 @@ export class HintedInputComponent {
     }
   }
 
+  @ViewChild('input') input: ElementRef
+
   @HostBinding('class.slide-up') slideUp = false
 
   @HostBinding('class.slide-down') slideDown = false
 
-  @ViewChild('input') input: ElementRef
 
   @HostBinding('class.completed')
   completed = false
@@ -79,7 +81,7 @@ export class HintedInputComponent {
 
   @HostListener('click')
   setFocus() {
-    if (!this.completed)
+    if(!this.completed)
       this.renderer.invokeElementMethod(this.input.nativeElement, 'focus')
   }
 

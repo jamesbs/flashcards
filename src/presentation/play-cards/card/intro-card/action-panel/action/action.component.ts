@@ -9,7 +9,6 @@ export class ActionComponent {
   @Output()
   iconHover = new EventEmitter<boolean>()
 
-
   @HostBinding('class.hovered')
   hovered = false
 

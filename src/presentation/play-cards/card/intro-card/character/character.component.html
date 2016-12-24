@@ -1,14 +1,14 @@
-<div class="chinese">{{chinese}}</div>
+<div class="chinese">{{character?.chinese}}</div>
 <div class="pinyin">
-  <app-hinted-input class="pinyin-input"
-    hintDirection="slide-up"
-    [value]="pinyin"
-    [isValid]="pinyinMatcher"
+  <app-intro-input
+    class="pinyin-input"
+    hintDirection="up"
+    [tests]="tests"
+    [passes]="passes"
     [isComplete]="allComplete"
-    (complete)="onComplete()"
-    (failure)="failure.emit()"
-    (focus)="focused = true"
-    (blur)="focused = false"
-    (valueChange)="empty = !$event">
-  </app-hinted-input>
+    [complete]="onComplete"
+    [failure]="failure"
+    [focus]="focus"
+    [blur]="blur">
+  </app-intro-input>
 </div>

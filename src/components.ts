@@ -9,6 +9,7 @@ import { ActionComponent, ActionIconDirective, ActionTooltipDirective }
   from './presentation/play-cards/card/intro-card/action-panel/action'
 import { ExampleComponent } from './presentation/play-cards/card/intro-card/example'
 import { EnglishInputComponent } from './presentation/play-cards/card/intro-card/english-input'
+import { IntroInputComponent } from './presentation/play-cards/card/intro-card/intro-input'
 import { QuestionCardComponent } from './presentation/play-cards/card/question-card'
 import { PlayCardsComponent } from './presentation/play-cards'
 import { HeaderComponent } from './presentation/header'
@@ -24,6 +25,7 @@ export const components = [
   ExampleComponent,
   CharacterComponent,
   EnglishInputComponent,
+  IntroInputComponent,
   ActionComponent,
   ActionIconDirective,
   ActionTooltipDirective,
@@ -43,6 +45,7 @@ export {
   ExampleComponent,
   CharacterComponent,
   EnglishInputComponent,
+  IntroInputComponent,
   ActionComponent,
   ActionIconDirective,
   ActionTooltipDirective,

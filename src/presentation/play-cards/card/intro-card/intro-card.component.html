@@ -9,15 +9,15 @@
       class="character"
       [character]="character"
       *ngFor="let character of characters; let index = index"
-      (complete)="characterComplete(index)"
-      (failure)="onFailure()">
+      [complete]="characterComplete(index)"
+      [failure]="failure">
     </app-character>
   </div>
   <app-english-input class="english"
     [english]="langItem.english"
-    (success)="englishSuccess()"
-    (complete)="englishComplete()"
-    (failure)="actionSounds.failure.play('main')">
+    [success]="englishSuccess"
+    [complete]="englishComplete"
+    [failure]="failure">
   </app-english-input>
 </div>
 <div class="examples" *ngIf="langItem.examples?.length > 0">

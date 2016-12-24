@@ -30,8 +30,9 @@ export class IntroCardComponent {
     this.characters = getCharacters(langItem)
   }
 
-  @Output()
-  complete = new EventEmitter<void>()
+
+  @Input()
+  complete = () => { }
 
   @ViewChildren(CharacterComponent)
   set characterViewsQuery(views: QueryList<CharacterComponent>) {
@@ -48,27 +49,30 @@ export class IntroCardComponent {
   // find a way to implement this as a memoized getter
   characters: Character[]
 
-  characterComplete(successIndex: number) {
-    this.focusNext(successIndex)
-    this.actionSounds.success.play()
-  }
+  characterComplete = (successIndex: number) =>
+    () => {
+      this.focusNext(successIndex)
+      this.actionSounds.success.play()
+    }
 
-  focusNext(successIndex?: number) {
+  focusNext = (successIndex?: number) => {
     const nextAvailable = this.findNextAvailable(successIndex)
 
     if(nextAvailable === undefined) {
       this.pinyinCompleted = true
 
+      this.cd.detectChanges()
+
       if(!this.englishCompleted)
         this.englishInput.setFocus()
       else
-        this.complete.emit()
+        this.complete()
     } else {
       this.characterViews[nextAvailable].setFocus()
     }
   }
 
-  findNextAvailable(successIndex: number) {
+  findNextAvailable = (successIndex: number) => {
     const viewIndexes = this.characterViews.map((view, index) => ({ view, index }))
 
     const views = successIndex === undefined
@@ -83,30 +87,33 @@ export class IntroCardComponent {
     return found ? found.index : undefined
   }
 
-  englishSuccess() {
+  englishSuccess = () => {
     this.actionSounds.success.play()
   }
 
-  englishComplete() {
+  englishComplete = () => {
     this.englishCompleted = true
+    this.cd.detectChanges()
 
     if(this.pinyinCompleted)
-      this.complete.emit()
+      this.complete()
     else
       this.focusNext()
   }
 
-  onFailure() {
+  failure = () => {
     this.actionSounds.failure.play('main')
   }
 
-  constructor(private actionSounds: CardSounds, private cd: ChangeDetectorRef) { }
+  constructor(
+    private actionSounds: CardSounds,
+    private cd: ChangeDetectorRef) { }
 
   ngAfterViewInit() {
     Observable.of(this.active)
       .delay(500)
       .subscribe(active => {
-        if (active)
+        if(active)
           this.focusNext()
       })
   }
