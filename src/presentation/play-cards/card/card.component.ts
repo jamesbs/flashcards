@@ -1,7 +1,4 @@
-import { Component, Input, Output, EventEmitter, HostBinding, ChangeDetectorRef } from '@angular/core'
-import { Card, LangItem } from '../../../domain/entities'
-import { LangItemProvider } from '../../../domain/providers'
-import { IntroCardComponent } from '../../../components'
+import { Component, Input } from '@angular/core'
 import { CardContext } from './card-context'
 import { CardActivity } from './card-activity'
 
@@ -11,26 +8,13 @@ import { CardActivity } from './card-activity'
   styleUrls: ['./card.component.styl']
 })
 export class CardComponent {
-  private _card: CardContext
-
   @Input()
-  get card() {
-    return this._card
-  }
-
-  set card(val) {
-    this._card = val
-    this.cd.detectChanges()
-  }
+  card: CardContext
 
   @Input()
   active: boolean
 
   @Input()
   complete = () => { }
-
-  constructor(
-    private langItemProvider: LangItemProvider,
-    private cd: ChangeDetectorRef) { }
 }
 

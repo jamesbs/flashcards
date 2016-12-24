@@ -57,6 +57,7 @@ export class IntroInputComponent {
   @ViewChild('input') input: ElementRef
 
   @HostBinding('class.completed')
+  @Input()
   completed = false
 
   @HostBinding('class.focused')
@@ -128,7 +129,6 @@ export class IntroInputComponent {
   checkForCompletion = () => {
     if(this.isComplete(this.tests)) {
       this.focused = false
-      this.completed = true
       this.complete()
     }
   }

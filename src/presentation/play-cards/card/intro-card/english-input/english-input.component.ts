@@ -10,6 +10,7 @@ import { Test } from '../intro-input'
 })
 export class EnglishInputComponent {
   @HostBinding('class.completed')
+  @Input()
   completed = false
 
   @HostBinding('class.focused')
@@ -23,11 +24,6 @@ export class EnglishInputComponent {
   @Input() failure = () => { }
 
   @Input() complete = () => { }
-
-  onComplete = () => {
-    this.completed = true
-    this.complete()
-  }
 
   tests: Test<string>[] = []
 
