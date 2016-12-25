@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, ViewChildren, QueryList, ViewChild,
   ChangeDetectorRef } from '@angular/core'
-import { Observable } from 'rxjs'
+import { Observable } from 'rxjs/Observable'
 import { LangItem, Character } from '../../../../domain/entities'
 import { getCharacters } from '../../../../domain/lang-item'
 import { CharacterComponent } from './character'
@@ -27,6 +27,7 @@ export class IntroCardComponent {
 
   set langItem(langItem) {
     this._langItem = langItem
+    // should be fromPhrase
     this.characters = getCharacters(langItem)
     this.englishCompleted = false
   }

@@ -1,4 +1,4 @@
-import { Pinyin } from './pinyin'
+import { Pinyin } from '../pinyin'
 
 export interface Character {
   chinese: string

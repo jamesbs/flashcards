@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core'
 import { Http } from '@angular/http'
 import { LangItem } from './lang-item'
-import { Observable } from 'rxjs/Rx'
+import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/operator/map'
-
 
 const baseUrl = 'http://localhost:8999'
 

@@ -1,7 +1,12 @@
 import { Pinyin, Vowel, isVowel, isPriorityVowel } from '../../domain/pinyin'
 import { applyTone } from './pinyin-tone'
 
-export const toStandard = (pinyin: Pinyin) => {
+// pinyin is in standard form
+export type StandardPinyin = { pinyin: string }
+
+export const toStandard = (pinyin: Pinyin) => ({ pinyin: standardFormat(pinyin) })
+
+export const standardFormat = (pinyin: Pinyin) => {
     const matchingIndex = findApplyIndex(pinyin.syllable)
 
     return pinyin.syllable.slice(0, matchingIndex)

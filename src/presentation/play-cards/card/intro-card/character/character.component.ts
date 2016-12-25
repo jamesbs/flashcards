@@ -5,7 +5,7 @@ import { isEqual } from 'lodash'
 
 import { IntroInputComponent, allComplete } from '../intro-input'
 import { Pinyin, Character } from '../../../../../domain/entities'
-import { toStandard } from '../../../../../domain/pinyin'
+import { standardFormat } from '../../../../../domain/pinyin'
 import { toBasic } from '../../../../../domain/pinyin'
 import { Test } from '../intro-input'
 
@@ -31,7 +31,7 @@ export class CharacterComponent {
 
     this.tests = [ {
       value: character.pinyin,
-      display: toStandard(character.pinyin),
+      display: standardFormat(character.pinyin),
       completed: false,
     } ]
   }

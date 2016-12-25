@@ -1,10 +1,11 @@
 import { zip } from '../../util/collection'
-import { Translation } from '../translation'
 import { splitPinyin, fromBasic } from '../pinyin'
+import { Phrase } from './phrase'
 
-export const getCharacters = (translation: Translation) =>
-  zip(translation.chinese.split(''), splitPinyin(translation.pinyin))
-    .map(([ chinese, pinyin ]) => ({
-      chinese,
-      pinyin: fromBasic(pinyin)
+export const getCharacters =
+  ({ chinese, pinyin }: Phrase) =>
+  zip(chinese.split(''), splitPinyin(pinyin))
+    .map(([ chn, pin ]) => ({
+      chinese: chn,
+      pinyin: fromBasic(pin)
     }))

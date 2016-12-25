@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, ViewContainerRef, ChangeDetectorRef, EventEmitter,
+import { Component, ComponentFactoryResolver, ViewContainerRef, EventEmitter,
   trigger, transition, state, style, animate } from '@angular/core'
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router'
 import { Observable } from 'rxjs'
@@ -32,13 +32,12 @@ const slide = animate('1200ms cubic-bezier(0.230, 1.000, 0.320, 1.000)')
   ],
 })
 export class PlayCardsComponent {
-  card$ =
-    this.route.params
-      .mergeMap(({ cardId }) => this.cardProvider.get(cardId))
-      .mergeMap(card =>
-        this.langItemProvider.get(card.langItemId)
-          .map(langItem => createCardContext(card, langItem)))
-      .share()
+  card$ = this.route.params
+    .mergeMap(({ cardId }) => this.cardProvider.get(cardId))
+    .mergeMap(card =>
+      this.langItemProvider.get(card.langItemId)
+        .map(langItem => createCardContext(card, langItem)))
+    .share()
 
   previous = createMover(this.card$, ({ previous }) => previous)
   next = createMover(this.card$, ({ next }) => next)
@@ -47,8 +46,7 @@ export class PlayCardsComponent {
     private router: Router,
     private route: ActivatedRoute,
     private cardProvider: CardProvider,
-    private langItemProvider: LangItemProvider,
-    private cd: ChangeDetectorRef) { }
+    private langItemProvider: LangItemProvider) { }
 
   ngOnInit() {
     Observable.merge(this.previous.moveId$, this.next.moveId$)

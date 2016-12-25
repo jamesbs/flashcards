@@ -1,5 +1,4 @@
 import { Card } from './card'
-import { LangItem } from '../lang-item'
 import { Identifiable, Historical, Typed } from '../types'
 
 export type IntroCard =

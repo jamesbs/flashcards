@@ -1,10 +1,9 @@
 import { Translation } from '../translation'
-import { SimpleTranslation } from '../simple-translation'
+import { Identifiable } from '../types'
 
-export interface LangItem extends Translation {
-  id: string
-  chinese: string
-  pinyin: string
-  english: string | string[]
-  examples: SimpleTranslation[]
-}
+export type LangItem =
+    Identifiable
+  & Translation
+  & {
+      examples: Translation[]
+    }

@@ -1,6 +1,6 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core'
-import { SimpleTranslation } from '../../../../../domain/entities'
-import { getWords } from '../../../../../domain/lang-item'
+import { Translation } from '../../../../../domain/entities'
+import { fromPhrase } from '../../../../../domain/word'
 import { StandardWord, toStandard } from '../../../../../domain/word/standard-word'
 
 @Component({
@@ -9,7 +9,7 @@ import { StandardWord, toStandard } from '../../../../../domain/word/standard-wo
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExampleComponent {
-  private _example: SimpleTranslation
+  private _example: Translation
 
   @Input()
   get example() {
@@ -18,7 +18,7 @@ export class ExampleComponent {
 
   set example(example) {
     this._example = example
-    this.words = getWords(this.example).map(toStandard)
+    this.words = fromPhrase(example).map(toStandard)
   }
 
   // find a way to implement this as a memoized getter

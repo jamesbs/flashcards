@@ -1,6 +1,6 @@
-import { getWords } from './get-words'
+import { fromPhrase } from './word'
 
-describe('getWords', () => {
+describe('fromPhrase', () => {
   it('single word', () => {
     const input = {
       chinese: '我们',
@@ -14,7 +14,7 @@ describe('getWords', () => {
         { chinese: '们', pinyin: { syllable: 'men', tone: '5' } },
       ]]
 
-   ;(<any>expect(getWords(input))).toDeepEqual(expected)
+   ;(<any>expect(fromPhrase(input))).toDeepEqual(expected)
   })
 
   it('multiple words', () => {
@@ -30,6 +30,6 @@ describe('getWords', () => {
       [ { chinese: '吗', pinyin: { syllable: 'ma', tone: '5' } } ],
     ]
 
-   ;(<any>expect(getWords(input))).toDeepEqual(expected)
+   ;(<any>expect(fromPhrase(input))).toDeepEqual(expected)
   })
 })
