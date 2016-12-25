@@ -4,11 +4,9 @@ import { FormGroup, FormControl } from '@angular/forms'
 import { isEqual } from 'lodash'
 
 import { IntroInputComponent, allComplete } from '../intro-input'
-import { Matcher } from '../../../../../shared/components/hinted-input'
 import { Pinyin, Character } from '../../../../../domain/entities'
-import { toStandard } from '../../../../../view/pinyin'
+import { toStandard } from '../../../../../domain/pinyin'
 import { toBasic } from '../../../../../domain/pinyin'
-import { generatePinyinMatcher } from './pinyin-matcher'
 import { Test } from '../intro-input'
 
 @Component({

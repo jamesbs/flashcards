@@ -1,5 +1,5 @@
-import { Word } from '../domain/word'
-import { toStandard as pinyinToStandard } from './pinyin/standard'
+import { Word } from './word'
+import { toStandard as pinyinToStandard } from '../pinyin/standard'
 
 export type StandardWord = {
   chinese: string

@@ -1,7 +1,7 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core'
 import { SimpleTranslation } from '../../../../../domain/entities'
 import { getWords } from '../../../../../domain/lang-item'
-import { StandardWord, toStandard } from '../../../../../view/standard-word'
+import { StandardWord, toStandard } from '../../../../../domain/word/standard-word'
 
 @Component({
   selector: 'app-example',
