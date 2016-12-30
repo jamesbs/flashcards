@@ -1,4 +1,5 @@
-import { Component, Output, HostBinding, EventEmitter } from '@angular/core'
+import { Component, Output, HostBinding } from '@angular/core'
+import { Subject } from 'rxjs/Subject'
 
 @Component({
   selector: 'app-action',
@@ -6,16 +7,15 @@ import { Component, Output, HostBinding, EventEmitter } from '@angular/core'
   styleUrls: ['./action.component.styl'],
 })
 export class ActionComponent {
-  @Output()
-  iconHover = new EventEmitter<boolean>()
+  hovered$ = new Subject<boolean>()
 
-  @HostBinding('class.hovered')
-  hovered = false
+  @HostBinding('class.show-tooltip')
+  showTooltip = false
 
   ngOnInit() {
-    this.iconHover.debounceTime(200)
+    this.hovered$.debounceTime(200)
       .subscribe(hovered => {
-        this.hovered = hovered
+        this.showTooltip = hovered
       })
   }
 }

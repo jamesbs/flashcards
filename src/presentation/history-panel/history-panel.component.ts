@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy,
   trigger, transition, state, style, animate } from '@angular/core'
 import { Router } from '@angular/router'
-import { Observable } from 'rxjs'
+import { Observable } from 'rxjs/Observable'
 
 import { SlideDirection } from '../play-cards/slide-direction'
 import { createEcho } from './echo'
@@ -17,9 +17,6 @@ export class HistoryPanelComponent {
 
   @Input()
   next: boolean
-
-  @Output()
-  move = new EventEmitter<SlideDirection>()
 
   @Input()
   forward = () => { }

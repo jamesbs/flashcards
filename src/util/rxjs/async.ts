@@ -1,4 +1,6 @@
-import { AsyncSubject, Observable } from 'rxjs'
+import { Observable } from 'rxjs/Observable'
+import { AsyncSubject } from 'rxjs/AsyncSubject'
+import 'rxjs/add/operator/mergeMap'
 
 export const execAsync = <T>(run: (subject: AsyncSubject<T>) => void) => {
   const subject = new AsyncSubject<T>()
@@ -11,7 +13,7 @@ export const lazyAsync = <T>(run: (subject: AsyncSubject<T>) => void) => {
   let fired = false
 
   return Observable.of(sub)
-    .flatMap(s => {
+    .mergeMap(s => {
       if(!fired) {
         run(s)
         fired = true

@@ -15,5 +15,5 @@ export class ActionPanelComponent {
     return `http://www.collinsdictionary.com/dictionary/chinese-english/${this.langItem.chinese}`
   }
 
-  constructor(private player: Player) { }
+  constructor(public player: Player) { }
 }

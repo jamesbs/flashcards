@@ -21,6 +21,5 @@ export class ExampleComponent {
     this.words = fromPhrase(example).map(toStandard)
   }
 
-  // find a way to implement this as a memoized getter
   words: StandardWord[]
 }

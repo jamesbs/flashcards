@@ -1,4 +1,8 @@
-import { Observable, Subject } from 'rxjs'
+import { Observable } from 'rxjs/Observable'
+import { Subject } from 'rxjs/Subject'
+import 'rxjs/add/operator/mergeAll'
+import 'rxjs/add/observable/range'
+import 'rxjs/add/operator/mergeMap'
 
 import { ngEventHandler } from '../../util/rxjs'
 
