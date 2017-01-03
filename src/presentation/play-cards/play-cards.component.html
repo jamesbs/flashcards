@@ -1,6 +1,6 @@
 <app-history-panel
-  [previous]="(previous?.id$ | async) !== undefined"
-  [next]="(next?.id$ | async) !== undefined"
+  [previous]="hasPrevious"
+  [next]="hasNext"
   [backward]="previous?.move"
   [forward]="next?.move">
 </app-history-panel>

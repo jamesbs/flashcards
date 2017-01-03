@@ -13,10 +13,10 @@ import { createEcho } from './echo'
 })
 export class HistoryPanelComponent {
   @Input()
-  previous: boolean
+  previous: Observable<boolean>
 
   @Input()
-  next: boolean
+  next: Observable<boolean>
 
   @Input()
   forward = () => { }

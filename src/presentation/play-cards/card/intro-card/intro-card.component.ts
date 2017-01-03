@@ -32,7 +32,6 @@ export class IntroCardComponent {
     this.englishCompleted = false
   }
 
-
   @Input()
   complete = () => { }
 

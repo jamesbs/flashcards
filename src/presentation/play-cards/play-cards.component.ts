@@ -54,4 +54,7 @@ export class PlayCardsComponent {
         this.router.navigate(['play', moveId])
       })
   }
+
+  hasPrevious = this.previous.id$.map(id => id !== undefined)
+  hasNext = this.next.id$.map(id => id !== undefined)
 }

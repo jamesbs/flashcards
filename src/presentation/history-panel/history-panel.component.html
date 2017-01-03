@@ -1,6 +1,6 @@
 <div class="panel">
   <div class="move back">
-    <a [class.visible]="previous"
+    <a [class.visible]="previous | async"
       (click)="backward()"
       (mouseover)="backwardEcho.mouseover()"
       (mouseout)="backwardEcho.mouseout()">
@@ -13,7 +13,7 @@
     </div>
   </div>
   <div class="move forward">
-    <a [class.visible]="next"
+    <a [class.visible]="next | async"
       (click)="forward()"
       (mouseover)="forwardEcho.mouseover()"
       (mouseout)="forwardEcho.mouseout()">
