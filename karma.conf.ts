@@ -7,6 +7,9 @@ import { Config, ConfigOptions } from 'karma'
 module.exports = (config: any) => {
   config.set({
     frameworks: [ 'jasmine' ],
+    mime: {
+      'text/x-typescript': ['ts','tsx']
+    },
 
     singleRun: true,
 

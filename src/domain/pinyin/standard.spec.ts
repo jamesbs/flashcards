@@ -43,25 +43,25 @@ describe('toStandard', () => {
   it('ends with vowel', () => {
     const input: Pinyin = { syllable: 'xia', tone: '4' }
 
-    expect(toStandard(input)).toBe('xià')
+    expect(toStandard(input).pinyin).toBe('xià')
   })
 
   it('only vowel', () => {
     const input: Pinyin = { syllable: 'e', tone: '4' }
 
-    expect(toStandard(input)).toBe('è')
+    expect(toStandard(input).pinyin).toBe('è')
   })
 
   it('ends with consonant', () => {
     const input: Pinyin = { syllable: 'wang', tone: '3' }
 
-    expect(toStandard(input)).toBe('wǎng')
+    expect(toStandard(input).pinyin).toBe('wǎng')
   })
 
   it('ends with ou', () => {
     const input: Pinyin = { syllable: 'tou', tone: '2' }
 
-    expect(toStandard(input)).toBe('tóu')
+    expect(toStandard(input).pinyin).toBe('tóu')
   })
 })
 
