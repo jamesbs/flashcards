@@ -17,13 +17,13 @@ export const baseConfig = {
   },
 
   resolve: {
-    extensions: ['.webpack.js', '.web.js', '.ts', '.js', '.styl', '.ogg']
+    extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js', '.styl', '.ogg']
   },
 
   module: {
     loaders: [
       {
-        test: /\.ts$/,
+        test: /\.tsx?$/,
         loaders: [
           {
             loader: 'awesome-typescript-loader',
@@ -31,7 +31,6 @@ export const baseConfig = {
               configFileName: './tsconfig.webpack.json'
             },
           },
-          'angular2-template-loader',
         ],
         exclude: /node_modules/,
       },

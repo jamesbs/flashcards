@@ -2,16 +2,16 @@
   "compilerOptions": {
     "module": "es6",
     "target": "es6",
+    "jsx": "react",
     "moduleResolution": "node",
     "noImplicitAny": false,
     "strictNullChecks": false,
     "sourceMap": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "typeRoots": [
-      "./node_modules/@types"
-    ]
+    "typeRoots": ["./node_modules/@types"]
   },
+  "include": [
+    "./src/index.tsx"
+  ],
   "awesomeTypescriptLoaderOptions": {
     "useCache": true
   }
