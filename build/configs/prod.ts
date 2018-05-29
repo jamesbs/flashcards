@@ -4,13 +4,13 @@ import { baseConfig } from './base'
 
 export const prodOnlyConfig = {
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.(jpg|jpeg|gif|png|tif|ttf|eot|woff|woff2)$/,
-        loaders: [
+        use: [
           {
             loader: 'url-loader',
-            query: {
+            options: {
               name: '[path][name].[ext]',
               context: './src'
             },
@@ -19,34 +19,29 @@ export const prodOnlyConfig = {
       },
       {
         test: /\.styl/,
-        loaders: [
-          'to-string-loader',
-          'css-loader?minimize',
-          'stylus-loader',
+        use: [
+          { loader: 'to-string-loader' },
+          { loader: 'css-loader' },
+          { loader: 'stylus-loader' },
         ],
       },
       {
         test: /\.svg/,
-        loader: 'url-loader',
-        exclude: /icons/,
-        query: {
-          name: '[path][name].[ext]',
-          context: './src'
+        use: {
+          loader: 'url-loader',
+          options: {
+            name: '[path][name].[ext]',
+            context: './src'
+          },
         },
+        exclude: /icons/,
       },
     ]
   },
 
-  plugins: [
-    // dedupe plugin causing bug: https://github.com/webpack/webpack/issues/2644
-    // new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      },
-      mangle: false,
-    })
-  ]
+  optimization: {
+    minimize: true,
+  },
 }
 
 export const prodConfig = merge(baseConfig, prodOnlyConfig)

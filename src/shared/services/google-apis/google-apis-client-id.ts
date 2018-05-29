@@ -1,3 +1,3 @@
-import { OpaqueToken } from '@angular/core'
+import { InjectionToken } from '@angular/core'
 
-export const googleApisClientId = new OpaqueToken('googleApiClientId')
+export const googleApisClientId = new InjectionToken('googleApiClientId')

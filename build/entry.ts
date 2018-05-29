@@ -1,5 +1,4 @@
 export const vendor = [
-  'reflect-metadata',
   'core-js/es6',
   'core-js/es7/reflect',
   'zone.js/dist/zone',

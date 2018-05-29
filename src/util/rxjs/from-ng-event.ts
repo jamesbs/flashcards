@@ -1,4 +1,4 @@
-import { Subject } from 'rxjs/Subject'
+import { Subject } from 'rxjs'
 
 export type NgEvent<T> = {
   eventStream: Subject<T>
@@ -10,6 +10,6 @@ export const ngEventHandler = <T>(): NgEvent<T> => {
 
   return {
     eventStream,
-    next
+    next,
   }
 }

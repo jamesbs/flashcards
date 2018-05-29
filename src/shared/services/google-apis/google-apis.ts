@@ -1,5 +1,6 @@
 import { Injectable, Inject } from '@angular/core'
 import { googleApisClientId } from './google-apis-client-id'
+import { mergeMap } from 'rxjs/operators'
 import { execAsync, lazyAsync } from '../../../util/rxjs'
 
 @Injectable()
@@ -49,7 +50,7 @@ export class GoogleApis {
 
   constructor(@Inject(googleApisClientId) private clientId: string) {
     const loadClientSubscription = this.loadClient
-      .mergeMap(() => this.loadAuth2)
+      .pipe(mergeMap(() => this.loadAuth2))
       .subscribe(() => {
         loadClientSubscription.unsubscribe()
       })

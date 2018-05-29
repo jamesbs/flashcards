@@ -3,7 +3,7 @@ import { generatePath as path } from '../tools'
 import { baseConfig } from './base'
 
 export const devOnlyConfig = {
-
+  mode: 'development',
   output: {
     pathinfo: true
   },
@@ -11,35 +11,37 @@ export const devOnlyConfig = {
   devtool: 'source-map',
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.(jpg|jpeg|gif|png|tif|ttf|eot|woff|woff2)(\?[a-z0-9=&.]+)?$/,
-        loaders: [
+        use: [
           {
             loader: 'file-loader',
-            query: {
+            options: {
               name: '[path][name].[ext]',
-              context: './src'
+              context: './src',
             }
-          }
-        ]
-      },
-      {
-        test: /\.styl/,
-        loaders: [
-          'to-string-loader',
-          'css-loader',
-          'stylus-loader',
+          },
         ],
       },
       {
-        test: /\.svg/,
-        loader: 'file-loader',
+        test: /\.styl/,
+        use: [
+          { loader: 'to-string-loader' },
+          { loader: 'css-loader' },
+          { loader: 'stylus-loader' },
+        ],
+      },
+      {
+        test: /\.svg(\?[a-z0-9=&.]+)?/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[path][name].[ext]',
+            context: './src'
+          },
+        },
         exclude: /icons/,
-        query: {
-          name: '[path][name].[ext]',
-          context: './src'
-        }
       },
     ]
   },

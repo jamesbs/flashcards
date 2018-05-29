@@ -1,5 +1,5 @@
-import { Component, Input, Output, EventEmitter, ViewChild,
-  Renderer, ElementRef, HostBinding, HostListener, ChangeDetectorRef } from '@angular/core'
+import { Component, Input, Output, EventEmitter, ViewChild, ElementRef, HostBinding,
+  HostListener, ChangeDetectorRef, Renderer2 } from '@angular/core'
 import { FormGroup, FormControl, ValidatorFn, FormBuilder } from '@angular/forms'
 import { isArray } from 'lodash'
 import { longest } from '../../../../../util/collection'
@@ -77,7 +77,7 @@ export class IntroInputComponent {
   @HostListener('click')
   setFocus() {
     if(!this.completed)
-      this.renderer.invokeElementMethod(this.input.nativeElement, 'focus')
+      this.input.nativeElement.focus()
   }
 
   onFocus(event: FocusEvent) {
@@ -135,6 +135,6 @@ export class IntroInputComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private renderer: Renderer,
+    private renderer: Renderer2,
     private cd: ChangeDetectorRef) { }
 }

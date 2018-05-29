@@ -4,11 +4,12 @@
     "target": "es5",
     "lib": ["es6", "dom"],
     "moduleResolution": "node",
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "strictNullChecks": false,
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "traceResolution": true,
     "typeRoots": [
       "./node_modules/@types"
     ]

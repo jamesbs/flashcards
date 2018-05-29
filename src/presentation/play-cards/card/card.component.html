@@ -1,4 +1,4 @@
-<template [ngIf]="card && card.langItem">
+<ng-template [ngIf]="card && card.langItem">
   <div class="card-container" [ngSwitch]="card.type">
     <app-intro-card
       *ngSwitchCase="'intro'"
@@ -8,4 +8,4 @@
     </app-intro-card>
     <div *ngSwitchDefault></div>
   </div>
-</template>
+</ng-template>

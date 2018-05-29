@@ -13,13 +13,13 @@ module.exports = (config: any) => {
 
     singleRun: true,
 
-    plugins: [
-      'karma-jasmine',
-      'karma-chrome-launcher',
-      'karma-sourcemap-loader',
-      'karma-spec-reporter',
-      'karma-webpack',
-    ],
+    // plugins: [
+    //   'karma-jasmine',
+    //   'karma-chrome-launcher',
+    //   'karma-sourcemap-loader',
+    //   'karma-spec-reporter',
+    //   'karma-webpack',
+    // ],
 
     files: [
       './test/prerun.ts',

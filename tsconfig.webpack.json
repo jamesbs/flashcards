@@ -7,12 +7,12 @@
     "strictNullChecks": false,
     "sourceMap": true,
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "typeRoots": [
-      "./node_modules/@types"
-    ]
+    "experimentalDecorators": true
   },
   "awesomeTypescriptLoaderOptions": {
     "useCache": true
+  },
+  "angularCompilerOptions": {
+    "preserveWhitespace": false
   }
 }

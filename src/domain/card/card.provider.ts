@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
-import { Observable } from 'rxjs/Observable'
+import { Observable, of } from 'rxjs'
+import { delay } from 'rxjs/operators'
 
 import { Card } from './card'
 import { IntroCard } from './intro-card'
@@ -29,14 +30,10 @@ export class CardProvider {
       }
     }
 
-    return Observable
-      .of(idMap[id])
-      .delay(0)
+    return of(idMap[id]).pipe(delay(0))
   }
 
   next(): Observable<string> {
-    return Observable
-      .of('da39a3ee5e6b4b0d3255bfef95601890afd80709')
-      .delay(0)
+    return of('da39a3ee5e6b4b0d3255bfef95601890afd80709').pipe(delay(0))
   }
 }

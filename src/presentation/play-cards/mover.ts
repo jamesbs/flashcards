@@ -1,6 +1,5 @@
-import { Observable } from 'rxjs/Observable'
-import { Subject } from 'rxjs/Subject'
-import 'rxjs/add/operator/map'
+import { Observable, Subject } from 'rxjs'
+import { map, withLatestFrom } from 'rxjs/operators'
 
 import { Historical } from '../../domain/types'
 
@@ -16,14 +15,15 @@ export const createMover = <T extends Historical>(
 
   const move$ = new Subject<void>()
   const move = () => { move$.next() }
-  const id$ = card$.map(getId)
+  const id$ = card$.pipe(map(getId))
 
-  const moveId$ = move$.withLatestFrom(id$)
-    .map(([, id]) => id)
+  const moveId$ = move$.pipe(
+    withLatestFrom(id$),
+    map(([, id]) => id))
 
   return {
     move,
     id$,
-    moveId$
+    moveId$,
   }
 }

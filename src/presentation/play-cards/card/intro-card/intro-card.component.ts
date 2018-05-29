@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewChildren, QueryList, ViewChild,
   ChangeDetectorRef } from '@angular/core'
-import { Observable } from 'rxjs/Observable'
+import { of } from 'rxjs'
+import { delay } from 'rxjs/operators'
 import { LangItem, Character } from '../../../../domain/entities'
 import { getCharacters } from '../../../../domain/lang-item'
 import { CharacterComponent } from './character'
@@ -47,7 +48,7 @@ export class IntroCardComponent {
 
   characterViews: CharacterComponent[] = []
 
-  // find a way to implement this as a memoized getter
+  // TODO: find a way to implement this as a memoized getter
   characters: Character[]
 
   characterComplete = (successIndex: number) =>
@@ -111,8 +112,8 @@ export class IntroCardComponent {
     private cd: ChangeDetectorRef) { }
 
   ngAfterViewInit() {
-    Observable.of(this.active)
-      .delay(500)
+    of(this.active)
+      .pipe(delay(500))
       .subscribe(active => {
         if(active)
           this.focusNext()

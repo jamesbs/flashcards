@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core'
 import { APP_BASE_HREF } from '@angular/common'
 import { BrowserModule } from '@angular/platform-browser'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ReactiveFormsModule } from '@angular/forms'
-import { HttpModule } from '@angular/http'
+import { HttpClientModule } from '@angular/common/http'
 import { RouterModule } from '@angular/router'
 
 import { SharedModule } from './shared/shared.module'
@@ -18,15 +19,16 @@ import { getConfigProviders } from './config'
   declarations,
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
-    HttpModule,
+    HttpClientModule,
     RouterModule.forRoot(Routes),
     SharedModule,
   ],
   providers: [
     ...providers,
     { provide: APP_BASE_HREF, useValue: '/' },
-    getConfigProviders(config[environment])
+    getConfigProviders(config[environment]),
   ],
   bootstrap: [ AppRootComponent ],
 })

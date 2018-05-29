@@ -22,6 +22,6 @@ export class QuestionCardComponent {
     this.characters = toStandard(getCharacters(this.langItem))
   }
 
-  // find a way to implement this as a memoized getter
+  // TODO: find a way to implement this as a memoized getter
   characters: StandardWord
 }

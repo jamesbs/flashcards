@@ -1,19 +1,20 @@
-import { Component, Output, HostBinding } from '@angular/core'
-import { Subject } from 'rxjs/Subject'
+import { Component, HostBinding, OnInit } from '@angular/core'
+import { Subject } from 'rxjs'
+import { debounceTime } from 'rxjs/operators'
 
 @Component({
   selector: 'app-action',
   templateUrl: './action.component.html',
   styleUrls: ['./action.component.styl'],
 })
-export class ActionComponent {
+export class ActionComponent implements OnInit {
   hovered$ = new Subject<boolean>()
 
   @HostBinding('class.show-tooltip')
   showTooltip = false
 
   ngOnInit() {
-    this.hovered$.debounceTime(200)
+    this.hovered$.pipe(debounceTime(200))
       .subscribe(hovered => {
         this.showTooltip = hovered
       })

@@ -17,52 +17,60 @@ export const baseConfig = {
   },
 
   resolve: {
-    extensions: ['.webpack.js', '.web.js', '.ts', '.js', '.styl', '.ogg']
+    extensions: [
+      '.webpack.js',
+      '.web.js',
+      '.ts',
+      '.js',
+      '.css',
+      '.styl',
+      '.ogg',
+    ]
   },
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.ts$/,
-        loaders: [
+        use: [
           {
             loader: 'awesome-typescript-loader',
-            query: {
+            options: {
               configFileName: './tsconfig.webpack.json'
             },
           },
-          'angular2-template-loader',
+          { loader: 'angular2-template-loader' },
         ],
         exclude: /node_modules/,
       },
       {
         test: /\.html/,
-        loader: 'html-loader',
+        use: { loader: 'html-loader' },
         exclude: /node_modules/,
       },
       {
         test: /\.svg/,
-        loader: 'raw-loader',
+        use: { loader: 'raw-loader' },
       },
       {
         test: /\.css$/,
-        loaders: [
-          'to-string-loader',
-          'css-loader',
+        use: [
+          { loader: 'to-string-loader' },
+          { loader: 'css-loader' },
         ],
         exclude: /vendor|node_modules/
       },
       {
         test: /\.css$/,
-        loaders: [
-          'style-loader',
-          'css-loader',
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
         ],
         include: /vendor|node_modules/
       },
       {
         test: /\.ogg$/,
-        loader: 'file-loader',
+        use: { loader: 'file-loader' },
       },
     ]
   },
@@ -70,7 +78,7 @@ export const baseConfig = {
   plugins: [
     // necessary due to https://github.com/angular/angular/issues/11580
     new ContextReplacementPlugin(
-      /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+      /\@angular\/core\/fesm5/,
       path`${'app'}`
     ),
     new HtmlWebpackPlugin({

@@ -1,7 +1,7 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy,
-  trigger, transition, state, style, animate } from '@angular/core'
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core'
+import { trigger, transition, state, style, animate } from '@angular/animations'
 import { Router } from '@angular/router'
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs'
 
 import { SlideDirection } from '../play-cards/slide-direction'
 import { createEcho } from './echo'

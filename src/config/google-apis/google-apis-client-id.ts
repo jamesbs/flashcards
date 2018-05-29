@@ -1,4 +1,3 @@
-import { OpaqueToken } from '@angular/core'
 import { Config } from '../config'
 import { generateConfigProvider } from '../generate-config-provider'
 import { googleApisClientId } from '../../shared/services/google-apis'

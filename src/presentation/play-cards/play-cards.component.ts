@@ -1,7 +1,8 @@
-import { Component, ComponentFactoryResolver, ViewContainerRef, EventEmitter,
-  trigger, transition, state, style, animate } from '@angular/core'
+import { Component, ComponentFactoryResolver, ViewContainerRef, EventEmitter, OnInit } from '@angular/core'
+import { trigger, transition, state, style, animate } from '@angular/animations'
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router'
-import { Observable } from 'rxjs'
+import { Observable, merge } from 'rxjs'
+import { mergeMap, map, share } from 'rxjs/operators'
 
 import { CardProvider } from '../../domain/providers'
 import { LangItemProvider } from '../../domain/providers'
@@ -31,13 +32,14 @@ const slide = animate('1200ms cubic-bezier(0.230, 1.000, 0.320, 1.000)')
     ]),
   ],
 })
-export class PlayCardsComponent {
+export class PlayCardsComponent implements OnInit {
   card$ = this.route.params
-    .mergeMap(({ cardId }) => this.cardProvider.get(cardId))
-    .mergeMap(card =>
-      this.langItemProvider.get(card.langItemId)
-        .map(langItem => createCardContext(card, langItem)))
-    .share()
+    .pipe(
+      mergeMap(({ cardId }) => this.cardProvider.get(cardId)),
+      mergeMap(card =>
+        this.langItemProvider.get(card.langItemId)
+          .pipe(map(langItem => createCardContext(card, langItem)))),
+      share())
 
   previous = createMover(this.card$, ({ previous }) => previous)
   next = createMover(this.card$, ({ next }) => next)
@@ -49,12 +51,12 @@ export class PlayCardsComponent {
     private langItemProvider: LangItemProvider) { }
 
   ngOnInit() {
-    Observable.merge(this.previous.moveId$, this.next.moveId$)
+    merge(this.previous.moveId$, this.next.moveId$)
       .subscribe(moveId => {
         this.router.navigate(['play', moveId])
       })
   }
 
-  hasPrevious = this.previous.id$.map(id => id !== undefined)
-  hasNext = this.next.id$.map(id => id !== undefined)
+  hasPrevious = this.previous.id$.pipe(map(id => id !== undefined))
+  hasNext = this.next.id$.pipe(map(id => id !== undefined))
 }

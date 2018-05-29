@@ -1,8 +1,8 @@
-import { OpaqueToken, Provider } from '@angular/core'
+import { InjectionToken, Provider } from '@angular/core'
 import { Config } from './config'
 
-export const generateConfigProvider: <T>(token: OpaqueToken, factory: (config: Config) => T) => Provider
-  = <T>(token: OpaqueToken, factory: (config: Config) => T) =>
+export const generateConfigProvider: <T>(token: InjectionToken<T>, factory: (config: Config) => T) => Provider
+  = <T>(token: InjectionToken<T>, factory: (config: Config) => T) =>
     ({
       provide: token,
       useFactory: factory,

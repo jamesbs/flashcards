@@ -3,6 +3,8 @@ import { prodConfig } from './build/configs/prod'
 
 export { testConfig } from './build/configs/test'
 
-export default process.env.NODE_ENV === 'dev'
+const config = process.env.NODE_ENV === 'dev'
     ? devConfig
     : prodConfig
+
+export default config
