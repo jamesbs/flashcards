@@ -14,7 +14,7 @@ describe('fromPhrase', () => {
         { chinese: '们', pinyin: { syllable: 'men', tone: '5' } },
       ]]
 
-   ;(<any>expect(fromPhrase(input))).toDeepEqual(expected)
+   ;(<any>expect(fromPhrase(input))).toEqual(expected)
   })
 
   it('multiple words', () => {
@@ -30,6 +30,6 @@ describe('fromPhrase', () => {
       [ { chinese: '吗', pinyin: { syllable: 'ma', tone: '5' } } ],
     ]
 
-   ;(<any>expect(fromPhrase(input))).toDeepEqual(expected)
+   ;(<any>expect(fromPhrase(input))).toEqual(expected)
   })
 })
