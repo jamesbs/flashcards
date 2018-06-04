@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core'
-import { ConfigDataSource } from './config-data-source'
+import { Config } from './config.type'
 
-@Injectable({ providedIn: 'root' })
-export class Config {
-  constructor(public data: ConfigDataSource) { }
+export const config: Config = {
+  'googleapis': {
+    clientId: '229587405481-ld3ptvav3bggc4rp1367qqbudqqk9aa0.apps.googleusercontent.com',
+    scopes: 'profile',
+  },
 }

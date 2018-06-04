@@ -10,7 +10,7 @@ import { SharedModule } from './shared/shared.module'
 import { AppRootComponent } from './presentation/app-root'
 import { declarations } from './app.declarations'
 import { Routes } from './app.routes'
-import { environment } from '../environment'
+import { environment } from './environment'
 import { config, Config, configProviders } from './config'
 
 @NgModule({
@@ -25,7 +25,7 @@ import { config, Config, configProviders } from './config'
   ],
   providers: [
     { provide: APP_BASE_HREF, useValue: '/' },
-    { provide: Config, useFactory: () => new Config(config[environment]) },
+    { provide: Config, useValue: config },
     ...configProviders,
   ],
   bootstrap: [ AppRootComponent ],

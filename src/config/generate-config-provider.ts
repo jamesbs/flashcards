@@ -1,10 +1,10 @@
 import { InjectionToken, Provider } from '@angular/core'
-import { Config } from './config'
+import { Config } from './config.type'
 
-export const generateConfigProvider: <T>(token: InjectionToken<T>, factory: (config: Config) => T) => Provider
-  = <T>(token: InjectionToken<T>, factory: (config: Config) => T) =>
-    ({
-      provide: token,
-      useFactory: factory,
-      deps: [ Config ],
-    })
+export function generateConfigProvider<T>(token: InjectionToken<T>, factory: (config: Config) => T): Provider {
+  return {
+    provide: token,
+    useFactory: factory,
+    deps: [ Config ],
+  }
+}
