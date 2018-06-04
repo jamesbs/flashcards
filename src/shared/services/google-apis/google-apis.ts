@@ -3,7 +3,7 @@ import { googleApisClientId } from './google-apis-client-id'
 import { mergeMap } from 'rxjs/operators'
 import { execAsync, lazyAsync } from '../../../util/rxjs'
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class GoogleApis {
   loginUsingGoogle() {
     const scopes = 'profile'

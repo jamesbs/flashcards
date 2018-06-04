@@ -12,7 +12,7 @@ describe('fromBasic', () => {
   it('invalid basic pinyin', () => {
     const expected = new ValueError("'de' is not valid pinyin.")
 
-    expect(() => fromBasic('de')).toThrow(expected)
+    expect(() => fromBasic('de')).toThrow(/is not valid pinyin/)
   })
 })
 

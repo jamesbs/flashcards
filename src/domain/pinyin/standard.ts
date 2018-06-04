@@ -1,4 +1,5 @@
-import { Pinyin, Vowel, isVowel, isPriorityVowel } from '../../domain/pinyin'
+import { Pinyin } from './pinyin'
+import { Vowel, isVowel, isPriorityVowel } from './vowel'
 import { applyTone } from './pinyin-tone'
 
 // pinyin is in standard form

@@ -2,12 +2,11 @@ import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { LangItem } from './lang-item'
 import { Observable } from 'rxjs'
-
 import { map } from 'rxjs/operators'
 
 const baseUrl = 'http://localhost:8999'
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class LangItemProvider {
 
   constructor(private http: HttpClient) { }

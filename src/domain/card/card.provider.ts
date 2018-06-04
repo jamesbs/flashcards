@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core'
 import { Observable, of } from 'rxjs'
 import { delay } from 'rxjs/operators'
-
 import { Card } from './card'
 import { IntroCard } from './intro-card'
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class CardProvider {
   get(id: string): Observable<Card> {
     const idMap: { [key: string]: IntroCard } = {

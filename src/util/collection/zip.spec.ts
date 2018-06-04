@@ -43,5 +43,5 @@ test('differently typed arrays', () => {
 
   const expected = [ [ 'a', [ 1, 2 ] ], [ 'b' , [ 2, 3 ] ] ]
 
-  ;(<any>expect(zip(a1, a2))).toEqual(expected)
+ ;(<any>expect(zip(a1, a2))).toEqual(expected)
 })

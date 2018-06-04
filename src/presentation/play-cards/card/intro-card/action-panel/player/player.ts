@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { PlayerState } from './player-state'
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class Player {
   state: PlayerState = 'stopped'
 
