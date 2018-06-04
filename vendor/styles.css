@@ -2,3 +2,7 @@
 @import url('./font-awesome/css/font-awesome.min.css');
 @import url('./material-icons/material-icons.css');
 @import url('./fonts/montserrat/montserrat.css');
+
+html {
+  font-family: sans-serif;
+}
