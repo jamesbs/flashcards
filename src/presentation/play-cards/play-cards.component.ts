@@ -6,7 +6,7 @@ import { mergeMap, map, share } from 'rxjs/operators'
 
 import { CardProvider } from '../../domain/providers'
 import { LangItemProvider } from '../../domain/providers'
-import { SlideDirection, getDirection, gd } from './slide-direction'
+import { SlideDirection, getDirection } from './slide-direction'
 import { createMover } from './mover'
 import { createCardContext } from './card'
 

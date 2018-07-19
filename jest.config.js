@@ -1,4 +1,5 @@
 module.exports = {
+  collectCoverage: true,
   testMatch: [
     '**/project.test.ts',
     '**/*.spec.(ts|tsx|js)',
